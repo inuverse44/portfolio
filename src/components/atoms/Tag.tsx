@@ -1,12 +1,17 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './Tag.module.css';
 
 interface TagProps {
-  children: React.ReactNode;
+  children: string; // Tags are strings
 }
 
 const Tag = ({ children }: TagProps) => {
-  return <span className={styles.tag}>{children}</span>;
+  return (
+    <Link href={`/tags/${children}`} className={styles.tag}>
+      {children}
+    </Link>
+  );
 };
 
 export default Tag;
