@@ -1,0 +1,25 @@
+.card {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.title a {
+  color: blue;
+  text-decoration: none;
+}
+
+.title a:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  margin-top: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.tags {
+  margin-top: 12px;
+}

@@ -1,0 +1,27 @@
+.postContent h1,
+.postContent h2,
+.postContent h3,
+.postContent h4,
+.postContent h5,
+.postContent h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.postContent p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.postContent ul,
+.postContent ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.postContent li {
+  margin-bottom: 8px;
+}
+
+/* Add more specific styles as needed */
