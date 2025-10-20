@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image'; // Import Image component
+import { useRouter } from 'next/router';
 import Link from 'next/link'; // Import Link for internal navigation
 import { SITE_TITLE } from '@/constants/site';
 import styles from '@/styles/Home.module.css'; // Import styles
 
 export default function Home() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -14,7 +16,7 @@ export default function Home() {
 
       <div className={styles.homeContainer}> {/* Add a container for styling */}
         <Image
-          src="/images/profile.jpg" // Path to your image in public/images
+          src={`${router.basePath}/images/profile.jpg`}
           alt="Profile Picture"
           width={150} // Adjust width as needed
           height={150} // Adjust height as needed
