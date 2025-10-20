@@ -25,7 +25,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playwrite-us-modern), cursive; /* Corrected font variable */
+  font-family: "Hachi Maru Pop", cursive;;
 }
 
 code {

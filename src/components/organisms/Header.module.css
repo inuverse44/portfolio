@@ -2,7 +2,16 @@
   padding: 20px 0;
   border-bottom: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center the header content */
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between; /* Space between title and nav */
+  align-items: center;
+  max-width: 800px; /* Match layout container width */
+  width: 100%;
+  padding: 0 20px; /* Add padding for smaller screens */
 }
 
 .title a {
