@@ -11,3 +11,38 @@
   margin: 0 auto;
   padding: 20px;
 }
+
+.container a {
+  color: #0070f3; /* Blue color for links */
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.container ul,
+.container ol {
+  list-style-position: inside; /* Align list markers inside the content flow */
+  margin-bottom: 16px; /* Add margin to lists */
+}
+
+.container li {
+  margin-bottom: 8px; /* Add margin to list items */
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.container p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+}

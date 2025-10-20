@@ -2,16 +2,16 @@
   padding: 20px 0;
   border-bottom: 1px solid #eaeaea;
   display: flex;
-  justify-content: center; /* Center the header content */
+  justify-content: center;
 }
 
 .headerContent {
   display: flex;
-  justify-content: space-between; /* Space between title and nav */
+  justify-content: space-between;
   align-items: center;
-  max-width: 800px; /* Match layout container width */
+  max-width: 800px;
   width: 100%;
-  padding: 0 20px; /* Add padding for smaller screens */
+  padding: 0 20px;
 }
 
 .title a {
@@ -19,4 +19,10 @@
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
+  display: flex; /* Make the link a flex container */
+  align-items: center; /* Vertically align logo and text */
+}
+
+.logo {
+  margin-right: 10px; /* Space between logo and title text */
 }

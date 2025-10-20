@@ -7,7 +7,6 @@ tags:
   - example
 ---
 
-# My First Post
 
 This is my first blog post using Next.js! Welcome!
 
