@@ -64,6 +64,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         date: data.date || 'No Date',
         tags: data.tags || [],
       },
-      content: content || '', // Ensure content is always a string here
+      content: content || '',
     },
   };
+};
