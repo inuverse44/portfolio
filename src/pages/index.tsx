@@ -21,10 +21,10 @@ export default function Home() {
           className={styles.profileImage} // Add a class for styling
           priority // Prioritize loading for LCP
         />
-        <h2>Hello, I'm {SITE_TITLE}!</h2>
+        <h1>Hello, I&apos;m {SITE_TITLE}!</h1> {/* Corrected: I'm -> I&apos;m */}
         <p className={styles.homeDescription}>
           Welcome to my personal space where I share my thoughts on technology, development, science, cosmology, and life.
-          I'm passionate about creating engaging web experiences and exploring new ideas.
+          I&apos;m passionate about creating engaging web experiences and exploring new ideas. {/* Corrected: I'm -> I&apos;m */}
         </p>
         <p className={styles.homeDescription}>
           Feel free to browse my <Link href="/blog">blog posts</Link> or learn more <Link href="/about">about me</Link>.
