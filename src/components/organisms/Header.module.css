@@ -5,9 +5,24 @@
   justify-content: center;
 }
 
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  padding: 0 20px;
+}
+
 .title a {
   color: #000;
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
+  display: flex; /* Make the link a flex container */
+  align-items: center; /* Vertically align logo and text */
+}
+
+.logo {
+  margin-right: 10px; /* Space between logo and title text */
 }

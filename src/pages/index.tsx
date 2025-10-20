@@ -1,64 +1,35 @@
 import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import PostList from '@/components/organisms/PostList';
+import Image from 'next/image'; // Import Image component
+import Link from 'next/link'; // Import Link for internal navigation
+import { SITE_TITLE } from '@/constants/site';
+import styles from '@/styles/Home.module.css'; // Import styles
 
-interface Post {
-  slug: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    tags: string[];
-  };
-}
-
-interface HomeProps {
-  posts: Post[];
-}
-
-export default function Home({ posts }: HomeProps) {
+export default function Home() {
   return (
     <>
       <Head>
-        <title>My Blog</title>
-        <meta name="description" content="A blog about technology and life." />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Home | {SITE_TITLE}</title>
+        <meta name="description" content="Welcome to my personal blog" />
       </Head>
 
-      <div>
-        <h1>Posts</h1>
-        <PostList posts={posts} />
+      <div className={styles.homeContainer}> {/* Add a container for styling */}
+        <Image
+          src="/images/profile.jpg" // Path to your image in public/images
+          alt="Profile Picture"
+          width={150} // Adjust width as needed
+          height={150} // Adjust height as needed
+          className={styles.profileImage} // Add a class for styling
+          priority // Prioritize loading for LCP
+        />
+        <h2>Hello, I'm {SITE_TITLE}!</h2>
+        <p className={styles.homeDescription}>
+          Welcome to my personal space where I share my thoughts on technology, development, science, cosmology, and life.
+          I'm passionate about creating engaging web experiences and exploring new ideas.
+        </p>
+        <p className={styles.homeDescription}>
+          Feel free to browse my <Link href="/blog">blog posts</Link> or learn more <Link href="/about">about me</Link>.
+        </p>
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const posts = filenames
-    .filter((filename) => filename.endsWith('.md'))
-    .map((filename) => {
-      const filePath = path.join(postsDirectory, filename);
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContents);
-
-      return {
-        slug: filename.replace(/\.md$/, ''),
-        frontmatter: {
-          title: data.title || 'No Title',
-          date: data.date || 'No Date',
-          tags: data.tags || [],
-        },
-      };
-    })
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-
-  return {
-    props: {
-      posts,
-    },
-  };
 }
