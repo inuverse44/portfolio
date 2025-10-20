@@ -14,10 +14,11 @@ const PostBody = ({ content }: PostBodyProps) => {
   return (
     <div className={styles.postContent}>
       <ReactMarkdown
-        children={content}
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeHighlight, rehypeKatex]}
-      />
+      >
+        {content || ''} {/* Ensure content is always a string */}
+      </ReactMarkdown>
     </div>
   );
 };

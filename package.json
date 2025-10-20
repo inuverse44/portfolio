@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next dev",
-    "lint": "eslint",
-    "deploy": "next build && gh-pages -d out"
+    "lint": "eslint"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
