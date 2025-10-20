@@ -19,9 +19,17 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto-mono), monospace; /* Apply Roboto Mono */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playwrite-us-modern), cursive; /* Corrected font variable */
+}
+
+code {
+  font-family: var(--font-roboto-mono), monospace; /* Apply Roboto Mono to code */
 }
 
 * {
