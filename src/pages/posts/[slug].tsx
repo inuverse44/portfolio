@@ -65,3 +65,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
         tags: data.tags || [],
       },
       content: content || '', // Ensure content is always a string here
+    },
+  };
