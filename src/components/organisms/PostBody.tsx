@@ -7,17 +7,17 @@ import rehypeKatex from 'rehype-katex';
 import styles from './PostBody.module.css';
 
 interface PostBodyProps {
-  content: string;
+  content?: string;
 }
 
-const PostBody = ({ content }: PostBodyProps) => {
+const PostBody = ({ content = '' }: PostBodyProps) => {
   return (
     <div className={styles.postContent}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeHighlight, rehypeKatex]}
       >
-        {content || ''} {/* Ensure content is always a string */}
+        {content}
       </ReactMarkdown>
     </div>
   );
