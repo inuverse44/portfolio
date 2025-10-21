@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import { SITE_TITLE } from '@/constants/site';
 
 const ExternalLinkPage = () => {
   return (
