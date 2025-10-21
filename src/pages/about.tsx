@@ -10,19 +10,19 @@ const AboutPage = () => {
       </Head>
       <div>
         <h1>About This Blog</h1>
-        <p>This is a personal blog with scientific and technological perspective</p>
-        <p>Feel free to explore the posts and features!</p>
+        <p>このブログでは。最新のソフトウェア技術や学んだことをまとめると同時に、最新の科学情報（特に宇宙）のことについても取り上げます。</p>
+        <p>気軽にポストをご観覧ください！</p>
 
         <h1>About Me</h1>
         <ul>
-          <li>Earned a Ph.D. in Physics in 2024.</li>
-          <li>Majored in cosmology, especially the early Universe.</li>
-          <li>Likes: play basketball, take photo</li>
-          <li>Language: Japanese, English (still improving, TOEIC Score 625/990)</li>
-          <li>Programming Language: C, Python, Kotlin, Rust, JavaScript, TypeScript</li>
-          <li>Framework: Quarkus, React</li>
+          <li>2024年に博士（理学）を取得</li>
+          <li>宇宙論を専攻、特に初期宇宙論におけるインフレーションや原始重力波、初期ゆらぎの量子論を専門とした。</li>
+          <li>趣味：バスケットボール、一眼レフカメラ</li>
+          <li>言語：Japanese, English (TOEIC Score 625/990) </li>
+          <li>プログラミング言語：C, Python, Kotlin, Rust, JavaScript, TypeScript</li>
+          <li>フレームワーク：Quarkus, React</li>
           <li>Cloud: Google Cloud Platform (GCP)</li>
-          <li>Infrastracture: Terraform</li>
+          <li>インフラ: Terraform, Argo CD</li>
         </ul>
 
         <h1>Published</h1>

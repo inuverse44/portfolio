@@ -18,18 +18,18 @@ export default function Home() {
         <Image
           src={`${router.basePath}/images/profile.jpg`}
           alt="Profile Picture"
-          width={150} // Adjust width as needed
-          height={150} // Adjust height as needed
-          className={styles.profileImage} // Add a class for styling
-          priority // Prioritize loading for LCP
+          width={150}
+          height={150}
+          className={styles.profileImage}
+          priority 
         />
-        <h1>Hello, I&apos;m {SITE_TITLE}!</h1> {/* Corrected: I'm -> I&apos;m */}
+        <h1>Hello, I&apos;m {SITE_TITLE}!</h1>
         <p className={styles.homeDescription}>
-          Welcome to my personal space where I share my thoughts on technology, development, science, cosmology, and life.
-          I&apos;m passionate about creating engaging web experiences and exploring new ideas. {/* Corrected: I'm -> I&apos;m */}
+          Inuverseのパーソナルスペースへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアするよ。
+          アイディアのタイムカプセルになることを祈って。
         </p>
         <p className={styles.homeDescription}>
-          Feel free to browse my <Link href="/blog">blog posts</Link> or learn more <Link href="/about">about me</Link>.
+          <Link href="/blog">blog posts</Link>や<Link href="/about">about me</Link>でポストやこのブログについて深く知ることができます。
         </p>
       </div>
     </>

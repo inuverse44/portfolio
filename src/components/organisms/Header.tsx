@@ -19,13 +19,22 @@ const Header = () => {
       <div className={styles.headerContent}>
         <h1 className={styles.title}>
           <Link href="/">
-            <Image
-              src={`${router.basePath}/images/logo.png`}
-              alt="Site Logo"
-              width={100} // Adjust width as needed
-              height={100} // Adjust height as needed
-              className={styles.logo} // Add a class for styling
-            />
+            <span className={styles.logoLight}>
+              <Image
+                src={`${router.basePath}/images/logo.png`}
+                alt="Site Logo"
+                width={100} // Adjust width as needed
+                height={100} // Adjust height as needed
+              />
+            </span>
+            <span className={styles.logoDark}>
+              <Image
+                src={`${router.basePath}/images/logo-darkmode.png`}
+                alt="Site Logo in Dark Mode"
+                width={100} // Adjust width as needed
+                height={100} // Adjust height as needed
+              />
+            </span>
             {SITE_TITLE}
           </Link>
         </h1>

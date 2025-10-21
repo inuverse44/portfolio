@@ -180,7 +180,7 @@ a.secondary {
 .profileImage {
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ccc;
+  border: 2px solid var(--card-border-color);
 }
 
 .homeDescription {
@@ -189,6 +189,6 @@ a.secondary {
 }
 
 .homeDescription a {
-  color: blue;
+  color: var(--link-color);
   text-decoration: underline;
 }

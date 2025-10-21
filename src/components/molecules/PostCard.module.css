@@ -1,12 +1,12 @@
 .card {
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--card-border-color);
   padding: 16px;
   border-radius: 8px;
 }
 
 .title a {
-  color: blue;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -16,7 +16,7 @@
 
 .meta {
   margin-top: 8px;
-  color: #666;
+  color: var(--text-color-secondary);
   font-size: 14px;
 }
 

@@ -1,6 +1,6 @@
 .header {
   padding: 20px 0;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: center;
 }
@@ -15,7 +15,7 @@
 }
 
 .title a {
-  color: #000;
+  color: var(--header-title-color);
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
@@ -23,6 +23,21 @@
   align-items: center; /* Vertically align logo and text */
 }
 
-.logo {
+.logoLight,
+.logoDark {
   margin-right: 10px; /* Space between logo and title text */
+}
+
+.logoDark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logoLight {
+    display: none;
+  }
+
+  .logoDark {
+    display: block;
+  }
 }

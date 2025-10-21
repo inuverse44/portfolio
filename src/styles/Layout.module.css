@@ -13,7 +13,7 @@
 }
 
 .container a {
-  color: #0070f3; /* Blue color for links */
+  color: var(--link-color); /* Blue color for links */
   text-decoration: none;
 }
 
