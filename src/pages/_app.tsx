@@ -3,7 +3,7 @@ import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
 import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
-import { Playfair_Display, Roboto_Mono, Playwrite_US_Modern, Hachi_Maru_Pop } from 'next/font/google';
+import { Roboto_Mono, Hachi_Maru_Pop } from 'next/font/google';
 
 // Configure Roboto Mono for code
 const robotoMono = Roboto_Mono({
