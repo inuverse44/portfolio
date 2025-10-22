@@ -31,6 +31,9 @@ const AboutPage = () => {
           <li><a href='https://iopscience.iop.org/article/10.1088/1475-7516/2023/05/050'>Nonminimally assisted inflation: a general analysis</a></li>
           <li><a href='https://journals.aps.org/prd/abstract/10.1103/PhysRevD.105.063542'>Relaxing inflation models with nonminimal coupling: A general study</a></li>
         </ul>
+
+        <h1>Technologies I’ve Been Curious About Lately</h1>
+        <p>Deep LearningやData science分野は気になっています。ブラックボックスだったり、サイエンスなのか微妙な領域ですが、比較的勉強しがいがある分野だと感じています。</p>
       </div>
     </>
   );
