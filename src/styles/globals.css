@@ -1,12 +1,13 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333;
   --border-color: #eaeaea;
-  --header-title-color: #000;
+  --header-title-color: #333;
   --tag-background-color: #eee;
   --nav-link-color: #333;
   --card-border-color: #ccc;
   --link-color: #0070f3;
+  --section-color: #72D4DA;
   --text-color-secondary: #666;
 }
 
@@ -20,6 +21,7 @@
     --nav-link-color: #ccc;
     --card-border-color: #555;
     --link-color: #58a6ff;
+    --section-color: #0070f3;
     --text-color-secondary: #aaa;
   }
 }
@@ -39,6 +41,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color: var(--section-color);
   font-family: "Hachi Maru Pop", cursive;;
 }
 

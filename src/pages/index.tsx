@@ -23,11 +23,11 @@ export default function Home() {
           className={styles.profileImage}
           priority 
         />
-        <h1>Hello, I&apos;m {SITE_TITLE}!</h1>
+        <h2>Hello, I&apos;m {SITE_TITLE}!</h2>
         <p className={styles.homeDescription}>
           Inuverseのパーソナルスペースへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアするよ。
-          アイディアのタイムカプセルになることを祈って。
         </p>
+        <p>アイディアのタイムカプセル。</p>
         <p className={styles.homeDescription}>
           <Link href="/blog">blog posts</Link>や<Link href="/about">about me</Link>でポストやこのブログについて深く知ることができます。
         </p>
