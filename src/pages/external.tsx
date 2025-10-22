@@ -8,7 +8,7 @@ const ExternalLinkPage = () => {
         <title>External Link</title>
       </Head>
       <div>
-        <h1>SNS</h1>
+        <h2>SNS</h2>
         <dt>
           <li>
             X: <a href='https://twitter.com/mochi_dog_phys'>https://twitter.com/mochi_dog_phys</a>
@@ -21,7 +21,7 @@ const ExternalLinkPage = () => {
           </li>
         </dt>
 
-        <h1>Cosmology</h1>
+        <h2>Cosmology</h2>
         <dt>
           <li>
             arXiv: <a href='https://arxiv.org/'>https://arxiv.org/</a>
@@ -31,13 +31,16 @@ const ExternalLinkPage = () => {
           </li>
         </dt>
 
-        <h1>Tech</h1>
+        <h2>Tech</h2>
         <dt>
           <li>
             Rust: <a href='https://arxiv.org/'>https://arxiv.org/</a>
           </li>
           <li>
             compass: <a href='https://connpass.com/user/inuverse/'>https://connpass.com/user/inuverse/</a>
+          </li>
+          <li>
+            Zenn: <a href='https://zenn.dev/tatsukikodama'>https://zenn.dev/tatsukikodama</a>
           </li>
         </dt>
       </div>
