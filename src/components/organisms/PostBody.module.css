@@ -25,3 +25,38 @@
 }
 
 /* Add more specific styles as needed */
+
+/* Blockquote styles */
+.postContent blockquote {
+  margin: 16px 0;
+  padding: 8px 16px;
+  border-left: 4px solid var(--section-color);
+  background: transparent;
+  color: var(--foreground);
+  font-style: italic;
+}
+
+.postContent blockquote p {
+  margin: 8px 0;
+}
+
+/* Remove trailing space inside blockquote */
+.postContent blockquote > :first-child {
+  margin-top: 0;
+}
+.postContent blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Nested blockquotes get additional indent */
+.postContent blockquote blockquote {
+  margin-left: 8px;
+}
+
+/* Images: keep within content width */
+.postContent img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px auto; /* center by default */
+}
