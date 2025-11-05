@@ -13,9 +13,10 @@ interface PostProps {
     tags: string[];
   };
   content: string;
+  slug: string;
 }
 
-export default function Post({ frontmatter, content }: PostProps) {
+export default function Post({ frontmatter, content, slug }: PostProps) {
   return (
     <article>
       <Head>
@@ -27,7 +28,7 @@ export default function Post({ frontmatter, content }: PostProps) {
         date={frontmatter.date}
         tags={frontmatter.tags}
       />
-      <PostBody content={content} />
+      <PostBody content={content} slug={slug} />
     </article>
   );
 }
@@ -59,6 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      slug,
       frontmatter: {
         title: data.title || 'No Title',
         date: data.date || 'No Date',
