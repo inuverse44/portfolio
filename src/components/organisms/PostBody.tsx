@@ -24,15 +24,17 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
   };
 
   const components: Components = {
-    img: ({ node: _node, src, alt, ...rest }) => {
+    img: ({ src, alt, ...rest }) => {
+      const srcStr = typeof src === 'string' ? src : undefined;
       // eslint-disable-next-line @next/next/no-img-element
-      return <img {...rest} src={resolveSrc(src)} alt={alt ?? ''} />;
+      return <img {...rest} src={resolveSrc(srcStr)} alt={alt ?? ''} />;
     },
-    a: ({ node: _node, href, children, ...rest }) => {
-      const isExternal = typeof href === 'string' && /^(https?:)?\/\//.test(href);
+    a: ({ href, children, ...rest }) => {
+      const hrefStr = typeof href === 'string' ? href : undefined;
+      const isExternal = typeof hrefStr === 'string' && /^(https?:)?\/\//.test(hrefStr);
       return (
         <a
-          href={href as string | undefined}
+          href={hrefStr}
           {...rest}
           target={isExternal ? '_blank' : undefined}
           rel={isExternal ? 'noopener noreferrer' : undefined}
