@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
+import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import remarkMath from 'remark-math';
@@ -22,32 +23,32 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
     return `${router.basePath}/posts/${slug}/${src}`;
   };
 
+  const components: Components = {
+    img: ({ node: _node, src, alt, ...rest }) => {
+      // eslint-disable-next-line @next/next/no-img-element
+      return <img {...rest} src={resolveSrc(src)} alt={alt ?? ''} />;
+    },
+    a: ({ node: _node, href, children, ...rest }) => {
+      const isExternal = typeof href === 'string' && /^(https?:)?\/\//.test(href);
+      return (
+        <a
+          href={href as string | undefined}
+          {...rest}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      );
+    },
+  };
+
   return (
     <div className={styles.postContent}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeHighlight, rehypeKatex]}
-        components={{
-          img: (props: any) => {
-            const { src, alt, ...rest } = props || {};
-            // eslint-disable-next-line @next/next/no-img-element
-            return <img {...rest} src={resolveSrc(src)} alt={alt ?? ''} />;
-          },
-          a: (props: any) => {
-            const { href, children, ...rest } = props || {};
-            const isExternal = typeof href === 'string' && /^(https?:)?\/\//.test(href);
-            return (
-              <a
-                href={href}
-                {...rest}
-                target={isExternal ? '_blank' : undefined}
-                rel={isExternal ? 'noopener noreferrer' : undefined}
-              >
-                {children}
-              </a>
-            );
-          },
-        }}
+        components={components}
       >
         {content}
       </ReactMarkdown>
