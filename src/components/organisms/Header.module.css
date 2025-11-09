@@ -49,3 +49,48 @@
     height: 64px;
   }
 }
+
+/* Desktop vs mobile nav visibility */
+.desktopNav {
+  display: flex;
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: var(--nav-link-color);
+}
+
+.mobileMenuOverlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in oklab, var(--background) 92%, black 8%);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 72px; /* space below header */
+}
+
+.mobileMenu {
+  width: min(92vw, 420px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--background);
+}
+
+@media (max-width: 700px) {
+  .desktopNav {
+    display: none;
+  }
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

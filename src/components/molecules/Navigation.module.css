@@ -1,13 +1,19 @@
 .nav {
   display: flex;
-  flex-wrap: wrap; /* allow wrapping on small widths */
   gap: 12px;
+}
+
+.navVertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
 }
 
 .navItem a {
   color: var(--nav-link-color);
   text-decoration: none;
   font-weight: 500;
+  padding: 8px 4px;
 }
 
 .navItem a:hover {
