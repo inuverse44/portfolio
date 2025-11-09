@@ -11,13 +11,13 @@
   align-items: center;
   max-width: 800px;
   width: 100%;
-  padding: 0 20px;
+  padding-inline: 16px;
 }
 
 .title a {
   color: var(--header-title-color);
   text-decoration: none;
-  font-size: 24px;
+  font-size: clamp(20px, 5vw, 24px);
   font-weight: bold;
   display: flex; /* Make the link a flex container */
   align-items: center; /* Vertically align logo and text */
@@ -39,5 +39,74 @@
 
   .logoDark {
     display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Make sure logo doesn't dominate small screens */
+  .title img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Desktop vs mobile nav visibility */
+.desktopNav {
+  display: flex;
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: var(--nav-link-color);
+}
+
+.mobileMenuOverlay {
+  position: fixed;
+  inset: 0;
+  /* Use robust semi-transparent overlay for broad browser support */
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.mobileMenuOverlayOpen {
+  opacity: 1;
+}
+
+.mobileSidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0; /* slide from right */
+  width: min(86vw, 360px);
+  background: var(--background);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  z-index: 1001;
+  padding: 20px 16px;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSidebarOpen {
+  transform: translateX(0);
+}
+
+@media (max-width: 700px) {
+  .desktopNav {
+    display: none;
+  }
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 }

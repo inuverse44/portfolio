@@ -10,14 +10,17 @@ interface NavItem {
 
 interface NavigationProps {
   items: NavItem[];
+  orientation?: 'horizontal' | 'vertical';
+  onNavigate?: () => void;
 }
 
-const Navigation = ({ items }: NavigationProps) => {
+const Navigation = ({ items, orientation = 'horizontal', onNavigate }: NavigationProps) => {
+  const navClass = orientation === 'vertical' ? `${styles.nav} ${styles.navVertical}` : styles.nav;
   return (
-    <nav className={styles.nav}>
+    <nav className={navClass}>
       {items.map((item) => (
         <div key={item.href} className={styles.navItem}>
-          <Link href={item.href}>{item.label}</Link>
+          <Link href={item.href} onClick={onNavigate}>{item.label}</Link>
         </div>
       ))}
     </nav>
