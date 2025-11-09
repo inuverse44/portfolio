@@ -67,7 +67,8 @@
 .mobileMenuOverlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in oklab, var(--background) 70%, black 30%);
+  /* Use robust semi-transparent overlay for broad browser support */
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   z-index: 1000;
   opacity: 0;
