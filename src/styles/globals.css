@@ -78,39 +78,63 @@ a {
 }
 
 /* Global KaTeX overflow handling: allow long display equations to scroll horizontally */
-.katex-display {
-  display: inline-flex; /* align formula and tag */
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto !important;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  touch-action: pan-x; /* hint to allow horizontal panning */
-  white-space: nowrap;
-  text-align: left !important;
+/* KaTeX: responsive layout
+   - Small screens: scrollable inline layout, number next to formula
+   - Large screens: centered formula, number at right edge
+*/
+@media (max-width: 700px) {
+  .katex-display {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    white-space: nowrap;
+    text-align: left !important;
+    padding-right: 8px;
+  }
+  .katex-display > .katex {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    min-width: max-content;
+    padding-inline: 8px;
+  }
+  .katex-display > .katex > .katex-html {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .katex-display .tag {
+    position: static !important;
+    right: auto !important;
+    float: none !important;
+    display: inline-block;
+    margin-left: 4px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
 }
 
-.katex-display > .katex {
-  display: inline-block !important;
-  white-space: nowrap !important;
-  min-width: max-content;
-  padding-inline: 8px;
-}
-
-.katex-display > .katex > .katex-html {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.katex-display .tag {
-  position: static !important;
-  right: auto !important;
-  float: none !important;
-  display: inline-block;
-  margin-left: 4px;
-  white-space: nowrap;
-  flex: 0 0 auto;
+@media (min-width: 701px) {
+  .katex-display {
+    display: block;
+    text-align: center !important;
+    overflow: visible;
+    white-space: normal;
+  }
+  .katex-display > .katex {
+    display: inline-block;
+  }
+  .katex-display .tag {
+    position: absolute !important;
+    right: 0 !important;
+    float: none !important;
+    display: inline-block;
+    margin-left: 0;
+    white-space: nowrap;
+  }
 }

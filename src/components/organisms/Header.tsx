@@ -23,6 +23,17 @@ const Header = () => {
     return () => router.events?.off('routeChangeComplete', handleRoute);
   }, [router.events]);
 
+  // Body scroll lock while sidebar is open (mobile)
+  useEffect(() => {
+    if (open) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [open]);
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
