@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 // Allow basePath to be configured via env for GitHub Pages
-const basePathFromEnv = process.env.NEXT_BASE_PATH || '';
+const isDev = process.env.NODE_ENV !== 'production';
+const basePathFromEnv = isDev ? '' : (process.env.NEXT_BASE_PATH || '');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
