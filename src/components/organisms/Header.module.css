@@ -67,21 +67,36 @@
 .mobileMenuOverlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in oklab, var(--background) 92%, black 8%);
-  backdrop-filter: blur(4px);
+  background: color-mix(in oklab, var(--background) 70%, black 30%);
+  backdrop-filter: blur(2px);
   z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 72px; /* space below header */
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.mobileMenu {
-  width: min(92vw, 420px);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 16px;
+.mobileMenuOverlayOpen {
+  opacity: 1;
+}
+
+.mobileSidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0; /* slide from right */
+  width: min(86vw, 360px);
   background: var(--background);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  z-index: 1001;
+  padding: 20px 16px;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSidebarOpen {
+  transform: translateX(0);
 }
 
 @media (max-width: 700px) {

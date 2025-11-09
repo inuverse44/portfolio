@@ -65,13 +65,24 @@ const Header = () => {
           Menu
         </button>
       </div>
-      {open && (
-        <div className={styles.mobileMenuOverlay} role="dialog" aria-modal="true">
-          <div id="mobile-menu" className={styles.mobileMenu}>
-            <Navigation items={navItems} orientation="vertical" onNavigate={() => setOpen(false)} />
-          </div>
-        </div>
-      )}
+      {/* Overlay and sliding sidebar */}
+      <div
+        className={`${styles.mobileMenuOverlay} ${open ? styles.mobileMenuOverlayOpen : ''}`}
+        role={open ? 'presentation' : undefined}
+        aria-hidden={!open}
+        onClick={() => setOpen(false)}
+        style={{ pointerEvents: open ? 'auto' : 'none' }}
+      />
+      <aside
+        id="mobile-menu"
+        className={`${styles.mobileSidebar} ${open ? styles.mobileSidebarOpen : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Navigation items={navItems} orientation="vertical" onNavigate={() => setOpen(false)} />
+      </aside>
     </header>
   );
 };
