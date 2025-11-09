@@ -93,3 +93,17 @@
   word-break: break-word;
   overflow-wrap: anywhere;
 }
+
+/* KaTeX math: allow horizontal scroll for long display equations on mobile */
+.postContent .katex-display {
+  display: block; /* ensure block context */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.postContent .katex-display > .katex {
+  display: inline-block;
+  min-width: max-content; /* keep formula on one line */
+  padding-inline: 8px; /* breathing room when scrolling */
+}
