@@ -1,0 +1,10 @@
+.backButton {
+  display: flex;
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}
