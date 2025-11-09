@@ -76,3 +76,26 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Global KaTeX overflow handling: allow long display equations to scroll horizontally */
+.katex-display {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x; /* hint to allow horizontal panning */
+}
+
+.katex-display > .katex {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  min-width: max-content;
+  padding-inline: 8px;
+}
+
+.katex-display > .katex > .katex-html {
+  display: inline-block;
+  white-space: nowrap;
+}
