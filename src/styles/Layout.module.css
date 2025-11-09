@@ -1,7 +1,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh; /* iOS Safari address bar safe height */
 }
 
 .container {
@@ -9,7 +10,8 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding-inline: 16px;
+  padding-block: 20px;
 }
 
 .container a {
