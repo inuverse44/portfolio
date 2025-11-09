@@ -11,13 +11,13 @@
   align-items: center;
   max-width: 800px;
   width: 100%;
-  padding: 0 20px;
+  padding-inline: 16px;
 }
 
 .title a {
   color: var(--header-title-color);
   text-decoration: none;
-  font-size: 24px;
+  font-size: clamp(20px, 5vw, 24px);
   font-weight: bold;
   display: flex; /* Make the link a flex container */
   align-items: center; /* Vertically align logo and text */
@@ -39,5 +39,13 @@
 
   .logoDark {
     display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Make sure logo doesn't dominate small screens */
+  .title img {
+    width: 64px;
+    height: 64px;
   }
 }

@@ -1,6 +1,7 @@
 .nav {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap; /* allow wrapping on small widths */
+  gap: 12px;
 }
 
 .navItem a {

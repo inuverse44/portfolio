@@ -40,6 +40,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Base mobile-friendly defaults */
+html {
+  font-size: 16px; /* avoid iOS zoom on inputs */
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video, canvas, svg, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: var(--section-color);
   font-family: "Hachi Maru Pop", cursive;;
