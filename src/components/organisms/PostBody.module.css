@@ -96,10 +96,14 @@
 
 /* KaTeX math: allow horizontal scroll for long display equations on mobile */
 .postContent .katex-display {
-  display: block; /* KaTeX sets block with centered text; keep block */
+  display: inline-flex; /* place formula and number side-by-side */
+  align-items: flex-start;
+  gap: 12px;
   width: 100%;
   max-width: 100%;
-  overflow-x: auto !important; /* ensure scroll is enabled when needed */
+  white-space: nowrap; /* avoid wrapping so scroll works */
+  text-align: left !important; /* override KaTeX center */
+  overflow-x: auto !important; /* enable horizontal scroll */
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
@@ -107,9 +111,7 @@
 }
 
 .postContent .katex-display > .katex {
-  display: inline-flex !important; /* keep formula and number side-by-side */
-  align-items: flex-start;
-  gap: 12px; /* space between formula and number */
+  display: inline-block !important;
   white-space: nowrap !important; /* prevent KaTeX content from wrapping */
   min-width: max-content; /* ensure intrinsic width drives scroll */
   padding-inline: 8px; /* breathing room when scrolling */
@@ -125,6 +127,7 @@
 /* Ensure KaTeX equation number doesn't overlap the formula */
 .postContent .katex-display .tag {
   position: static !important;
+  right: auto !important;
   float: none !important;
   display: inline-block;
   margin-left: 4px;

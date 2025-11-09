@@ -79,6 +79,9 @@ a {
 
 /* Global KaTeX overflow handling: allow long display equations to scroll horizontally */
 .katex-display {
+  display: inline-flex; /* align formula and tag */
+  align-items: flex-start;
+  gap: 12px;
   width: 100%;
   max-width: 100%;
   overflow-x: auto !important;
@@ -86,6 +89,8 @@ a {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   touch-action: pan-x; /* hint to allow horizontal panning */
+  white-space: nowrap;
+  text-align: left !important;
 }
 
 .katex-display > .katex {
@@ -98,4 +103,14 @@ a {
 .katex-display > .katex > .katex-html {
   display: inline-block;
   white-space: nowrap;
+}
+
+.katex-display .tag {
+  position: static !important;
+  right: auto !important;
+  float: none !important;
+  display: inline-block;
+  margin-left: 4px;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
