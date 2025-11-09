@@ -1,7 +1,4 @@
 import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import PostList from '@/components/organisms/PostList';
 import { SITE_TITLE } from '@/constants/site';
 
@@ -35,6 +32,9 @@ export default function Blog({ posts }: BlogProps) {
 }
 
 export async function getStaticProps() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const matter = (await import('gray-matter')).default;
   const postsDirectory = path.join(process.cwd(), 'posts');
   const filenames = fs.readdirSync(postsDirectory);
 

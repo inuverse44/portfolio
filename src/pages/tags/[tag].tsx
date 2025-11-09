@@ -1,8 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import PostList from '@/components/organisms/PostList';
 import { SITE_TITLE } from '@/constants/site';
 
@@ -38,6 +35,9 @@ export default function TagPage({ posts, tag }: TagPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const fs = await import('fs');
+  const path = await import('path');
+  const matter = (await import('gray-matter')).default;
   const postsDirectory = path.join(process.cwd(), 'posts');
   const filenames = fs.readdirSync(postsDirectory);
 
@@ -65,6 +65,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const fs = await import('fs');
+  const path = await import('path');
+  const matter = (await import('gray-matter')).default;
   const { tag } = context.params as { tag: string };
   const postsDirectory = path.join(process.cwd(), 'posts');
   const filenames = fs.readdirSync(postsDirectory);
