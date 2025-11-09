@@ -103,10 +103,13 @@
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
+  padding-right: 8px; /* spacing so numbers don't hug the edge */
 }
 
 .postContent .katex-display > .katex {
-  display: inline-block !important;
+  display: inline-flex !important; /* keep formula and number side-by-side */
+  align-items: flex-start;
+  gap: 12px; /* space between formula and number */
   white-space: nowrap !important; /* prevent KaTeX content from wrapping */
   min-width: max-content; /* ensure intrinsic width drives scroll */
   padding-inline: 8px; /* breathing room when scrolling */
@@ -117,4 +120,14 @@
 .postContent .katex-display > .katex > .katex-html {
   display: inline-block;
   white-space: nowrap;
+}
+
+/* Ensure KaTeX equation number doesn't overlap the formula */
+.postContent .katex-display .tag {
+  position: static !important;
+  float: none !important;
+  display: inline-block;
+  margin-left: 4px;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
