@@ -29,12 +29,18 @@ const ExternalLinkPage = () => {
           <li>
             iNSPIRE HEP: <a href='https://inspirehep.net/'>https://inspirehep.net/</a>
           </li>
+          <li>
+            NASA ADS: <a href='https://ui.adsabs.harvard.edu'>https://ui.adsabs.harvard.edu</a>
+          </li>
         </dt>
 
         <h2>Tech</h2>
         <dt>
           <li>
-            Rust: <a href='https://arxiv.org/'>https://arxiv.org/</a>
+            Rust Official Page: <a href='https://rust-lang.org/ja/'>https://rust-lang.org/ja/</a>
+          </li>
+          <li>
+            Rust The Book: <a href='https://doc.rust-lang.org/book/'>https://doc.rust-lang.org/book/</a>
           </li>
           <li>
             compass: <a href='https://connpass.com/user/inuverse/'>https://connpass.com/user/inuverse/</a>

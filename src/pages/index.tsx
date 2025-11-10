@@ -29,7 +29,7 @@ export default function Home() {
         </p>
         <p>アイディアのタイムカプセル。</p>
         <p className={styles.homeDescription}>
-          <Link href="/blog">blog posts</Link>や<Link href="/about">about me</Link>でポストやこのブログについて深く知ることができます。
+          <Link href="/blog">blog</Link>や<Link href="/about">about</Link>でポストや私、このブログについて深く知ることができます。
         </p>
       </div>
     </>
