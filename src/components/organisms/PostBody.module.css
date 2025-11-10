@@ -94,43 +94,4 @@
   overflow-wrap: anywhere;
 }
 
-/* KaTeX math: allow horizontal scroll for long display equations on mobile */
-.postContent .katex-display {
-  display: inline-flex; /* place formula and number side-by-side */
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
-  max-width: 100%;
-  white-space: nowrap; /* avoid wrapping so scroll works */
-  text-align: left !important; /* override KaTeX center */
-  overflow-x: auto !important; /* enable horizontal scroll */
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  padding-right: 8px; /* spacing so numbers don't hug the edge */
-}
-
-.postContent .katex-display > .katex {
-  display: inline-block !important;
-  white-space: nowrap !important; /* prevent KaTeX content from wrapping */
-  min-width: max-content; /* ensure intrinsic width drives scroll */
-  padding-inline: 8px; /* breathing room when scrolling */
-}
-
-/* Some KaTeX builds wrap visible HTML in .katex-html; ensure it doesn't wrap
-   so that the display box can scroll horizontally */
-.postContent .katex-display > .katex > .katex-html {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-/* Ensure KaTeX equation number doesn't overlap the formula */
-.postContent .katex-display .tag {
-  position: static !important;
-  right: auto !important;
-  float: none !important;
-  display: inline-block;
-  margin-left: 4px;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
+/* KaTeX math styles are now defined in globals.css with responsive rules */
