@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image'; // Import Image
 import { useRouter } from 'next/router';
-import Navigation from '@/components/molecules/Navigation';
+import DesktopNav from '@/components/organisms/DesktopNav';
+import MobileSidebar from '@/components/organisms/MobileSidebar';
+import MenuButton from '@/components/molecules/MenuButton';
 import styles from './Header.module.css';
 import { SITE_TITLE } from '@/constants/site';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
@@ -58,42 +61,16 @@ const Header = () => {
             {SITE_TITLE}
           </Link>
         </h1>
-        <nav className={styles.desktopNav} aria-label="Primary">
-          <Navigation items={navItems} />
-        </nav>
-        <button
-          type="button"
+        <DesktopNav items={navItems} className={styles.desktopNav} />
+        <MenuButton
+          ref={buttonRef}
+          open={open}
+          controlsId="mobile-menu"
           className={styles.menuButton}
-          aria-label="Open menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
-        >
-          {/* simple hamburger icon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          Menu
-        </button>
+        />
       </div>
-      {/* Overlay and sliding sidebar */}
-      <div
-        className={`${styles.mobileMenuOverlay} ${open ? styles.mobileMenuOverlayOpen : ''}`}
-        role={open ? 'presentation' : undefined}
-        aria-hidden={!open}
-        onClick={() => setOpen(false)}
-        style={{ pointerEvents: open ? 'auto' : 'none' }}
-      />
-      <aside
-        id="mobile-menu"
-        className={`${styles.mobileSidebar} ${open ? styles.mobileSidebarOpen : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site navigation"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Navigation items={navItems} orientation="vertical" onNavigate={() => setOpen(false)} />
-      </aside>
+      <MobileSidebar open={open} items={navItems} onClose={() => setOpen(false)} returnFocusRef={buttonRef} />
     </header>
   );
 };
