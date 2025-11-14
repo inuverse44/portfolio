@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
@@ -41,6 +41,44 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
         >
           {children}
         </a>
+      );
+    },
+    code: ({ inline, className, children }) => {
+      const codeRef = useRef<HTMLElement | null>(null);
+      const [copied, setCopied] = useState(false);
+
+      // Treat as inline by default unless explicitly a block
+      const isBlock = inline === false || (typeof className === 'string' && className.includes('language-'));
+
+      if (!isBlock) {
+        return <code className={className}>{children}</code>;
+      }
+
+      const handleCopy = async () => {
+        try {
+          const text = codeRef.current?.innerText ?? String(children as unknown as string);
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1200);
+        } catch {
+          // noop
+        }
+      };
+
+      return (
+        <pre className={styles.codeBlock}>
+          <button
+            type="button"
+            className={styles.copyButton}
+            onClick={handleCopy}
+            aria-label="Copy code"
+          >
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+          <code ref={codeRef as React.RefObject<HTMLElement>} className={className}>
+            {children}
+          </code>
+        </pre>
       );
     },
   };

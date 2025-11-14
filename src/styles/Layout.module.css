@@ -11,7 +11,8 @@
   width: 100%;
   margin: 0 auto;
   padding-inline: 16px;
-  padding-block: 20px;
+  padding-top: 0;   /* header provides 16px below itself */
+  padding-bottom: 0;/* footer provides 16px above itself */
 }
 
 .container a {
