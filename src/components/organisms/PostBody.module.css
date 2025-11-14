@@ -16,6 +16,8 @@
 
 .postContent {
   overflow-wrap: anywhere;
+  width: 100%;
+  margin: 0 auto; /* ensure centering if narrower */
 }
 
 .postContent ul,
@@ -66,19 +68,24 @@
 }
 
 /* Code blocks and inline code */
-.postContent pre {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
+/* pre のデフォルトは触らず、見た目のコンテナは指定クラスに集約 */
 
 .postContent code {
   white-space: pre-wrap; /* wrap long inline code */
   word-break: break-word;
+  background: var(--inline-code-bg);
+  border: none; /* keep inline very light */
+  border-radius: 4px;
+  padding: 0.05em 0.25em;
+  display: inline; /* ensure inline size */
 }
 
 .postContent pre code {
   white-space: pre; /* keep code blocks scrollable instead of wrapping */
   word-break: normal;
+  background: transparent; /* use pre background for blocks */
+  border: none;
+  padding: 0;
 }
 
 /* Tables: allow horizontal scroll on small screens */
@@ -94,4 +101,51 @@
   overflow-wrap: anywhere;
 }
 
+/* Code block wrapper and copy button */
+.codeBlock {
+  position: relative; /* copy button の基準 */
+  overflow-x: hidden; /* 横スクロールを禁止 */
+  -webkit-overflow-scrolling: touch;
+  background: var(--code-block-bg);
+  background: color-mix(in oklab, var(--section-color) 8%, var(--background));
+  border: 1px solid color-mix(in oklab, var(--section-color) 25%, var(--background));
+  border-radius: 8px;
+  padding: 14px; /* 四方等しい余白 */
+  margin: 16px 0;
+}
+
+/* ブロックコードは自動改行して横スクロールを避ける */
+.postContent pre.codeBlock code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.copyButton {
+  position: absolute;
+  top: 8px;   /* 上パディング内に収める */
+  right: 8px; /* 右パディング内に収める */
+  transform: none;
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 6px;
+  color: var(--foreground);
+  background: var(--inline-code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+  z-index: 1;
+}
+
+.copyButton:hover {
+  opacity: 1;
+}
+
+.copyButton:active {
+  transform: translateY(1px);
+}
+
+/* ボタンを外側右上に固定するための、見た目に影響しないラッパー */
+/* 旧: ラッパー（現在は未使用） */
 /* KaTeX math styles are now defined in globals.css with responsive rules */

@@ -9,6 +9,8 @@
   --link-color: #0070f3;
   --section-color: #72D4DA;
   --text-color-secondary: #666;
+  --code-block-bg: #fafafa; /* even lighter contrast */
+  --inline-code-bg: #fbfbfb; /* ultra light inline */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +25,8 @@
     --link-color: #58a6ff;
     --section-color: #0070f3;
     --text-color-secondary: #aaa;
+    --code-block-bg: #0e0e0e; /* subtle contrast in dark */
+    --inline-code-bg: #121212;
   }
 }
 
