@@ -4,14 +4,14 @@
 .postContent h4,
 .postContent h5,
 .postContent h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
   font-weight: 600;
 }
 
 .postContent p {
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .postContent {
@@ -22,17 +22,17 @@
 
 .postContent ul,
 .postContent ol {
-  padding-left: 20px;
-  margin-bottom: 16px;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .postContent li {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 
 .postContent blockquote {
-  margin: 16px 0;
-  padding: 8px 16px;
+  margin: var(--space-4) 0;
+  padding: var(--space-2) var(--space-4);
   border-left: 4px solid var(--section-color);
   background: transparent;
   color: var(--foreground);
@@ -40,7 +40,7 @@
 }
 
 .postContent blockquote p {
-  margin: 8px 0;
+  margin: var(--space-2) 0;
 }
 
 .postContent blockquote > :first-child {
@@ -51,14 +51,14 @@
 }
 
 .postContent blockquote blockquote {
-  margin-left: 8px;
+  margin-left: var(--space-2);
 }
 
 .postContent img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 12px auto;
+  margin: var(--space-3) auto;
 }
 
 .postContent code {
@@ -93,7 +93,7 @@
 
 .postContent th,
 .postContent td {
-  padding: 8px 12px;
+  padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-color);
   text-align: left;
 }
@@ -115,9 +115,9 @@
   background: var(--code-block-bg);
   background: color-mix(in oklab, var(--section-color) 8%, var(--background));
   border: 1px solid color-mix(in oklab, var(--section-color) 25%, var(--background));
-  border-radius: 8px;
-  padding: 14px;
-  margin: 16px 0;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
 }
 
 .postContent pre.codeBlock code {
@@ -127,16 +127,16 @@
 
 .copyButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: var(--space-2);
+  right: var(--space-2);
   transform: none;
   font-size: 12px;
   line-height: 1;
-  padding: 4px 6px;
+  padding: var(--space-1) 6px;
   color: var(--foreground);
   background: var(--inline-code-bg);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   opacity: 0.85;
   transition: opacity 0.15s ease, transform 0.05s ease;

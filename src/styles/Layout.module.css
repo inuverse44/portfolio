@@ -10,7 +10,7 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  padding-inline: 16px;
+  padding-inline: var(--space-4);
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -27,11 +27,11 @@
 .container ul,
 .container ol {
   list-style-position: inside;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .container li {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 
 .container h1,
@@ -40,12 +40,12 @@
 .container h4,
 .container h5,
 .container h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
   font-weight: 600;
 }
 
 .container p {
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
