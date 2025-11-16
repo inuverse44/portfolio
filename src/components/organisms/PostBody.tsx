@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
@@ -49,10 +50,20 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
   };
 
   const components: Components = {
-    img: ({ src, alt, ...rest }) => {
+    img: ({ src, alt }) => {
       const srcStr = typeof src === 'string' ? src : undefined;
-      // eslint-disable-next-line @next/next/no-img-element
-      return <img {...rest} src={resolveSrc(srcStr)} alt={alt ?? ''} />;
+      const resolved = resolveSrc(srcStr);
+      return (
+        <Image
+          src={resolved}
+          alt={typeof alt === 'string' ? alt : ''}
+          width={0}
+          height={0}
+          sizes="(max-width: 800px) 100vw, 800px"
+          style={{ width: '100%', height: 'auto' }}
+          unoptimized
+        />
+      );
     },
     a: LinkRenderer,
     table: TableRenderer,
