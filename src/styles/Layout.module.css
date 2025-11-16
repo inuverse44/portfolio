@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* fallback */
-  min-height: 100dvh; /* iOS Safari address bar safe height */
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .container {
@@ -10,13 +10,13 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  padding-inline: 16px;
-  padding-top: 0;   /* header provides 16px below itself */
-  padding-bottom: 0;/* footer provides 16px above itself */
+  padding-inline: var(--space-4);
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .container a {
-  color: var(--link-color); /* Blue color for links */
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -26,12 +26,12 @@
 
 .container ul,
 .container ol {
-  list-style-position: inside; /* Align list markers inside the content flow */
-  margin-bottom: 16px; /* Add margin to lists */
+  list-style-position: inside;
+  margin-bottom: var(--space-4);
 }
 
 .container li {
-  margin-bottom: 8px; /* Add margin to list items */
+  margin-bottom: var(--space-2);
 }
 
 .container h1,
@@ -40,12 +40,12 @@
 .container h4,
 .container h5,
 .container h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
   font-weight: 600;
 }
 
 .container p {
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
