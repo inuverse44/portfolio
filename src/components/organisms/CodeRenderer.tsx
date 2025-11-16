@@ -10,6 +10,7 @@ type CodeProps = React.ComponentPropsWithoutRef<'code'> & {
 const CodeRenderer = ({ inline, className, children }: CodeProps) => {
   const codeRef = useRef<HTMLElement | null>(null);
   const [copied, setCopied] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
 
   const isBlock = inline === false || (typeof className === 'string' && className.includes('language-'));
 
@@ -18,13 +19,29 @@ const CodeRenderer = ({ inline, className, children }: CodeProps) => {
   }
 
   const handleCopy = async () => {
+    if (isCopying) return;
+    setIsCopying(true);
     try {
       const text = codeRef.current?.innerText ?? String(children as unknown as string);
-      await navigator.clipboard.writeText(text);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
     } catch {
       setCopied(false);
+    } finally {
+      setIsCopying(false);
     }
   };
 
@@ -35,9 +52,13 @@ const CodeRenderer = ({ inline, className, children }: CodeProps) => {
         className={styles.copyButton}
         onClick={handleCopy}
         aria-label="Copy code"
+        aria-live="polite"
+        aria-busy={isCopying}
+        disabled={isCopying}
       >
         {copied ? 'Copied' : 'Copy'}
       </button>
+      <span className={styles.srOnly} aria-live="polite">{copied ? 'Copied' : ''}</span>
       <code ref={codeRef as React.RefObject<HTMLElement>} className={className}>
         {children}
       </code>
@@ -46,4 +67,3 @@ const CodeRenderer = ({ inline, className, children }: CodeProps) => {
 };
 
 export default CodeRenderer;
-
