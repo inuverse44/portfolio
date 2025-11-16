@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/markdown.css";
 import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
 import type { AppProps } from "next/app";

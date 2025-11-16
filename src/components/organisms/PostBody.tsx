@@ -71,7 +71,7 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
   };
 
   return (
-    <div className={styles.postContent}>
+    <div className={`${styles.postContent} markdown`}>
       <ReactMarkdown remarkPlugins={REMARK_PLUGINS} rehypePlugins={REHYPE_PLUGINS} components={components}>
         {content}
       </ReactMarkdown>
