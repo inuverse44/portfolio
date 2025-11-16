@@ -88,6 +88,11 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
         </a>
       );
     },
+    table: ({ children, ...rest }) => (
+      <div className={styles.tableWrap}>
+        <table {...rest}>{children}</table>
+      </div>
+    ),
     code: CodeRenderer as unknown as Components['code'],
   };
 

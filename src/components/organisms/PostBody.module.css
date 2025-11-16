@@ -89,11 +89,28 @@
 }
 
 /* Tables: allow horizontal scroll on small screens */
-.postContent table {
-  display: block;
+.tableWrap {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.postContent table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.postContent th,
+.postContent td {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.postContent th {
+  background: var(--inline-code-bg);
+  font-weight: 600;
 }
 
 .postContent a {
