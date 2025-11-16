@@ -3,7 +3,6 @@ import Head from 'next/head';
 import PostList from '@/components/organisms/PostList';
 import { SITE_TITLE } from '@/constants/site';
 
-// This is the same interface as in index.tsx
 interface Post {
   slug: string;
   frontmatter: {

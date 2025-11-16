@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
@@ -7,51 +7,31 @@ import rehypeHighlight from 'rehype-highlight';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import styles from './PostBody.module.css';
+import CodeRenderer from './CodeRenderer';
 
-// 独立したコンポーネントとしてフックを使用（ESLint/TS対応）
-type CodeProps = React.ComponentPropsWithoutRef<'code'> & {
-  inline?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-};
+const REMARK_PLUGINS = [remarkGfm, remarkMath];
+const REHYPE_PLUGINS = [rehypeHighlight, rehypeKatex];
 
-const CodeRenderer = ({ inline, className, children }: CodeProps) => {
-  const codeRef = useRef<HTMLElement | null>(null);
-  const [copied, setCopied] = useState(false);
-
-  const isBlock = inline === false || (typeof className === 'string' && className.includes('language-'));
-
-  if (!isBlock) {
-    return <code className={className}>{children}</code>;
-  }
-
-  const handleCopy = async () => {
-    try {
-      const text = codeRef.current?.innerText ?? String(children as unknown as string);
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
-    } catch {
-      // noop
-    }
-  };
-
+const LinkRenderer: Components['a'] = ({ href, children, ...rest }) => {
+  const hrefStr = typeof href === 'string' ? href : undefined;
+  const isExternal = typeof hrefStr === 'string' && /^(https?:)?\/\//.test(hrefStr);
   return (
-    <pre className={styles.codeBlock}>
-      <button
-        type="button"
-        className={styles.copyButton}
-        onClick={handleCopy}
-        aria-label="Copy code"
-      >
-        {copied ? 'Copied' : 'Copy'}
-      </button>
-      <code ref={codeRef as React.RefObject<HTMLElement>} className={className}>
-        {children}
-      </code>
-    </pre>
+    <a
+      href={hrefStr}
+      {...rest}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+    >
+      {children}
+    </a>
   );
 };
+
+const TableRenderer: Components['table'] = ({ children, ...rest }) => (
+  <div className={styles.tableWrap}>
+    <table {...rest}>{children}</table>
+  </div>
+);
 
 interface PostBodyProps {
   content?: string;
@@ -74,35 +54,14 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
       // eslint-disable-next-line @next/next/no-img-element
       return <img {...rest} src={resolveSrc(srcStr)} alt={alt ?? ''} />;
     },
-    a: ({ href, children, ...rest }) => {
-      const hrefStr = typeof href === 'string' ? href : undefined;
-      const isExternal = typeof hrefStr === 'string' && /^(https?:)?\/\//.test(hrefStr);
-      return (
-        <a
-          href={hrefStr}
-          {...rest}
-          target={isExternal ? '_blank' : undefined}
-          rel={isExternal ? 'noopener noreferrer' : undefined}
-        >
-          {children}
-        </a>
-      );
-    },
-    table: ({ children, ...rest }) => (
-      <div className={styles.tableWrap}>
-        <table {...rest}>{children}</table>
-      </div>
-    ),
+    a: LinkRenderer,
+    table: TableRenderer,
     code: CodeRenderer as unknown as Components['code'],
   };
 
   return (
     <div className={styles.postContent}>
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeHighlight, rehypeKatex]}
-        components={components}
-      >
+      <ReactMarkdown remarkPlugins={REMARK_PLUGINS} rehypePlugins={REHYPE_PLUGINS} components={components}>
         {content}
       </ReactMarkdown>
     </div>

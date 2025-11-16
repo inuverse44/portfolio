@@ -1,5 +1,5 @@
 .header {
-  padding: 16px 0; /* align vertical rhythm to 16px */
+  padding: 16px 0;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: center;
@@ -19,13 +19,13 @@
   text-decoration: none;
   font-size: clamp(20px, 5vw, 24px);
   font-weight: bold;
-  display: flex; /* Make the link a flex container */
-  align-items: center; /* Vertically align logo and text */
+  display: flex;
+  align-items: center;
 }
 
 .logoLight,
 .logoDark {
-  margin-right: 10px; /* Space between logo and title text */
+  margin-right: 10px;
 }
 
 .logoDark {
@@ -43,14 +43,12 @@
 }
 
 @media (max-width: 480px) {
-  /* Make sure logo doesn't dominate small screens */
   .title img {
     width: 64px;
     height: 64px;
   }
 }
 
-/* Desktop vs mobile nav visibility */
 .desktopNav {
   display: flex;
 }
@@ -67,7 +65,6 @@
 .mobileMenuOverlay {
   position: fixed;
   inset: 0;
-  /* Use robust semi-transparent overlay for broad browser support */
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   z-index: 1000;
@@ -83,7 +80,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0; /* slide from right */
+  right: 0;
   width: min(86vw, 360px);
   background: var(--background);
   border-left: 1px solid var(--border-color);

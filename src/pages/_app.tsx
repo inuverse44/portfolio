@@ -5,17 +5,16 @@ import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
 import { Roboto_Mono, Hachi_Maru_Pop } from 'next/font/google';
 
-// Configure Roboto Mono for code
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
   variable: '--font-roboto-mono',
   display: 'swap',
 });
 
-// Configure Hachi Maru Pop for body text
+
 const hachiMaruPop = Hachi_Maru_Pop({
   subsets: ['latin'],
-  weight: ['400'], // Hachi Maru Pop typically has only one weight
+  weight: ['400'],
   variable: '--font-hachi-maru-pop',
   display: 'swap',
 });
