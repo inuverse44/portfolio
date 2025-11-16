@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Image from 'next/image'; // Import Image component
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Link from 'next/link'; // Import Link for internal navigation
+import Link from 'next/link';
 import { SITE_TITLE } from '@/constants/site';
-import styles from '@/styles/Home.module.css'; // Import styles
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Home() {
         <meta name="description" content="Welcome to my personal blog" />
       </Head>
 
-      <div className={styles.homeContainer}> {/* Add a container for styling */}
+      <div className={styles.homeContainer}>
         <Image
           src={`${router.basePath}/images/profile.jpg`}
           alt="Profile Picture"

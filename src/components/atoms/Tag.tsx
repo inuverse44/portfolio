@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './Tag.module.css';
 
 interface TagProps {
-  children: string; // Tags are strings
+  children: string;
 }
 
 const Tag = ({ children }: TagProps) => {
