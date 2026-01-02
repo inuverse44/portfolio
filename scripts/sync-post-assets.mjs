@@ -52,7 +52,6 @@ async function main() {
       await fs.promises.rm(dest, { recursive: true, force: true });
     }
     await copyDir(src, dest);
-    // eslint-disable-next-line no-console
     console.log(`[sync-post-assets] Copied: ${path.relative(cwd, src)} -> ${path.relative(cwd, dest)}`);
   }
 }
@@ -61,4 +60,3 @@ main().catch((err) => {
   console.error('[sync-post-assets] Failed:', err);
   process.exit(1);
 });
-
