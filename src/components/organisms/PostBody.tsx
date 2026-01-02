@@ -53,6 +53,29 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
     img: ({ src, alt }) => {
       const srcStr = typeof src === 'string' ? src : undefined;
       const resolved = resolveSrc(srcStr);
+
+      // Parse width and height from fragment (e.g., #width=300&height=200)
+      let customWidth: string | undefined;
+      let customHeight: string | undefined;
+
+      if (srcStr?.includes('#')) {
+        const fragment = srcStr.split('#')[1];
+        const params = new URLSearchParams(fragment);
+        customWidth = params.get('width') || undefined;
+        customHeight = params.get('height') || undefined;
+      }
+
+      const imgStyle: React.CSSProperties = {
+        height: customHeight ? `${customHeight}px` : 'auto',
+        maxWidth: '100%',
+      };
+
+      if (customWidth) {
+        imgStyle.width = `${customWidth}px`;
+      } else {
+        imgStyle.width = '100%';
+      }
+
       return (
         <Image
           src={resolved}
@@ -60,7 +83,7 @@ const PostBody = ({ content = '', slug }: PostBodyProps) => {
           width={0}
           height={0}
           sizes="(max-width: 800px) 100vw, 800px"
-          style={{ width: '100%', height: 'auto' }}
+          style={imgStyle}
           unoptimized
         />
       );
