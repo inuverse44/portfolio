@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Meta from '@/components/atoms/Meta';
 import BackButton from '@/components/molecules/BackButton';
 import PostHeader from '@/components/organisms/PostHeader';
 import PostBody from '@/components/organisms/PostBody';
@@ -19,10 +19,7 @@ export default function Post({ frontmatter, content, slug }: PostProps) {
   return (
     <article>
       <BackButton />
-      <Head>
-        <title>{frontmatter.title} | My Blog</title>
-        <meta name="description" content={frontmatter.title} />
-      </Head>
+      <Meta title={frontmatter.title} description={frontmatter.title} />
       <PostHeader
         title={frontmatter.title}
         date={frontmatter.date}

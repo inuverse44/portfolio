@@ -6,18 +6,14 @@ import DesktopNav from '@/components/organisms/DesktopNav';
 import MobileSidebar from '@/components/organisms/MobileSidebar';
 import MenuButton from '@/components/molecules/MenuButton';
 import styles from './Header.module.css';
-import { SITE_TITLE } from '@/constants/site';
+import { SITE_TITLE, NAV_ITEMS } from '@/constants/site';
+import { useScrollLock } from '@/hooks/useScrollLock';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'About', href: '/about' },
-    { label: 'External Link', href: '/external' },
-  ];
+  const navItems = NAV_ITEMS;
 
   // Close menu on route change
   useEffect(() => {
@@ -27,15 +23,7 @@ const Header = () => {
   }, [router.events]);
 
   // Body scroll lock while sidebar is open (mobile)
-  useEffect(() => {
-    if (open) {
-      const original = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = original;
-      };
-    }
-  }, [open]);
+  useScrollLock(open);
 
   return (
     <header className={styles.header}>

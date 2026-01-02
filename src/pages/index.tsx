@@ -1,18 +1,15 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { SITE_TITLE } from '@/constants/site';
 import styles from '@/styles/Home.module.css';
+import Meta from '@/components/atoms/Meta';
+import { SITE_TITLE } from '@/constants/site';
 
 export default function Home() {
   const router = useRouter();
   return (
     <>
-      <Head>
-        <title>Home | {SITE_TITLE}</title>
-        <meta name="description" content="Welcome to my personal blog" />
-      </Head>
+      <Meta />
 
       <div className={styles.homeContainer}>
         <Image
