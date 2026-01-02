@@ -22,10 +22,10 @@ const hachiMaruPop = Hachi_Maru_Pop({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <div className={`${hachiMaruPop.variable} ${robotoMono.variable}`}>
+    <div className={`${hachiMaruPop.variable} ${robotoMono.variable}`}>
+      <Layout>
         <Component {...pageProps} />
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   );
 }

@@ -1,13 +1,10 @@
-import Head from 'next/head';
+import Meta from '@/components/atoms/Meta';
 import React from 'react';
-import { SITE_TITLE } from '@/constants/site';
 
 const AboutPage = () => {
   return (
     <>
-      <Head>
-        <title>About | {SITE_TITLE}</title>
-      </Head>
+      <Meta title="About" />
       <div>
         <h2>About This Blog</h2>
         <p>このブログでは。最新のソフトウェア技術や学んだことをまとめると同時に、最新の科学情報（特に宇宙）のことについても取り上げます。</p>

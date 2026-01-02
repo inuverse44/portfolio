@@ -1,18 +1,14 @@
 import { GetStaticPaths } from 'next';
-import fs from 'fs';
-import path from 'path';
+import { getAllPosts } from './api';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const filenames = fs.readdirSync(postsDirectory);
+  const posts = getAllPosts();
 
-  const paths = filenames
-    .filter((filename) => filename.endsWith('.md'))
-    .map((filename) => ({
-      params: {
-        slug: filename.replace(/\.md$/, ''),
-      },
-    }));
+  const paths = posts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+  }));
 
   return {
     paths,
