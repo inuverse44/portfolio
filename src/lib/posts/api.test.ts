@@ -73,8 +73,8 @@ published: true
 Content`) as unknown as typeof fs.readFileSync);
 
       const post = getPostBySlug('post1');
-      expect(post.frontmatter.title).toBe('Post 1');
-      expect(post.content).toBe('content1');
+      expect(post.frontmatter.title).toBe('Test Post');
+      expect(post.content).toBe('Content');
     });
   });
 });
