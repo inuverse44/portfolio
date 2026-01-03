@@ -23,25 +23,6 @@
   align-items: center;
 }
 
-.logoLight,
-.logoDark {
-  margin-right: 10px;
-}
-
-.logoDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  .logoLight {
-    display: none;
-  }
-
-  .logoDark {
-    display: block;
-  }
-}
-
 @media (max-width: 480px) {
   .title img {
     width: 64px;

@@ -24,29 +24,6 @@
   --radius-lg: 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --border-color: #333;
-    --header-title-color: #fff;
-    --tag-background-color: #333;
-    --nav-link-color: #ccc;
-    --card-border-color: #555;
-    --link-color: #58a6ff;
-    --section-color: #0070f3;
-    --text-color-secondary: #aaa;
-    --code-block-bg: #0e0e0e;
-    --inline-code-bg: #121212;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
@@ -83,12 +60,6 @@ code {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
 
 /* Global KaTeX overflow handling: allow long display equations to scroll horizontally */

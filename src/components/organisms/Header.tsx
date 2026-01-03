@@ -30,22 +30,13 @@ const Header = () => {
       <div className={styles.headerContent}>
         <h1 className={styles.title}>
           <Link href="/">
-            <span className={styles.logoLight}>
-              <Image
-                src={`${router.basePath}/images/logo.png`}
-                alt="Site Logo"
-                width={100} // Adjust width as needed
-                height={100} // Adjust height as needed
-              />
-            </span>
-            <span className={styles.logoDark}>
-              <Image
-                src={`${router.basePath}/images/logo-darkmode.png`}
-                alt="Site Logo in Dark Mode"
-                width={100} // Adjust width as needed
-                height={100} // Adjust height as needed
-              />
-            </span>
+            <Image
+              src={`${router.basePath}/images/logo.png`}
+              alt="Site Logo"
+              width={100} // Adjust width as needed
+              height={100} // Adjust height as needed
+              style={{ marginRight: '10px' }}
+            />
             {SITE_TITLE}
           </Link>
         </h1>
