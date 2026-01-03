@@ -55,3 +55,16 @@ export function getPostBySlug(slug: string): Post {
     content: content || '',
   };
 }
+
+export function getAllTagsCount(): Record<string, number> {
+  const posts = getAllPosts();
+  const counts: Record<string, number> = {};
+
+  posts.forEach((post) => {
+    post.frontmatter.tags.forEach((tag) => {
+      counts[tag] = (counts[tag] || 0) + 1;
+    });
+  });
+
+  return counts;
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getAllPosts, getPostBySlug } from './api';
+import { getAllPosts, getPostBySlug, getAllTagsCount } from './api';
 import fs from 'fs';
 
 vi.mock('fs');
@@ -75,6 +75,36 @@ Content`) as unknown as typeof fs.readFileSync);
       const post = getPostBySlug('post1');
       expect(post.frontmatter.title).toBe('Test Post');
       expect(post.content).toBe('Content');
+    });
+  });
+
+  describe('getAllTagsCount', () => {
+    it('should return a record of tags and their counts', () => {
+      vi.spyOn(fs, 'readdirSync').mockImplementation((() => ['post1.md', 'post2.md']) as unknown as typeof fs.readdirSync);
+      vi.spyOn(fs, 'readFileSync').mockImplementation(((path: string) => {
+        if (path.endsWith('post1.md')) {
+          return `---
+title: Post 1
+date: '2023-01-01'
+tags: ['tag1', 'tag2']
+published: true
+---
+content`;
+        }
+        return `---
+title: Post 2
+date: '2023-01-02'
+tags: ['tag1']
+published: true
+---
+content`;
+      }) as unknown as typeof fs.readFileSync);
+
+      const counts = getAllTagsCount();
+      expect(counts).toEqual({
+        tag1: 2,
+        tag2: 1,
+      });
     });
   });
 });
