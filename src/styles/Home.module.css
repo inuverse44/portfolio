@@ -178,6 +178,7 @@ a.secondary {
 }
 
 .profileImage {
+  margin-top: var(--space-6);
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--card-border-color);

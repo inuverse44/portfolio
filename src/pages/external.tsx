@@ -11,42 +11,65 @@ const ExternalLinkPage = () => {
         <h2>SNS</h2>
         <dt>
           <li>
-            X: <a href='https://twitter.com/mochi_dog_phys'>https://twitter.com/mochi_dog_phys</a>
+            <a href='https://twitter.com/mochi_dog_phys'>X</a>
+            <p>著者のX（旧Twitter）アカウントです。</p>
           </li>
           <li>
-            GitHub: <a href='https://github.com/inuverse44'>https://github.com/inuverse44</a>
+            <a href='https://github.com/inuverse44'>GitHub</a>
+            <p>著者のGitHubアカウントです。</p>
           </li>
           <li>
-            Note: <a href='https://note.com/inunoute_scitech'>https://note.com/inunoute_scitech</a>
+            <a href='https://note.com/inunoute_scitech'>Note</a>
+            <p>著者のNoteアカウントです。</p>
           </li>
         </dt>
 
         <h2>Cosmology</h2>
         <dt>
           <li>
-            arXiv: <a href='https://arxiv.org/'>https://arxiv.org/</a>
+            <a href='https://arxiv.org/'>arXiv</a>
+            <p>プレプリントの投稿サイトです。</p>
           </li>
           <li>
-            iNSPIRE HEP: <a href='https://inspirehep.net/'>https://inspirehep.net/</a>
+            <a href='https://inspirehep.net/'>iNSPIRE HEP</a>
+            <p>素核宇系の文献データベースです。</p>
           </li>
           <li>
-            NASA ADS: <a href='https://ui.adsabs.harvard.edu'>https://ui.adsabs.harvard.edu</a>
+            <a href='https://ui.adsabs.harvard.edu'>NASA ADS</a>
+            <p>文献データベースです。古めなものが多い気がします。</p>
           </li>
         </dt>
 
         <h2>Tech</h2>
         <dt>
           <li>
-            Rust Official Page: <a href='https://rust-lang.org/ja/'>https://rust-lang.org/ja/</a>
+            <a href='https://rust-lang.org/ja/'>Rust Official Page</a>
+            <p>Rustの公式サイトです。</p>
           </li>
           <li>
-            Rust The Book: <a href='https://doc.rust-lang.org/book/'>https://doc.rust-lang.org/book/</a>
+            <a href='https://doc.rust-lang.org/book/'>Rust The Book</a>
+            <p>Rustの本です。</p>
           </li>
           <li>
-            compass: <a href='https://connpass.com/user/inuverse/'>https://connpass.com/user/inuverse/</a>
+            <a href='https://connpass.com/user/inuverse/'>compass</a>
+            <p>著者のコンパスアカウントです。</p>
           </li>
           <li>
-            Zenn: <a href='https://zenn.dev/tatsukikodama'>https://zenn.dev/tatsukikodama</a>
+            <a href='https://zenn.dev/tatsukikodama'>Zenn</a>
+            <p>著者のZennアカウントです。</p>
+          </li>
+          <li>
+            <a href='https://qiita.com/inuverse44'>Qiita</a>
+            <p>著者のQiitaアカウントです。</p>
+          </li>
+        </dt>
+
+        <h2>Webアプリ</h2>
+        <dt>
+          <li>
+            <a href='https://mnist-app-668195407842.asia-northeast1.run.app'>MNIST-Kotlin</a>
+            <p>MnistをKotlinで学習して、数字の認識を行うアプリです。行列計算から学習まで外部ライブラリを経由せずロジックを構築しています。</p>
+            <p>Repository: <a href='https://github.com/inuverse44/MNIST-Kotlin'>MNIST-Kotlin</a></p>
           </li>
         </dt>
       </div>
