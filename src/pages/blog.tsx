@@ -1,3 +1,5 @@
+import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
 import PostList from '@/components/organisms/PostList';
 import Meta from '@/components/atoms/Meta';
 import TagList from '@/components/molecules/TagList';
@@ -19,14 +21,20 @@ interface BlogProps {
 }
 
 export default function Blog({ posts, tagCounts }: BlogProps) {
-  return (
-    <>
-      <Meta title="Blog" description="All blog posts" />
+  const router = useRouter();
+  const { date } = router.query;
+
+  const filteredPosts = useMemo(() => {
+    if (!date) return posts;
+    return posts.filter(post => post.frontmatter.date === date);
+  }, [posts, date]);
+
+  const title = date ? `Posts on ${date}` : 'All Posts';
 
       <div className={styles.blogLayout}>
         <div className={styles.mainContent}>
-          <h1>All Posts</h1>
-          <PostList posts={posts} />
+          <h1>{title}</h1>
+          <PostList posts={filteredPosts} />
         </div>
         <aside className={styles.sidebar}>
           <TagList tagCounts={tagCounts} />

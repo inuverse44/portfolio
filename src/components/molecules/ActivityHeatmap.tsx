@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { Post } from '@/lib/posts/api';
 import styles from './ActivityHeatmap.module.css';
 
 interface ActivityHeatmapProps {
-  activities: Record<string, number>; // ISO Date String -> count
+  activities: Record<string, Post[]>; // ISO Date String -> Posts
   today: string; // ISO date string from server/props to avoid hydration mismatch
 }
 
@@ -10,6 +12,8 @@ type RangeType = 'all' | '1y' | '6m' | '1m' | '2w' | '1w';
 
 const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) => {
   const [range, setRange] = useState<RangeType>('1y');
+  const [hoveredDay, setHoveredDay] = useState<string | null>(null);
+  const router = useRouter();
   const today = new Date(todayStr);
 
   const getStartDate = () => {
@@ -57,7 +61,7 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
     
     days.push({
       date: dateStr,
-      count: activities[dateStr] || 0
+      posts: activities[dateStr] || []
     });
     currentDate.setDate(currentDate.getDate() + 1);
   }
@@ -70,6 +74,14 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
     return styles.level4;
   };
 
+  const handleCellClick = (posts: Post[]) => {
+    if (posts.length === 1) {
+      router.push(`/posts/${posts[0].slug}`);
+    } else if (posts.length > 1) {
+      router.push(`/blog?date=${posts[0].frontmatter.date}`);
+    }
+  };
+
   const ranges: { label: string; value: RangeType }[] = [
     { label: 'All', value: 'all' },
     { label: '1Y', value: '1y' },
@@ -80,33 +92,49 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
   ];
 
   return (
-    <div className={styles.heatmapContainer}>
-      <div className={styles.header}>
-        <div className={styles.heatmapTitle}>Posting Activity</div>
-        <div className={styles.rangePicker}>
-          {ranges.map((r) => (
-            <button
-              key={r.value}
-              className={`${styles.rangeButton} ${range === r.value ? styles.active : ''}`}
-              onClick={() => setRange(r.value)}
-            >
-              {r.label}
-            </button>
-          ))}
+    <div className={styles.heatmapOuter}>
+      <div className={styles.heatmapContainer}>
+        <div className={styles.header}>
+          <div className={styles.heatmapTitle}>Posting Activity</div>
+          <div className={styles.rangePicker}>
+            {ranges.map((r) => (
+              <button
+                key={r.value}
+                className={`${styles.rangeButton} ${range === r.value ? styles.active : ''}`}
+                onClick={() => setRange(r.value)}
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className={styles.grid}>
-        {days.map((day) => (
-          <div
-            key={day.date}
-            className={`${styles.cell} ${getLevel(day.count)}`}
-            title={`${day.date}: ${day.count} posts`}
-          />
-        ))}
-      </div>
-      <div className={styles.labels}>
-        <span>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
-        <span>{today.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+        <div className={styles.gridWrapper}>
+          <div className={styles.grid}>
+            {days.map((day) => (
+              <div
+                key={day.date}
+                className={`${styles.cell} ${getLevel(day.posts.length)}`}
+                onMouseEnter={() => setHoveredDay(day.date)}
+                onMouseLeave={() => setHoveredDay(null)}
+                onClick={() => handleCellClick(day.posts)}
+              />
+            ))}
+          </div>
+          {hoveredDay && activities[hoveredDay] && (
+            <div className={styles.tooltip}>
+              <div className={styles.tooltipDate}>{hoveredDay}</div>
+              {activities[hoveredDay].map((post) => (
+                <div key={post.slug} className={styles.tooltipPost}>
+                  • {post.frontmatter.title}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={styles.labels}>
+          <span>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+          <span>{today.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+        </div>
       </div>
     </div>
   );

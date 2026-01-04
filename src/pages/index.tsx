@@ -10,7 +10,7 @@ import PostCard from '@/components/molecules/PostCard';
 
 interface HomeProps {
   latestPosts: Post[];
-  activityData: Record<string, number>;
+  activityData: Record<string, Post[]>;
   today: string;
 }
 
@@ -67,12 +67,16 @@ export async function getStaticProps() {
   const now = new Date();
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
-  const activityData: Record<string, number> = {};
+  const activityData: Record<string, Post[]> = {};
   allPosts.forEach((post) => {
     // Standardize to YYYY-MM-DD local string
     const d = new Date(post.frontmatter.date);
     const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    activityData[date] = (activityData[date] || 0) + 1;
+    
+    if (!activityData[date]) {
+      activityData[date] = [];
+    }
+    activityData[date].push(post);
   });
 
   return {
