@@ -6,32 +6,60 @@ const AboutPage = () => {
     <>
       <Meta title="About" />
       <div>
-        <h2>About This Blog</h2>
+        <h2>このブログについて</h2>
         <p>このブログでは。最新のソフトウェア技術や学んだことをまとめると同時に、最新の科学情報（特に宇宙）のことについても取り上げます。</p>
         <p>気軽にポストをご観覧ください！</p>
 
-        <h2>About Me</h2>
+        <h2>私について</h2>
         <ul>
           <li>2024年に博士（理学）を取得</li>
-          <li>宇宙論を専攻、特に初期宇宙論におけるインフレーションや原始重力波、初期ゆらぎの量子論を専門とした。</li>
+          <li>宇宙論を専攻、特に初期宇宙論におけるインフレーションや原始重力波、初期ゆらぎの量子論を専門として研究しました。</li>
+          <li>現在はとある企業の基幹システムの開発チームで、Google Kubernetes Engine上で動くマイクロサービスの負荷検証を担当しています。</li>
           <li>趣味：バスケットボール、一眼レフカメラ</li>
-          <li>言語：Japanese, English（誠意学習中...）</li>
-          <li>プログラミング言語：C, Python, Kotlin, Rust, JavaScript, TypeScript</li>
-          <li>フレームワーク：Quarkus, React</li>
+          <li>言語：日本語、英語（誠意学習中...）</li>
+          <li>使ったことのある言語：C、Python、Kotlin、Rust、JavaScript、TypeScriptです。業務では主にKotlinを使用しています。</li>
+          <li>フレームワーク：<a href='https://quarkus.io/'>Quarkus</a>, React</li>
           <li>Cloud: Google Cloud Platform (GCP)</li>
-          <li>インフラ: Terraform</li>
-          <li>その他：Mathematica, TeX</li>
+          <li>インフラ: ちょっとだけTerraform</li>
+          <li>その他：研究ではMathematica, TeXにお世話になりました。</li>
         </ul>
 
-        <h2>Published</h2>
+        <h2>資格</h2>
         <ul>
-          <li><a href='https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.063518'>Generalized early dark energy and its cosmological consequences</a></li>
-          <li><a href='https://iopscience.iop.org/article/10.1088/1475-7516/2023/05/050'>Nonminimally assisted inflation: a general analysis</a></li>
-          <li><a href='https://journals.aps.org/prd/abstract/10.1103/PhysRevD.105.063542'>Relaxing inflation models with nonminimal coupling: A general study</a></li>
+          <li>普通自動車第１種運転免許</li>
+          <li>TOEIC Listeing & Reading Test 625（頑張ります）</li>
         </ul>
 
-        <h2>Technologies I’ve Been Curious About Lately</h2>
-        <p>Deep LearningやData science分野は気になっています。ブラックボックスだったり、サイエンスなのか微妙な領域ですが、比較的勉強しがいがある分野だと感じています。</p>
+        <h2>出版物</h2>
+        <ul>
+          <li>
+            <a href='https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.063518'>Generalized early dark energy and its cosmological consequences</a>
+            <p>早期暗黒エネルギーのポテンシャルを一般化したときに、通常のΛCDMモデルに対して重力波背景がさらに生成されます。Stochastic formalismから初期条件の範囲と、その条件から生成される重力波背景の重力波スペクトルを定量的に計算し、将来観測で検出できるかどうかを議論しました。</p>
+          </li>
+          <li>
+            <a href='https://iopscience.iop.org/article/10.1088/1475-7516/2023/05/050'>Nonminimally assisted inflation: a general analysis</a>
+            <p>複数場非最小結合インフレーションモデルに属するクラスの中で、特に最小結合なインフラトンと非最小結合のあるスペクテイター場（本論文ではassisted field）のあるモデルについて、いくつかの具体的なインフレーションモデルをもとに分析しました。</p>
+          </li>
+          <li>
+            <a href='https://journals.aps.org/prd/abstract/10.1103/PhysRevD.105.063542'>Relaxing inflation models with nonminimal coupling: A general study</a>
+            <p>単一場非最小結合インフレーションモデルに属する割と大きな典型的なクラスについて、非最小結合の関数とインフラトンのポテンシャルからさらに小さなサブクラスへと分類し、そのサブクラスごとの性質を説明しました。観測可能性から、一部のサブクラスは今後棄却される可能性があることを示唆しました。</p>
+          </li>
+        </ul>
+
+        <h2>最近気になっている技術</h2>
+        <ul>
+          <li>機械学習</li>
+          <li>データサイエンス、および数理統計</li>
+          <li>量子論的初期宇宙論</li>
+        </ul>
+
+        <h2>今年の目標</h2>
+        <ul>
+          <li>TOEIC Listeing & Reading Test 700点以上</li>
+          <li>基本情報技術者認定</li>
+          <li>Cloud Professional Architect認定</li>
+          <li>統計検定2級</li>
+        </ul>
       </div>
     </>
   );
