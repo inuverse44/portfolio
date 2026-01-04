@@ -19,7 +19,11 @@ export default function Post({ frontmatter, content, slug }: PostProps) {
   return (
     <article>
       <BackButton />
-      <Meta title={frontmatter.title} description={frontmatter.title} />
+      <Meta
+        title={frontmatter.title}
+        description={frontmatter.title}
+        type="article"
+      />
       <PostHeader
         title={frontmatter.title}
         date={frontmatter.date}
