@@ -30,7 +30,7 @@
 
 .container ul,
 .container ol {
-  list-style-position: inside;
+  padding-left: var(--space-5);
   margin-bottom: var(--space-4);
 }
 

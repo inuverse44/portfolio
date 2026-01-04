@@ -9,7 +9,7 @@ const ExternalLinkPage = () => {
       </Head>
       <div>
         <h2>SNS</h2>
-        <dt>
+        <ul>
           <li>
             <a href='https://twitter.com/mochi_dog_phys'>X</a>
             <p>著者のX（旧Twitter）アカウントです。</p>
@@ -22,10 +22,10 @@ const ExternalLinkPage = () => {
             <a href='https://note.com/inunoute_scitech'>Note</a>
             <p>著者のNoteアカウントです。</p>
           </li>
-        </dt>
+        </ul>
 
         <h2>Cosmology</h2>
-        <dt>
+        <ul>
           <li>
             <a href='https://arxiv.org/'>arXiv</a>
             <p>プレプリントの投稿サイトです。</p>
@@ -38,10 +38,10 @@ const ExternalLinkPage = () => {
             <a href='https://ui.adsabs.harvard.edu'>NASA ADS</a>
             <p>文献データベースです。古めなものが多い気がします。</p>
           </li>
-        </dt>
+        </ul>
 
         <h2>Tech</h2>
-        <dt>
+        <ul>
           <li>
             <a href='https://rust-lang.org/ja/'>Rust Official Page</a>
             <p>Rustの公式サイトです。</p>
@@ -62,16 +62,16 @@ const ExternalLinkPage = () => {
             <a href='https://qiita.com/inuverse44'>Qiita</a>
             <p>著者のQiitaアカウントです。</p>
           </li>
-        </dt>
+        </ul>
 
         <h2>Webアプリ</h2>
-        <dt>
+        <ul>
           <li>
             <a href='https://mnist-app-668195407842.asia-northeast1.run.app'>MNIST-Kotlin</a>
             <p>MnistをKotlinで学習して、数字の認識を行うアプリです。行列計算から学習まで外部ライブラリを経由せずロジックを構築しています。</p>
             <p>Repository: <a href='https://github.com/inuverse44/MNIST-Kotlin'>MNIST-Kotlin</a></p>
           </li>
-        </dt>
+        </ul>
       </div>
     </>
   );
