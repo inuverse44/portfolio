@@ -4,7 +4,7 @@ date: '2026-01-04'
 tags:
   - 統計学
   - 確率
-published: ture
+published: true
 ---
 
 ## 標本空間と標本点
