@@ -32,7 +32,7 @@ export default function Home({ latestPosts, activityData, today }: HomeProps) {
           />
           <h2 className={styles.heroTitle}>Hello, I&apos;m {SITE_TITLE}!</h2>
           <p className={styles.homeDescription}>
-            Inuverseのパーソナルスペースへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアするよ。
+            Inuverseのポートフォリオへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアします。
           </p>
           <p className={styles.homeQuote}>アイディアのタイムカプセル。</p>
           <p className={styles.homeDescription}>

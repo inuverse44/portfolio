@@ -137,17 +137,25 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
             )}
           </div>
         </div>
-        <div className={styles.gridWrapper} ref={gridWrapperRef}>
-          <div className={styles.grid}>
-            {days.map((day, i) => (
-              <div
-                key={day.date}
-                className={`${styles.cell} ${getLevel(day.posts.length)}`}
-                onMouseEnter={(e) => handleMouseEnter(e, day.date, day.posts, i)}
-                onMouseLeave={() => setHoveredData(null)}
-                onClick={() => handleCellClick(day.posts)}
-              />
-            ))}
+        
+        <div className={styles.graphContainer}>
+          <div className={styles.dayLabels}>
+            <span>Mon</span>
+            <span>Wed</span>
+            <span>Fri</span>
+          </div>
+          <div className={styles.gridWrapper} ref={gridWrapperRef}>
+            <div className={styles.grid}>
+              {days.map((day, i) => (
+                <div
+                  key={day.date}
+                  className={`${styles.cell} ${getLevel(day.posts.length)}`}
+                  onMouseEnter={(e) => handleMouseEnter(e, day.date, day.posts, i)}
+                  onMouseLeave={() => setHoveredData(null)}
+                  onClick={() => handleCellClick(day.posts)}
+                />
+              ))}
+            </div>
           </div>
         </div>
         
@@ -161,10 +169,24 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
         )}
 
         <div className={styles.footer}>
-          <div className={styles.labels}>
-            <span>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
-            <span>{endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+          <div className={styles.footerControls}>
+            <div className={styles.labels}>
+              <span>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+              <span>-</span>
+              <span>{endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+            </div>
+            
+            <div className={styles.legend}>
+              <span className={styles.legendLabel}>Less</span>
+              <div className={`${styles.legendCell} ${styles.level0}`} />
+              <div className={`${styles.legendCell} ${styles.level1}`} />
+              <div className={`${styles.legendCell} ${styles.level2}`} />
+              <div className={`${styles.legendCell} ${styles.level3}`} />
+              <div className={`${styles.legendCell} ${styles.level4}`} />
+              <span className={styles.legendLabel}>More</span>
+            </div>
           </div>
+
           <div className={styles.detailsArea}>
             {hoveredData && hoveredData.posts.length > 0 ? (
               <div className={styles.activeDetails}>

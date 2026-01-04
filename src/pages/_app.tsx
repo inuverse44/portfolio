@@ -4,7 +4,7 @@ import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
 import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
-import { Roboto_Mono, Hachi_Maru_Pop } from 'next/font/google';
+import { Roboto_Mono, Noto_Sans_JP } from 'next/font/google';
 import type { NextPage } from 'next';
 
 const robotoMono = Roboto_Mono({
@@ -14,10 +14,10 @@ const robotoMono = Roboto_Mono({
 });
 
 
-const hachiMaruPop = Hachi_Maru_Pop({
+const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-hachi-maru-pop',
+  weight: ['400', '700'],
+  variable: '--font-noto-sans-jp',
   display: 'swap',
 });
 
@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppPropsWithWide) {
   const isWide = Component.wide || false;
 
   return (
-    <div className={`${hachiMaruPop.variable} ${robotoMono.variable}`}>
+    <div className={`${notoSansJP.variable} ${robotoMono.variable}`}>
       <Layout wide={isWide}>
         <Component {...pageProps} />
       </Layout>
