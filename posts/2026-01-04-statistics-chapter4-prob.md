@@ -126,7 +126,7 @@ $$
 
 （※）
 
-![積分の画像](integration.png#width=300)
+![積分の画像](/images/posts/2026-01-04-statistics-chapter4-prob/integration.png#width=300)
 
 
 
