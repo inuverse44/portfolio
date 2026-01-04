@@ -24,6 +24,7 @@ const Meta = ({ title, description, image, type = 'website' }: MetaProps) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href={`${router.basePath}/favicon.png`} />
       <link rel="canonical" href={canonicalUrl} />
+      <meta name="google-site-verification" content="GVJsI0qiXxw6sq96joFwtrhEnsyC4NxFaXYUtG81IK0" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
