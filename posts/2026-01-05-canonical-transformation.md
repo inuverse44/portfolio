@@ -4,6 +4,7 @@ date: '2026-01-05'
 tags:
   - 解析力学
   - 正準変換
+  - メモ
 published: true
 ---
 
@@ -75,23 +76,23 @@ $$
 で関係付けられるので、$2s$個の自由度が残る。
 そのため(8)の引数は古い変数の$q, p$のどちらかと、新しい変数の$Q, P$のどちらかを含んでいなければならない。
 すると、関数$G$の候補は
-$
+$$
 \begin{align}
     \begin{aligned}
-        &G_1(q, Q, t)\,,\quad
-        G_2(q, P, t)\,, \\
-        &G_3(p, Q, t)\,, \quad
-        G_4(p, P, t)\,,
+    &G_1(q, Q, t)\,,\quad
+    G_2(q, P, t)\,, \\
+    &G_3(p, Q, t)\,, \quad
+    G_4(p, P, t)\,,
     \end{aligned}
 \end{align}
-$
+$$
 に絞られる。
 この関数を変換に対する母関数(generator)という。
 
 $G_1$による変換を考える。
 つまり、$q$と$Q$は独立変数である。
 この関数の全微分は
-$
+$$
 \begin{align}
     \frac{{\rm d} G_1(q, Q, t)}{{\rm d}t}
     =
@@ -102,8 +103,8 @@ $
     \bigg)
     + \frac{\partial G_1}{\partial t}
 \end{align}
-$
-であるから、\eqref{eq: canonical trans}に代入し、項をすべて左辺に移項すると
+$$
+であるから、$(8)$に代入し、項をすべて左辺に移項すると
 $$
 \begin{align}
     &\sum_i^s p_i \dot{q}_i - H(q, p, t)
@@ -151,7 +152,7 @@ $$
 \end{align}
 $$
 として与えられる。
-これを$\frac{{\rm d}G_1}{{\rm d}t}$を選んだ\eqref{eq: canonical trans}に代入してみると、
+これを$\frac{{\rm d}G_1}{{\rm d}t}$を選んだ$(8)$に代入してみると、
 $$
 \begin{align}
     \sum_i^s p_i \dot{q}_i - H(q, p, t)
