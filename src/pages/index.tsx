@@ -11,9 +11,10 @@ import PostCard from '@/components/molecules/PostCard';
 interface HomeProps {
   latestPosts: Post[];
   activityData: Record<string, number>;
+  today: string;
 }
 
-export default function Home({ latestPosts, activityData }: HomeProps) {
+export default function Home({ latestPosts, activityData, today }: HomeProps) {
   const router = useRouter();
   return (
     <>
@@ -41,7 +42,7 @@ export default function Home({ latestPosts, activityData }: HomeProps) {
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Activity</h3>
-          <ActivityHeatmap activities={activityData} />
+          <ActivityHeatmap activities={activityData} today={today} />
         </section>
 
         <section className={styles.section}>
@@ -63,10 +64,14 @@ export default function Home({ latestPosts, activityData }: HomeProps) {
 export async function getStaticProps() {
   const allPosts = getAllPosts();
   const latestPosts = allPosts.slice(0, 3);
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
   const activityData: Record<string, number> = {};
   allPosts.forEach((post) => {
-    const date = post.frontmatter.date; // Assuming ISO string YYYY-MM-DD
+    // Standardize to YYYY-MM-DD local string
+    const d = new Date(post.frontmatter.date);
+    const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     activityData[date] = (activityData[date] || 0) + 1;
   });
 
@@ -74,6 +79,7 @@ export async function getStaticProps() {
     props: {
       latestPosts,
       activityData,
+      today,
     },
   };
 }

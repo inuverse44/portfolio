@@ -1,21 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ActivityHeatmap.module.css';
 
 interface ActivityHeatmapProps {
   activities: Record<string, number>; // ISO Date String -> count
+  today: string; // ISO date string from server/props to avoid hydration mismatch
 }
 
-const ActivityHeatmap = ({ activities }: ActivityHeatmapProps) => {
-  const today = new Date();
-  const startDate = new Date();
-  startDate.setFullYear(today.getFullYear() - 1);
-  startDate.setDate(startDate.getDate() - startDate.getDay()); // Align to Sunday
+type RangeType = 'all' | '1y' | '6m' | '1m' | '2w' | '1w';
 
+const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) => {
+  const [range, setRange] = useState<RangeType>('1y');
+  const today = new Date(todayStr);
+
+  const getStartDate = () => {
+    const start = new Date(today);
+    switch (range) {
+      case 'all': {
+        const dates = Object.keys(activities).sort();
+        if (dates.length > 0) {
+          const firstPost = new Date(dates[0]);
+          firstPost.setDate(firstPost.getDate() - firstPost.getDay());
+          return firstPost;
+        }
+        start.setFullYear(today.getFullYear() - 1);
+        break;
+      }
+      case '1y':
+        start.setFullYear(today.getFullYear() - 1);
+        break;
+      case '6m':
+        start.setMonth(today.getMonth() - 6);
+        break;
+      case '1m':
+        start.setMonth(today.getMonth() - 1);
+        break;
+      case '2w':
+        start.setDate(today.getDate() - 14);
+        break;
+      case '1w':
+        start.setDate(today.getDate() - 7);
+        break;
+    }
+    start.setDate(start.getDate() - start.getDay()); // Align to Sunday
+    return start;
+  };
+
+  const startDate = getStartDate();
   const days = [];
   const currentDate = new Date(startDate);
   
   while (currentDate <= today) {
-    const dateStr = currentDate.toISOString().split('T')[0];
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
+    
     days.push({
       date: dateStr,
       count: activities[dateStr] || 0
@@ -31,9 +70,31 @@ const ActivityHeatmap = ({ activities }: ActivityHeatmapProps) => {
     return styles.level4;
   };
 
+  const ranges: { label: string; value: RangeType }[] = [
+    { label: 'All', value: 'all' },
+    { label: '1Y', value: '1y' },
+    { label: '6M', value: '6m' },
+    { label: '1M', value: '1m' },
+    { label: '2W', value: '2w' },
+    { label: '1W', value: '1w' },
+  ];
+
   return (
     <div className={styles.heatmapContainer}>
-      <div className={styles.heatmapTitle}>Posting Activity</div>
+      <div className={styles.header}>
+        <div className={styles.heatmapTitle}>Posting Activity</div>
+        <div className={styles.rangePicker}>
+          {ranges.map((r) => (
+            <button
+              key={r.value}
+              className={`${styles.rangeButton} ${range === r.value ? styles.active : ''}`}
+              onClick={() => setRange(r.value)}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className={styles.grid}>
         {days.map((day) => (
           <div
@@ -44,8 +105,8 @@ const ActivityHeatmap = ({ activities }: ActivityHeatmapProps) => {
         ))}
       </div>
       <div className={styles.labels}>
-        <span>{startDate.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}</span>
-        <span>{today.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}</span>
+        <span>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
+        <span>{today.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' })}</span>
       </div>
     </div>
   );
