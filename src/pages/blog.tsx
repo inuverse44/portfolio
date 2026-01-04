@@ -31,6 +31,10 @@ export default function Blog({ posts, tagCounts }: BlogProps) {
 
   const title = date ? `Posts on ${date}` : 'All Posts';
 
+  return (
+    <>
+      <Meta title="Blog" description="All blog posts" />
+
       <div className={styles.blogLayout}>
         <div className={styles.mainContent}>
           <h1>{title}</h1>
