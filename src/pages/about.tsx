@@ -27,7 +27,7 @@ const AboutPage = () => {
         <h2>資格</h2>
         <ul>
           <li>普通自動車第１種運転免許</li>
-          <li>TOEIC Listeing & Reading Test 625（頑張ります）</li>
+          <li>TOEIC Listeing & Reading Test 625 @2024-12-21（頑張ります）</li>
         </ul>
 
         <h2>出版物</h2>
