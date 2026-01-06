@@ -24,7 +24,23 @@ published: true
 その次の$n$回目に表が出る確率は$1/2$であるので、得られる額$X$の確率分布は
 $$
 \begin{align}
-P(X=2^n) &= (1/2)^{n-1} \times (1/2) = (1/2)^n \\
+P(X=2^n) &= \frac{1}{2} \cdot \left(\frac{1}{2}\right)^{n-1} = \left(\frac{1}{2}\right)^n \\
 \end{align}
 $$
 
+(ii)
+$$
+\begin{align*}
+  E(X)
+  &= \sum_{n=1}^\infty 2^n P(X=2^n) \\
+  &= \sum_{n=1}^\infty 2^n \cdot \left(\frac{1}{2}\right)^n \\
+  &= \sum_{n=1}^\infty 1 \\
+  &= \infty
+\end{align*}
+$$
+
+したがって期待値は存在しません。
+
+## 参考資料
+
+- [統計学入門　東京大学教養学部統計学教室編 東京大学出版会](https://www.utp.or.jp/book/b300857.html)
