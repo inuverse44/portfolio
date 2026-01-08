@@ -1,5 +1,5 @@
 ---
-title: 統計学入門 第6章 超幾何分布
+title: 統計学入門 第6章 超幾何分布 1
 date: '2026-01-07'
 tags:
   - 統計学
@@ -92,15 +92,14 @@ import kotlin.math.min
 
 /**
  * 二項係数の自然対数 ln(nCk)
+ * Intの拡張関数とする
  */
-fun logCombination(n: Int, k: Int): Double {
-    if (k < 0 || k > n) return Double.NEGATIVE_INFINITY
-    val kk = min(k, n - k)
-    var sum = 0.0
-    for (i in 1..kk) {
-        sum += ln((n - i + 1).toDouble()) - ln(i.toDouble())
+fun Int.logCombination(k: Int): Double {
+    if (k < 0 || k > this) return Double.NEGATIVE_INFINITY
+    val kk = min(k, this - k) // 対称性を利用する
+    return (1..k).sumOf { i ->
+        ln((this - i + 1).toDouble()) - ln(i.toDouble())
     }
-    return sum
 }
 
 /**
@@ -117,10 +116,9 @@ fun hypergeometricProbability(
     if (x < 0 || x > n || x > M || n - x > N - M) {
         return 0.0
     }
-
-    val logProb = logCombination(M, x) +
-            logCombination(N - M, n - x) -
-            logCombination(N, n)
+    val logProb = M.logCombination(x) +
+            (N - M).logCombination(n - x) -
+            N.logCombination(n)
 
     return exp(logProb)
 }
@@ -139,7 +137,6 @@ for(i in 0..5) {
     sumP += hypergeometricProbability(1000, 200, 5, i)
 }
 println("Sum of probabilities = $sumP")
-
 ```
 
 これの計算結果は
@@ -161,7 +158,9 @@ Sum of probabilities = 0.9999999999999992
 [リポジトリ](https://github.com/inuverse44/introduction-to-statistics)
 
 
+## 更新履歴
+- 2026-01-08: Kotlinの組み合わせの計算をKotlinらしく改善
+
 
 [^1]: [統計学入門　東京大学教養学部統計学教室編 東京大学出版会](https://www.utp.or.jp/book/b300857.html)
-
 
