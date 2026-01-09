@@ -1,11 +1,9 @@
-import React, { useMemo } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import PostList from '@/components/organisms/PostList';
 import Meta from '@/components/atoms/Meta';
 import TagList from '@/components/molecules/TagList';
 import { getAllPosts, getAllTagsCount } from '@/lib/posts/api';
 import styles from '@/styles/Blog.module.css';
-import AdSense from '@/components/AdSense';
 import Pagination from '@/components/molecules/Pagination';
 
 interface Post {
@@ -19,36 +17,24 @@ interface Post {
 
 const POSTS_PER_PAGE = 10;
 
-interface BlogProps {
+interface BlogPageProps {
   posts: Post[];
   tagCounts: Record<string, number>;
+  currentPage: number;
   totalPages: number;
 }
 
-export default function Blog({ posts, tagCounts, totalPages }: BlogProps) {
-  const router = useRouter();
-  const { date } = router.query;
-
-  const filteredPosts = useMemo(() => {
-    if (!date) return posts;
-    return posts.filter(post => post.frontmatter.date === date);
-  }, [posts, date]);
-
-  const title = date ? `Posts on ${date}` : 'All Posts';
-  const blogSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_BLOG_LIST;
-  const currentPage = 1;
+export default function BlogPage({ posts, tagCounts, currentPage, totalPages }: BlogPageProps) {
+  const title = `All Posts`;
 
   return (
     <>
-      <Meta title="Blog" description="All blog posts" />
+      <Meta title={`Blog - Page ${currentPage}`} description="All blog posts" />
 
       <div className={styles.blogLayout}>
         <div className={styles.mainContent}>
           <h1>{title}</h1>
-          {blogSlot ? (
-            <AdSense slot={blogSlot} style={{ margin: '16px 0' }} />
-          ) : null}
-          <PostList posts={filteredPosts} />
+          <PostList posts={posts} />
           <Pagination currentPage={currentPage} totalPages={totalPages} indexPath="/blog" basePath="/blog/page" />
         </div>
         <aside className={styles.sidebar}>
@@ -60,18 +46,29 @@ export default function Blog({ posts, tagCounts, totalPages }: BlogProps) {
 }
 
 // Enable wide layout for this page
-Blog.wide = true;
+// Casting to allow attaching a non-typed static prop used by Layout
+;(BlogPage as unknown as { wide?: boolean }).wide = true;
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  const allPosts = getAllPosts();
+  const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+  const paths = Array.from({ length: totalPages - 1 }, (_, i) => ({ params: { page: String(i + 2) } }));
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }: { params: { page: string } }) {
   const allPosts = getAllPosts();
   const tagCounts = getAllTagsCount();
   const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
-  const firstPagePosts = allPosts.slice(0, POSTS_PER_PAGE);
+  const currentPage = Math.max(1, Math.min(totalPages, parseInt(params.page, 10) || 1));
+  const start = (currentPage - 1) * POSTS_PER_PAGE;
+  const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
 
   return {
     props: {
-      posts: firstPagePosts,
+      posts: pagePosts,
       tagCounts,
+      currentPage,
       totalPages,
     },
   };

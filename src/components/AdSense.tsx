@@ -12,7 +12,7 @@ const AdSense = ({ slot, className, style }: AdSenseProps) => {
     try {
       // @ts-expect-error adsbygoogle is injected by the AdSense script
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
+    } catch {
       // no-op
     }
   }, []);
