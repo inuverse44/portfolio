@@ -10,6 +10,7 @@ function generateSitemap() {
   const staticPages = [
     '',
     '/blog',
+    '/category',
     '/about',
     '/external',
   ];
