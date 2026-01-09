@@ -15,7 +15,13 @@ function generateSitemap() {
   ];
 
   const postPages = filenames.map(filename => `/posts/${filename.replace(/\.md$/, '')}`);
-  const allPages = [...staticPages, ...postPages];
+
+  // Pagination for blog: page size 10
+  const pageSize = 10;
+  const totalPages = Math.max(1, Math.ceil(filenames.length / pageSize));
+  const blogPages = Array.from({ length: totalPages - 1 }, (_, i) => `/blog/page/${i + 2}`);
+
+  const allPages = [...staticPages, ...blogPages, ...postPages];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
