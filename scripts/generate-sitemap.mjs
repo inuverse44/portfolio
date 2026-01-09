@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const SITE_URL = 'https://inuverse.dev';
+const SITE_URL = 'https://www.inuverse.dev';
 
 function generateSitemap() {
   const postsDir = path.join(process.cwd(), 'posts');
