@@ -2,6 +2,7 @@ import Meta from '@/components/atoms/Meta';
 import BackButton from '@/components/molecules/BackButton';
 import PostHeader from '@/components/organisms/PostHeader';
 import PostBody from '@/components/organisms/PostBody';
+import AdSense from '@/components/AdSense';
 export { getStaticPaths } from '@/lib/posts/getStaticPaths';
 export { getStaticProps } from '@/lib/posts/getStaticProps';
 
@@ -16,6 +17,7 @@ interface PostProps {
 }
 
 export default function Post({ frontmatter, content, slug }: PostProps) {
+  const postInlineSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_POST_INLINE;
   return (
     <article>
       <BackButton />
@@ -30,6 +32,9 @@ export default function Post({ frontmatter, content, slug }: PostProps) {
         tags={frontmatter.tags}
       />
       <PostBody content={content} slug={slug} />
+      {postInlineSlot ? (
+        <AdSense slot={postInlineSlot} />
+      ) : null}
       <BackButton />
     </article>
   );
