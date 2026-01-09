@@ -17,7 +17,7 @@ const AdSense = ({ slot, className, style }: AdSenseProps) => {
     }
   }, []);
 
-  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-5211610368482726';
+  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
   const isDev = process.env.NODE_ENV !== 'production';
 
   // If no slot provided, render nothing (component is for manual units)

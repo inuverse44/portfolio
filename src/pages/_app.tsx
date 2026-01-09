@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppPropsWithWide) {
     <>
       <Head>
         {(() => {
-          const adsClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-5211610368482726';
+          const adsClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
           if (!adsClient) return null;
           return (
             <script
