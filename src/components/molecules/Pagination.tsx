@@ -4,18 +4,21 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   basePath?: string; // e.g., '/blog/page'
+  indexPath?: string; // e.g., '/blog' for page 1
 }
 
-const Pagination = ({ currentPage, totalPages, basePath = '/blog/page' }: PaginationProps) => {
+const Pagination = ({ currentPage, totalPages, basePath = '/blog/page', indexPath = '/blog' }: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   const prevPage = currentPage > 1 ? currentPage - 1 : null;
   const nextPage = currentPage < totalPages ? currentPage + 1 : null;
 
+  const hrefFor = (page: number) => (page === 1 ? indexPath : `${basePath}/${page}`);
+
   return (
     <nav aria-label="Pagination" style={{ display: 'flex', gap: 8, alignItems: 'center', margin: '16px 0' }}>
       {prevPage ? (
-        <Link href={`${basePath}/${prevPage}`}>← Prev</Link>
+        <Link href={hrefFor(prevPage)}>← Prev</Link>
       ) : (
         <span style={{ opacity: 0.4 }}>← Prev</span>
       )}
@@ -25,7 +28,7 @@ const Pagination = ({ currentPage, totalPages, basePath = '/blog/page' }: Pagina
       </span>
 
       {nextPage ? (
-        <Link href={`${basePath}/${nextPage}`}>Next →</Link>
+        <Link href={hrefFor(nextPage)}>Next →</Link>
       ) : (
         <span style={{ opacity: 0.4 }}>Next →</span>
       )}
@@ -34,4 +37,3 @@ const Pagination = ({ currentPage, totalPages, basePath = '/blog/page' }: Pagina
 };
 
 export default Pagination;
-

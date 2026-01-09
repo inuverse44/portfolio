@@ -35,7 +35,7 @@ export default function BlogPage({ posts, tagCounts, currentPage, totalPages }: 
         <div className={styles.mainContent}>
           <h1>{title}</h1>
           <PostList posts={posts} />
-          <Pagination currentPage={currentPage} totalPages={totalPages} />
+          <Pagination currentPage={currentPage} totalPages={totalPages} indexPath="/blog" basePath="/blog/page" />
         </div>
         <aside className={styles.sidebar}>
           <TagList tagCounts={tagCounts} />

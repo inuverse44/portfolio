@@ -49,7 +49,7 @@ export default function Blog({ posts, tagCounts, totalPages }: BlogProps) {
             <AdSense slot={blogSlot} style={{ margin: '16px 0' }} />
           ) : null}
           <PostList posts={filteredPosts} />
-          <Pagination currentPage={currentPage} totalPages={totalPages} />
+          <Pagination currentPage={currentPage} totalPages={totalPages} indexPath="/blog" basePath="/blog/page" />
         </div>
         <aside className={styles.sidebar}>
           <TagList tagCounts={tagCounts} />
