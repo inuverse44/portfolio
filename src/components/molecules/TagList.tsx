@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import styles from './TagList.module.css';
 
@@ -7,7 +7,12 @@ interface TagListProps {
 }
 
 const TagList = ({ tagCounts }: TagListProps) => {
-  const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const sortedTags = useMemo(() => {
+    return Object.entries(tagCounts).sort((a, b) => {
+      if (b[1] != a[1]) return b[1] - a[1];
+      return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
+    });
+  }, [tagCounts]);
 
   return (
     <div className={styles.tagListContainer}>
@@ -15,7 +20,7 @@ const TagList = ({ tagCounts }: TagListProps) => {
       <ul className={styles.tagList}>
         {sortedTags.map(([tag, count]) => (
           <li key={tag} className={styles.tagItem}>
-            <Link href={`/tags/${tag}`} className={styles.tagLink}>
+            <Link href={`/tags/${encodeURIComponent(tag)}`} className={styles.tagLink}>
               {tag}
               <span className={styles.tagCount}>({count})</span>
             </Link>

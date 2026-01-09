@@ -20,12 +20,14 @@ vi.mock('next/router', () => ({
   }),
 }));
 
-// Mock next/image
+// Mock next/image: strip Next-specific props that HTMLImageElement doesn't accept
 vi.mock('next/image', () => ({
   __esModule: true,
-  default: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  // eslint-disable-next-line react/display-name
+  default: (props: any) => {
+    const { src, alt, unoptimized, priority, fill, loader, ...rest } = props;
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={alt} {...props} />;
+    return <img src={src as string} alt={(alt as string) || ''} {...rest} />;
   },
 }));
 

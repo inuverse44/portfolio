@@ -20,13 +20,13 @@ const PostCard = ({ post }: PostCardProps) => {
       <h2 className={styles.title}>
         <Link href={`/posts/${post.slug}`}>{post.frontmatter.title}</Link>
       </h2>
-      <div className={styles.meta}>
-        <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
-      </div>
-      <div className={styles.tags}>
-        {post.frontmatter.tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
+      <div className={styles.metaRow}>
+        <time className={styles.meta} dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+        <div className={styles.tags}>
+          {post.frontmatter.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </div>
       </div>
     </article>
   );

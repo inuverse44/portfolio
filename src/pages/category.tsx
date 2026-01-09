@@ -48,7 +48,7 @@ export default function Category({ categories }: { categories: CategorySummary[]
 export async function getStaticProps() {
   const { CATEGORIES } = await import('@/constants/categories');
   const all = getAllPosts();
-  const categories: CategorySummary[] = (CATEGORIES as CategoryDefinition[]).map((c) => (
+  const categories: CategorySummary[] = (CATEGORIES as CategoryDefinition[]).map((c) => ({
     slug: c.slug,
     title: c.title,
     description: c.description,
