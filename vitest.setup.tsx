@@ -24,6 +24,7 @@ vi.mock('next/router', () => ({
 vi.mock('next/image', () => ({
   __esModule: true,
   // eslint-disable-next-line react/display-name
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: (props: any) => {
     const { src, alt, unoptimized, priority, fill, loader, ...rest } = props;
     // eslint-disable-next-line @next/next/no-img-element
