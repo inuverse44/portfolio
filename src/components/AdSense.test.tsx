@@ -17,7 +17,7 @@ describe('AdSense', () => {
 
   it('renders nothing when no slot is provided', () => {
     process.env.NEXT_PUBLIC_ADSENSE_CLIENT = 'ca-pub-test';
-    const { container } = render(<AdSense /> as any);
+    const { container } = render(<AdSense />);
     expect(container.querySelector('ins.adsbygoogle')).toBeNull();
   });
 
