@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
 import { Roboto_Mono, Noto_Sans_JP } from 'next/font/google';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
@@ -34,10 +35,25 @@ export default function App({ Component, pageProps }: AppPropsWithWide) {
   const isWide = Component.wide || false;
 
   return (
-    <div className={`${notoSansJP.variable} ${robotoMono.variable}`}>
-      <Layout wide={isWide}>
-        <Component {...pageProps} />
-      </Layout>
-    </div>
+    <>
+      <Head>
+        {(() => {
+          const adsClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-5211610368482726';
+          if (!adsClient) return null;
+          return (
+            <script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClient}`}
+              crossOrigin="anonymous"
+            />
+          );
+        })()}
+      </Head>
+      <div className={`${notoSansJP.variable} ${robotoMono.variable}`}>
+        <Layout wide={isWide}>
+          <Component {...pageProps} />
+        </Layout>
+      </div>
+    </>
   );
 }
