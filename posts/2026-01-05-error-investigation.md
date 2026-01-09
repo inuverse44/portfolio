@@ -5,6 +5,7 @@ tags:
   - GCP
   - GKE
   - RabbitMQ
+cover: https://www.ibm.com/content/adobe-cms/jp/ja/products/instana/supported-technologies/rabbitmq-monitoring/jcr:content/root/table_of_contents/body/content_section_styled/content-section-body/complex_narrative/logoimage.coreimg.png/1692219515370/rabbit.png
 published: true
 ---
 

@@ -4,6 +4,7 @@ date: '2026-01-03'
 tags:
   - 統計学
   - Kotlin
+cover: https://hondana-image.s3.amazonaws.com/book/image/300857/035bc460-8c27-41ce-a4d2-c0e4e5c0f9da.jpg
 published: true
 ---
 

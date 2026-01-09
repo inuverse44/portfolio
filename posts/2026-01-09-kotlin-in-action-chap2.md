@@ -3,7 +3,8 @@ title: Kotlin in Action Second Edition 第２章
 date: '2026-01-09'
 tags:
   - Kotlin
-published: false
+cover: https://m.media-amazon.com/images/I/71gWfGC2pGL._SL1500_.jpg
+published: true
 ---
 
 ## はじめに
@@ -127,3 +128,8 @@ languages.add("Kotlin")
 var answer = 42 // Int
 answer = "no answer" // <-- Error: type mismatch
 ```
+
+
+## 参考文献
+
+- [Kotlin in Action Second Edition](https://www.amazon.co.jp/Kotlin-Action-Second-Sebastian-Aigner/dp/161729960X)
