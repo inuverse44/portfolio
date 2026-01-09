@@ -46,8 +46,8 @@ export default function BlogPage({ posts, tagCounts, currentPage, totalPages }: 
 }
 
 // Enable wide layout for this page
-// @ts-expect-error custom static prop
-BlogPage.wide = true;
+// Casting to allow attaching a non-typed static prop used by Layout
+;(BlogPage as unknown as { wide?: boolean }).wide = true;
 
 export async function getStaticPaths() {
   const allPosts = getAllPosts();
