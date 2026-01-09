@@ -44,4 +44,6 @@ next-env.d.ts
 # terraform
 infra/terraform/apex-redirect/.terraform/
 infra/terraform/apex-redirect/.terraform.lock.hcl
-infra/terraform/apex-redirect/terraform.tfstate.backup
+infra/terraform/apex-redirect/terraform.tfstate
+infra/terraform/apex-redirect/terraform.tfstate.*
+infra/terraform/apex-redirect/terraform.tfvars
