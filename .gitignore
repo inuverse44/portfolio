@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# terraform
+infra/terraform/apex-redirect/.terraform/
+infra/terraform/apex-redirect/.terraform.lock.hcl
+infra/terraform/apex-redirect/terraform.tfstate.backup
