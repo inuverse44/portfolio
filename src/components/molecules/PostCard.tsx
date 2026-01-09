@@ -11,6 +11,7 @@ interface PostCardProps {
       title: string;
       date: string;
       tags: string[];
+      cover?: string | null;
     };
   };
 }
