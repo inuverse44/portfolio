@@ -4,6 +4,7 @@ import styles from '@/styles/Blog.module.css';
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts/api';
 import type { Post } from '@/lib/posts/api';
+import type { CategoryDefinition } from '@/constants/categories';
 
 type CategorySummary = {
   slug: string;
@@ -42,13 +43,12 @@ export default function Category({ categories }: { categories: CategorySummary[]
 }
 
 // Enable wide layout for this page
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Category as any).wide = true;
+(Category as unknown as { wide?: boolean }).wide = true;
 
 export async function getStaticProps() {
   const { CATEGORIES } = await import('@/constants/categories');
   const all = getAllPosts();
-  const categories: CategorySummary[] = CATEGORIES.map((c: any) => ({
+  const categories: CategorySummary[] = (CATEGORIES as CategoryDefinition[]).map((c) => (
     slug: c.slug,
     title: c.title,
     description: c.description,

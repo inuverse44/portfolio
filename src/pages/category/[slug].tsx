@@ -4,6 +4,7 @@ import styles from '@/styles/Blog.module.css';
 import { getAllPosts } from '@/lib/posts/api';
 import type { Post } from '@/lib/posts/api';
 import PostList from '@/components/organisms/PostList';
+import type { CategoryDefinition } from '@/constants/categories';
 
 interface CategoryPageProps {
   title: string;
@@ -27,18 +28,17 @@ export default function CategoryPage({ title, description, posts }: CategoryPage
 }
 
 // Enable wide layout for this page
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(CategoryPage as any).wide = true;
+(CategoryPage as unknown as { wide?: boolean }).wide = true;
 
 export async function getStaticPaths() {
   const { CATEGORIES } = await import('@/constants/categories');
-  const paths = CATEGORIES.map((c: { slug: string }) => ({ params: { slug: c.slug } }));
+  const paths = (CATEGORIES as CategoryDefinition[]).map((c) => ({ params: { slug: c.slug } }));
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { CATEGORIES } = await import('@/constants/categories');
-  const def = CATEGORIES.find((c: { slug: string }) => c.slug === params.slug);
+  const def = (CATEGORIES as CategoryDefinition[]).find((c) => c.slug === params.slug);
   if (!def) return { notFound: true } as const;
   const all = getAllPosts();
   const posts = def.posts
@@ -52,4 +52,3 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     },
   };
 }
-
