@@ -3,6 +3,7 @@ title: 誤差逆伝播法
 date: '2026-01-06'
 tags:
   - 機械学習
+cover: https://www.asakura.co.jp/user_data/product_image/13152/1.jpg
 published: true
 ---
 

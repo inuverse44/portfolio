@@ -4,6 +4,7 @@ date: '2026-01-04'
 tags:
   - Kotlin
   - 日常
+cover: https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png
 published: true
 ---
 

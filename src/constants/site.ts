@@ -6,6 +6,7 @@ export const TWITTER_ID = '@mochi_dog_phys';
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Category', href: '/category' },
   { label: 'About', href: '/about' },
   { label: 'External Link', href: '/external' },
 ];

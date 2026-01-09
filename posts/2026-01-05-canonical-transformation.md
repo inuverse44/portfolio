@@ -5,6 +5,7 @@ tags:
   - 解析力学
   - 正準変換
   - メモ
+cover: 
 published: true
 ---
 
