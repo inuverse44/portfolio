@@ -41,12 +41,12 @@ terraform init
 terraform plan \
   -var 'project_id=inuverse-portfolio' \
   -var 'base_domain=inuverse.dev' \
-  -var 'dns_managed_zone_name= inuverse-dev'
+  -var 'dns_managed_zone_name=inuverse-dev'
 
 terraform apply \
   -var 'project_id=inuverse-portfolio' \
   -var 'base_domain=inuverse.dev' \
-  -var 'dns_managed_zone_name= inuverse-dev'
+  -var 'dns_managed_zone_name=inuverse-dev'
 ```
 
 tfvars を使う場合（推奨）
