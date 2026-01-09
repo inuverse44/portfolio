@@ -53,7 +53,7 @@ export async function getStaticProps() {
     title: c.title,
     description: c.description,
     posts: c.posts
-      .map((slug: string) => all.find((p) => p.slug === slug))
+      .map((slug) => all.find((p) => p.slug === slug))
       .filter(Boolean) as Post[],
   }));
 

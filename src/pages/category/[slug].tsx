@@ -42,7 +42,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   if (!def) return { notFound: true } as const;
   const all = getAllPosts();
   const posts = def.posts
-    .map((slug: string) => all.find((p) => p.slug === slug))
+    .map((slug) => all.find((p) => p.slug === slug))
     .filter(Boolean) as Post[];
   return {
     props: {
