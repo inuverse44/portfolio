@@ -16,6 +16,9 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post }: PostCardProps) => {
+  const DEFAULT_COVER = '/images/placeholder-card.svg';
+  const coverSrc = post.frontmatter.cover || DEFAULT_COVER;
+
   return (
     <article className={styles.card}>
       <div className={styles.content}>
@@ -31,19 +34,17 @@ const PostCard = ({ post }: PostCardProps) => {
           </div>
         </div>
       </div>
-      {post.frontmatter.cover ? (
-        <div className={styles.thumb}>
-          <Image
-            src={post.frontmatter.cover}
-            alt=""
-            width={160}
-            height={100}
-            sizes="160px"
-            style={{ width: 160, height: '100%', objectFit: 'cover', borderRadius: 4 }}
-            unoptimized
-          />
-        </div>
-      ) : null}
+      <div className={styles.thumb}>
+        <Image
+          src={coverSrc}
+          alt=""
+          width={160}
+          height={100}
+          sizes="160px"
+          style={{ width: 160, height: 100, objectFit: 'contain', background: '#f3f4f6', borderRadius: 4 }}
+          unoptimized
+        />
+      </div>
     </article>
   );
 };

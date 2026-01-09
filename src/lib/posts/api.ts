@@ -10,7 +10,7 @@ export interface Post {
     title: string;
     date: string;
     tags: string[];
-    cover?: string;
+    cover?: string | null;
     published?: boolean;
   };
   content?: string;
@@ -32,7 +32,7 @@ export function getAllPosts(includeDrafts: boolean = false): Post[] {
           title: data.title || 'No Title',
           date: data.date || 'No Date',
           tags: data.tags || [],
-          cover: data.cover || undefined,
+          cover: (data.cover ?? null),
           published: data.published ?? true,
         },
       };
@@ -52,7 +52,7 @@ export function getPostBySlug(slug: string): Post {
       title: data.title || 'No Title',
       date: data.date || 'No Date',
       tags: data.tags || [],
-      cover: data.cover || undefined,
+      cover: (data.cover ?? null),
       published: data.published ?? true,
     },
     content: content || '',
