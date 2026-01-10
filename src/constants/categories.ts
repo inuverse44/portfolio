@@ -26,7 +26,9 @@ export const CATEGORIES: CategoryDefinition[] = [
       '2026-01-07-statistics-chapter5-prob5of7', 
       '2026-01-07-statistics-chapter6-hypergeometric', 
       '2026-01-07-statistics-chapter6-hypergeometric',
-      '2026-01-08-statistics-chapter6-hypergeometric'
+      '2026-01-08-statistics-chapter6-hypergeometric',
+      '2026-01-10-statistics-chapter6-binomial',
+      '2026-01-09-statistics-chapter6-poisson'
     ],
   }
 ];
