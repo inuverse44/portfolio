@@ -53,6 +53,10 @@ class Hello {
 fun max(a: Int, b: Int): Int {
     return if (a > b) a else b
 }
+
+fun main() {
+    println(max(1, 2))
+}
 ```
 `fun`で関数の宣言を開始し、その後すぐに関数名がきます。今回は2つの数字を受け取り、大きい方の値を返す関数です。C言語のようにパラメーターの後にコロン（:）で型`Int`（整数）を指定しています。さらにその右には返り値の型`Int`を指定しています。`return`キーワードで返り値を返すことができます。
 `if`式は三項演算子 (ternary operator) のように使えます（後の章にて解説）。
@@ -77,12 +81,18 @@ int max(int a, int b) {
 です。このときは中括弧（`{}`）を省略できます。つまり、
 ```kotlin
 fun max(a: Int, b: Int): Int = if (a > b) a else b
+fun main() {
+    println(max(1, 2))
+}
 ```
 と書けます。
 
 ここで、中括弧の中に関数のボディがあることを「関数は**block body**を持つ」といい、逆に中括弧がなく直接式を返すことを「関数は**expression body**を持つ」といいます。さらに、返り値が型推論 (type inference) で明らかになる場合、上記の関数はもっと簡単になり
 ```kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
+fun main() {
+    println(max(1, 2))
+}
 ```
 と書けます。
 
@@ -93,18 +103,23 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 Kotlinの型推論が強力なおかげで多くの変数に対して型の指定を省略できるし、明示的に指定することもできます。
 
 ```kotlin
-// 明示的に型を指定
-val question: String = "The Ultimatee Question of Life, the Universe, and Everything"
-val answer: Int = 42
+fun main() {
+    // 明示的に型を指定
+    // val question: String = "The Ultimatee Question of Life, the Universe, and Everything"
+    // val answer: Int = 42
 
-// 型推論
-val question = "The Ultimatee Question of Life, the Universe, and Everything"
-val answer = 42
+    // 型推論
+    val question = "The Ultimatee Question of Life, the Universe, and Everything"
+    val answer = 42
+    println("$question: $answer")
+}
 ```
 コンパイラは例えば$42$という数字が`Int`であることから、`answer`の型も`Int`であると推測しています。初期化しないこともできますが、そのときには型の宣言が必須です：
 ```kotlin
-var answer: Int
-answer = 42
+fun main() {
+    var answer: Int
+    answer = 42
+}
 ```
 
 
@@ -119,39 +134,51 @@ Tipsとして、基本的には`val`で変数宣言し、必要なときだけ`v
 
 `val`参照が読み込み専用だとしても、オブジェクトはミュータブルな可能性があります。例えば、
 ```kotlin
-val languages = mutableListOf("Java")
-languages.add("Kotlin")
+fun main() {
+    val languages = mutableListOf("Java")
+    languages.add("Kotlin")
+    println(languages)
+}
 ```
 はOKです。
 
 また、`var`で変数の再割り当てが可能だとしても、変数の型は固定です。：
 ```kotlin
-var answer = 42 // Int
-answer = "no answer" // <-- Error: type mismatch
+fun main() {
+    var answer = 42 // Int
+    answer = "no answer" // <-- Error: type mismatch
+    println(answer)
+}
 ```
 
 
 ### `String`テンプレート
 
 ```kotlin
-val input = readln()
-val name = if (input.isNotBlank()) input else "Kotlin"
-println("Hello, $name!")
+fun main() {
+    val input = readln()
+    val name = if (input.isNotBlank()) input else "Kotlin"
+    println("Hello, $name!")
+}
 ```
 Stringテンプレートとは`${...}`で囲まれた部分を評価して文字列として埋め込むことができる機能です。とくに変数に対してメソッドを呼び出さない場合には、`{}`を省略することもできます。もしJavaであれば`"Hello, " + name + "!"`のようにStringの結合をしないといけないので、Stringテンプレートの方がより簡潔です。
 
 \$自体を表示させたければ、エスケープシーケンスを使います：
 ```kotlin
-// $を入れたければエスケープシーケンスを入れる
-println("\$100")
-// --> $100
+fun main() {
+    // $を入れたければエスケープシーケンスを入れる
+    println("\$100")
+    // --> $100
+}
 ```
 
 `${...}`で囲まれたStringテンプレートは式として評価されます。つまり、`if`式も使えます：
 ```kotlin
-// Stringテンプレートとif式の条件分岐を合わせれば、より簡潔に書ける
-val name = readln()
-println("Hello ${if (name.isBlank()) "someone" else name}!")
+fun main() {
+    // Stringテンプレートとif式の条件分岐を合わせれば、より簡潔に書ける
+    val name = readln()
+    println("Hello ${if (name.isBlank()) "someone" else name}!")
+}
 ```
 
 ### カプセル化のふるまいとデータ：クラスとプロパティ
@@ -207,22 +234,24 @@ class Person(
 - `var`にはgetterとsetter（書き込みも読み込みもできないといけない）
 
 ```kotlin
-lass Person(
+class Person(
     val name: String,
     var isStudent: Boolean
 )
 
-val inuverse = Person("Inuverse", true) // コンストラクタを呼び出す
-println("Person name: ${inuverse.name}")
-println("Is the person student?: ${inuverse.isStudent}")
+fun main() {
+    val inuverse = Person("Inuverse", true) // コンストラクタを呼び出す
+    println("Person name: ${inuverse.name}")
+    println("Is the person student?: ${inuverse.isStudent}")
 
-println("===== ${inuverse.name} graduates as a Ph.D. from XXX university. =====")
-inuverse.isStudent = false
+    println("===== ${inuverse.name} graduates as a Ph.D. from XXX university. =====")
+    inuverse.isStudent = false
 
-println("Person name: ${inuverse.name}")
-println("Is the person student?: ${inuverse.isStudent}")
+    println("Person name: ${inuverse.name}")
+    println("Is the person student?: ${inuverse.isStudent}")
 
-// inuverse.name = "nukoverse" // Val cannot be reassigned
+    // inuverse.name = "nukoverse" // Val cannot be reassigned
+}
 ```
 getter methodを呼び出さなくても、プロパティ名で直接参照できるので、Kotlinでは簡素に書けます（Javaでは`getName`のようなgetterや`setStudent`のようなsetterが必要）。
 
@@ -241,10 +270,13 @@ class Rectangle(val height: Int, val width: Int) {
         }
 }
 
-val rectangle = Rectangle(3, 3)
-println("height: ${rectangle.height}")
-println("width: ${rectangle.width}")
-println("isSquare: ${rectangle.isSquare}") // true
+
+fun main() {
+    val rectangle = Rectangle(3, 3)
+    println("height: ${rectangle.height}")
+    println("width: ${rectangle.width}")
+    println("isSquare: ${rectangle.isSquare}") // true
+}
 ```
 ダメな例は次のように、`isSquare`プロパティを宣言してしまい、プロパティの数を無闇に増やしてしまうことです：
 ```kotlin
@@ -254,13 +286,16 @@ class XRectangle(
     var isSquare: Boolean
 )
 
-val xrectangle = XRectangle(3, 3, true)
-println("height: ${xrectangle.height}")
-println("width: ${xrectangle.width}")
-println("isSquare: ${xrectangle.isSquare}") // true
+
+fun main() {
+    val xrectangle = XRectangle(3, 3, true)
+    println("height: ${xrectangle.height}")
+    println("width: ${xrectangle.width}")
+    println("isSquare: ${xrectangle.isSquare}") // true
+}
 ```
 
-さて、カスタムアクセサーと普通のメソッド、どちらで対応すればいいのだろうか？この本によれば、
+さて、カスタムアクセサーと普通のメソッド、どちらで対応すればいいのでしょうか？この本によれば、
 - パフォーマンスも実装も違いはない
 - だけれども**可読性のみに違いが現れる**
 
@@ -292,14 +327,17 @@ val matrixData = doubleArrayOf(
     7.0, 8.0, 9.0
 )
 val matrix = Matrix(3, 3, matrixData)
-println("height: ${matrix.rows}")
-println("height: ${matrix.cols}")
-println("height: ${matrix.isSquare}")
-println("matrix[0, 0]: ${matrix[0, 0]}")
-println("transposed matrix is:")
-println("[${matrix.transpose()[0, 0]}, ${matrix.transpose()[0, 1]}, ${matrix.transpose()[0, 2]}]")
-println("[${matrix.transpose()[1, 0]}, ${matrix.transpose()[1, 1]}, ${matrix.transpose()[1, 2]}]")
-println("[${matrix.transpose()[2, 0]}, ${matrix.transpose()[2, 1]}, ${matrix.transpose()[2, 2]}]")
+
+fun main() {
+    println("height: ${matrix.rows}")
+    println("width: ${matrix.cols}")
+    println("isSquare: ${matrix.isSquare}")
+    println("matrix[0, 0]: ${matrix[0, 0]}")
+    println("transposed matrix is:")
+    println("[${matrix.transpose()[0, 0]}, ${matrix.transpose()[0, 1]}, ${matrix.transpose()[0, 2]}]")
+    println("[${matrix.transpose()[1, 0]}, ${matrix.transpose()[1, 1]}, ${matrix.transpose()[1, 2]}]")
+    println("[${matrix.transpose()[2, 0]}, ${matrix.transpose()[2, 1]}, ${matrix.transpose()[2, 2]}]")
+}
 ```
 この例で具体定に説明します。行列を表す`Matrix`クラスは、行列の性質である「正方行列かどうか？」はアクセサメソッドで定義し、行列に対する演算（ふるまい）の転置はメソッドとして定義します。`operator fun get(i: Int, j: Int): Double`は、行列の要素を取得するための演算子オーバーロードで、今後詳細に説明するものです。
 
@@ -318,6 +356,15 @@ class Rectangle(val height: Int, val width: Int) {
     fun createUnitSquare(): Rectangle {
         return Rectangle(1, 1)
     }
+}
+
+fun main() {
+    val rectangle = Rectangle(3, 3)
+    println("height: ${rectangle.height}")
+    println("width: ${rectangle.width}")
+    println("isSquare: ${rectangle.isSquare}") // true
+    println("createUnitSquare is:")
+    println("${rectangle.createUnitSquare()}")
 }
 ```
 他のファイルで定義された宣言も、同じ`package`の中にあれば使えます。同じ`package`に他のファイルを入れるためには文字通り`import`しないといけません。

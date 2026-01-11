@@ -50,7 +50,13 @@ export default function App({ Component, pageProps }: AppPropsWithWide) {
           );
         })()}
       </Head>
-      <Script src="https://unpkg.com/kotlin-playground@1" strategy="lazyOnload" />
+      <Script
+        src="https://unpkg.com/kotlin-playground@1"
+        strategy="lazyOnload"
+        onLoad={() => {
+          window.dispatchEvent(new Event('kotlin-playground-loaded'));
+        }}
+      />
       <div className={`${notoSansJP.variable} ${robotoMono.variable}`}>
         <Layout wide={isWide}>
           <Component {...pageProps} />
