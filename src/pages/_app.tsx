@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import { Roboto_Mono, Noto_Sans_JP } from 'next/font/google';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Script from 'next/script';
 
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
@@ -49,6 +50,13 @@ export default function App({ Component, pageProps }: AppPropsWithWide) {
           );
         })()}
       </Head>
+      <Script
+        src="https://unpkg.com/kotlin-playground@1"
+        strategy="lazyOnload"
+        onLoad={() => {
+          window.dispatchEvent(new Event('kotlin-playground-loaded'));
+        }}
+      />
       <div className={`${notoSansJP.variable} ${robotoMono.variable}`}>
         <Layout wide={isWide}>
           <Component {...pageProps} />
