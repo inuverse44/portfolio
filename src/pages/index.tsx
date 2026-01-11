@@ -40,7 +40,7 @@ export default function Home({ latestPosts, activityData, today }: HomeProps) {
           </p>
         </div>
 
-        <section className={styles.section}>
+        <section className={styles.activitySection}>
           <h3 className={styles.sectionTitle}>Activity</h3>
           <ActivityHeatmap activities={activityData} today={today} />
         </section>
