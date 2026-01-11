@@ -16,6 +16,11 @@ export interface Post {
   content?: string;
 }
 
+export interface SimplePostRef {
+  slug: string;
+  title: string;
+}
+
 export function getAllPosts(includeDrafts: boolean = false): Post[] {
   const filenames = fs.readdirSync(postsDirectory);
 
@@ -70,4 +75,24 @@ export function getAllTagsCount(): Record<string, number> {
   });
 
   return counts;
+}
+
+export function getAdjacentPosts(slug: string): { prev: SimplePostRef | null; next: SimplePostRef | null } {
+  const posts = getAllPosts();
+  const index = posts.findIndex((p) => p.slug === slug);
+
+  if (index === -1) {
+    return { prev: null, next: null };
+  }
+
+  // posts are sorted by date desc (newest first)
+  const newer = index > 0 ? posts[index - 1] : null; // next (新しい)
+  const older = index < posts.length - 1 ? posts[index + 1] : null; // prev (古い)
+
+  const toRef = (p: Post | null): SimplePostRef | null => (p ? { slug: p.slug, title: p.frontmatter.title } : null);
+
+  return {
+    prev: toRef(older),
+    next: toRef(newer),
+  };
 }
