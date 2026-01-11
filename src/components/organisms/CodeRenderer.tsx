@@ -18,13 +18,27 @@ const CodeRenderer = ({ inline, className, children }: CodeProps) => {
   const [copied, setCopied] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
 
-  const isBlock = inline === false || (typeof className === 'string' && className.includes('language-'));
-  const isKotlin = !inline && typeof className === 'string' && className.includes('language-kotlin');
+  const isBlock = inline === false || (inline === undefined && typeof className === 'string' && className.includes('language-'));
+  const isKotlin = isBlock && typeof className === 'string' && className.includes('language-kotlin');
 
   useEffect(() => {
-    if (isKotlin && codeRef.current && typeof window !== 'undefined' && window.KotlinPlayground) {
-      window.KotlinPlayground(codeRef.current);
+    if (!isKotlin || !codeRef.current || typeof window === 'undefined') return;
+
+    const initPlayground = () => {
+      if (window.KotlinPlayground) {
+        window.KotlinPlayground(codeRef.current);
+      }
+    };
+
+    if (window.KotlinPlayground) {
+      initPlayground();
+    } else {
+      window.addEventListener('kotlin-playground-loaded', initPlayground);
     }
+
+    return () => {
+      window.removeEventListener('kotlin-playground-loaded', initPlayground);
+    };
   }, [isKotlin, children]);
 
   if (!isBlock) {
