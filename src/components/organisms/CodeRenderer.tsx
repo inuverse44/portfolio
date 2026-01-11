@@ -9,7 +9,7 @@ type CodeProps = React.ComponentPropsWithoutRef<'code'> & {
 
 declare global {
   interface Window {
-    KotlinPlayground: (selector: string | HTMLElement) => void;
+    KotlinPlayground?: (selector: string | HTMLElement) => void;
   }
 }
 
@@ -25,7 +25,7 @@ const CodeRenderer = ({ inline, className, children }: CodeProps) => {
     if (!isKotlin || !codeRef.current || typeof window === 'undefined') return;
 
     const initPlayground = () => {
-      if (window.KotlinPlayground) {
+      if (window.KotlinPlayground && codeRef.current) {
         window.KotlinPlayground(codeRef.current);
       }
     };
