@@ -34,7 +34,7 @@ export default function Home({ latestPosts, activityData, today }: HomeProps) {
           <p className={styles.homeDescription}>
             Inuverseのポートフォリオへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアします。
           </p>
-          <p className={styles.homeQuote}>アイディアのタイムカプセル。</p>
+          <p className={styles.homeQuote}>ーーアイディアのタイムカプセル⏳💊</p>
           <p className={styles.homeDescription}>
             <Link href="/blog">blog</Link>や<Link href="/about">about</Link>でポストや私、このブログについて深く知ることができます。
           </p>

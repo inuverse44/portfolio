@@ -1,15 +1,15 @@
 :root {
   --background: #f9fafb;
   --surface-color: #ffffff;
-  --foreground: #333;
+  --foreground: #111827;
   --border-color: #eaeaea;
-  --header-title-color: #333;
+  --header-title-color: #111827;
   --tag-background-color: #eee;
-  --nav-link-color: #333;
+  --nav-link-color: #374151;
   --card-border-color: #eaeaea;
   --link-color: #0070f3;
-  --section-color: #333;/* #72D4DA; */
-  --text-color-secondary: #666;
+  --section-color: #111827;/* #72D4DA; */
+  --text-color-secondary: #4b5563;
   --code-block-bg: #fafafa;
   --inline-code-bg: #fbfbfb;
   --dot-color: #e5e7eb;
