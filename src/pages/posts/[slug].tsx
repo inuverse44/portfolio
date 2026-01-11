@@ -2,6 +2,7 @@ import Meta from '@/components/atoms/Meta';
 import BackButton from '@/components/molecules/BackButton';
 import PostHeader from '@/components/organisms/PostHeader';
 import PostBody from '@/components/organisms/PostBody';
+import PostNav from '@/components/molecules/PostNav';
 import AdSense from '@/components/AdSense';
 import styles from '@/styles/PostDetail.module.css';
 export { getStaticPaths } from '@/lib/posts/getStaticPaths';
@@ -15,9 +16,11 @@ interface PostProps {
   };
   content: string;
   slug: string;
+  prevPost?: { slug: string; title: string } | null;
+  nextPost?: { slug: string; title: string } | null;
 }
 
-export default function Post({ frontmatter, content, slug }: PostProps) {
+export default function Post({ frontmatter, content, slug, prevPost, nextPost }: PostProps) {
   const postInlineSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_POST_INLINE;
   return (
     <>
@@ -38,6 +41,7 @@ export default function Post({ frontmatter, content, slug }: PostProps) {
           <AdSense slot={postInlineSlot} />
         ) : null}
       </article>
+      <PostNav prev={prevPost ?? null} next={nextPost ?? null} />
       <BackButton />
     </>
   );

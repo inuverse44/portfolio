@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getAllPosts, getPostBySlug, getAllTagsCount } from './api';
+import { getAllPosts, getPostBySlug, getAllTagsCount, getAdjacentPosts } from './api';
 import fs from 'fs';
 
 vi.mock('fs');
@@ -105,6 +105,34 @@ content`;
         tag1: 2,
         tag2: 1,
       });
+    });
+  });
+
+  describe('getAdjacentPosts', () => {
+    it('should return older as prev and newer as next', () => {
+      vi.spyOn(fs, 'readdirSync').mockImplementation((() => ['a.md', 'b.md', 'c.md']) as unknown as typeof fs.readdirSync);
+      vi.spyOn(fs, 'readFileSync').mockImplementation(((path: string) => {
+        if (path.endsWith('a.md')) {
+          return `---\n title: A\n date: '2023-01-03'\n tags: []\n published: true\n---\n`;
+        }
+        if (path.endsWith('b.md')) {
+          return `---\n title: B\n date: '2023-01-02'\n tags: []\n published: true\n---\n`;
+        }
+        return `---\n title: C\n date: '2023-01-01'\n tags: []\n published: true\n---\n`;
+      }) as unknown as typeof fs.readFileSync);
+
+      // Sorted desc: [a(03), b(02), c(01)]
+      const adjB = getAdjacentPosts('b');
+      expect(adjB.prev?.title).toBe('C'); // older
+      expect(adjB.next?.title).toBe('A'); // newer
+
+      const adjA = getAdjacentPosts('a');
+      expect(adjA.prev?.title).toBe('B');
+      expect(adjA.next).toBeNull();
+
+      const adjC = getAdjacentPosts('c');
+      expect(adjC.prev).toBeNull();
+      expect(adjC.next?.title).toBe('B');
     });
   });
 });
