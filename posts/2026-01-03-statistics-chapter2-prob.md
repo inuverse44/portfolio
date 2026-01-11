@@ -45,15 +45,6 @@ fun getMeanDifference(input: DoubleArray): Double {
     return result
 }
 
-val resultMeanDifferenceA = getMeanDifference(dataA)
-val resultMeanDifferenceB = getMeanDifference(dataB)
-val resultMeanDifferenceC = getMeanDifference(dataC)
-
-println("平均差:")
-println("   A: $resultMeanDifferenceA")
-println("   B: $resultMeanDifferenceB")
-println("   C: $resultMeanDifferenceC")
-
 fun getGI(input: DoubleArray): Double {
     val total = input.sum()
     val n = input.size
@@ -63,14 +54,26 @@ fun getGI(input: DoubleArray): Double {
     return result
 }
 
-val resultGIA = getGI(dataA)
-val resultGIB = getGI(dataB)
-val resultGIC = getGI(dataC)
+fun main() {
+    val resultMeanDifferenceA = getMeanDifference(dataA)
+    val resultMeanDifferenceB = getMeanDifference(dataB)
+    val resultMeanDifferenceC = getMeanDifference(dataC)
 
-println("ジニ係数:")
-println("   A: $resultGIA")
-println("   B: $resultGIB")
-println("   C: $resultGIC")
+    println("平均差:")
+    println("   A: $resultMeanDifferenceA")
+    println("   B: $resultMeanDifferenceB")
+    println("   C: $resultMeanDifferenceC")
+
+
+    val resultGIA = getGI(dataA)
+    val resultGIB = getGI(dataB)
+    val resultGIC = getGI(dataC)
+
+    println("ジニ係数:")
+    println("   A: $resultGIA")
+    println("   B: $resultGIB")
+    println("   C: $resultGIC")
+}
 ```
 
 この結果は
@@ -118,26 +121,28 @@ fun entropy(input: DoubleArray): Double {
     return result
 }
 
-val maxEntropyInput = doubleArrayOf(0.2, 0.2, 0.2, 0.2, 0.2)
-val maxEntropy = entropy(maxEntropyInput)
+fun main() {
+    val maxEntropyInput = doubleArrayOf(0.2, 0.2, 0.2, 0.2, 0.2)
+    val maxEntropy = entropy(maxEntropyInput)
 
-val thisYearInput = doubleArrayOf(32.0, 19.0, 10.0, 24.0, 15.0)
-val thisYearTotal = thisYearInput.sum()
-val normalizedThisYearInput = thisYearInput.map { it ->
-    it / thisYearTotal
-}.toDoubleArray()
-val thisYearOutput = entropy(normalizedThisYearInput)
+    val thisYearInput = doubleArrayOf(32.0, 19.0, 10.0, 24.0, 15.0)
+    val thisYearTotal = thisYearInput.sum()
+    val normalizedThisYearInput = thisYearInput.map { it ->
+        it / thisYearTotal
+    }.toDoubleArray()
+    val thisYearOutput = entropy(normalizedThisYearInput)
 
-val decadeAgoInput = doubleArrayOf(28.0, 13.0, 18.0, 29.0, 12.0)
-val decadeAgoTotal = decadeAgoInput.sum()
-val normalizedDecadeAgoInput = decadeAgoInput.map { it ->
-    it / decadeAgoTotal
-}.toDoubleArray()
-val decadeAgoOutput = entropy(normalizedDecadeAgoInput)
+    val decadeAgoInput = doubleArrayOf(28.0, 13.0, 18.0, 29.0, 12.0)
+    val decadeAgoTotal = decadeAgoInput.sum()
+    val normalizedDecadeAgoInput = decadeAgoInput.map { it ->
+        it / decadeAgoTotal
+    }.toDoubleArray()
+    val decadeAgoOutput = entropy(normalizedDecadeAgoInput)
 
-println("本年：$thisYearOutput")
-println("10年前：$decadeAgoOutput")
-println("最大エントロピー：$maxEntropy")
+    println("本年：$thisYearOutput")
+    println("10年前：$decadeAgoOutput")
+    println("最大エントロピー：$maxEntropy")
+}
 ```
 
 私の結果は
@@ -152,6 +157,8 @@ println("最大エントロピー：$maxEntropy")
 2.3節のデータ$B$について、標準得点、標準偏差値を計算せよ。
 
 ```kotlin
+import kotlin.math.sqrt
+
 fun getMean(input: DoubleArray): Double {
     val n = input.size
     val total = input.sum()
@@ -177,24 +184,27 @@ fun getStdDev(input: DoubleArray): Double {
     return  result
 }
 
-val v = getVariance(dataB)
-val s = getStdDev(dataB)
-val mean = getMean(dataB)
-val standardScoreB = dataB.map { it ->
-    ( it - mean ) / s
-}.toDoubleArray()
+fun main() {
+    val dataB = doubleArrayOf(0.0, 1.0, 2.0, 3.0, 5.0, 5.0, 7.0, 8.0, 9.0, 10.0)
+    val v = getVariance(dataB)
+    val s = getStdDev(dataB)
+    val mean = getMean(dataB)
+    val standardScoreB = dataB.map { it ->
+        ( it - mean ) / s
+    }.toDoubleArray()
 
-println(standardScoreB.contentToString())
+    println(standardScoreB.contentToString())
 
-val hensachi = standardScoreB.map { it ->
-    10.0 * it + 50
-}.toDoubleArray()
+    val hensachi = standardScoreB.map { it ->
+        10.0 * it + 50
+    }.toDoubleArray()
 
-println(hensachi.contentToString())
+    println(hensachi.contentToString())
+}
 ```
 
 この結果は
-```
+```bash
 [
     -1.5214515486254614, 
     -1.217161238900369, 

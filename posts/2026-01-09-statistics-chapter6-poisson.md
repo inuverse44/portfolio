@@ -135,7 +135,7 @@ $$
 
 
 ### 図で比較する
-KotlinのLet's plot for Kotlinで二項分布とポアソン分布を比較してみましょう。コードは下記のような感じで書いています。
+Kotlinで二項分布とポアソン分布を比較してみましょう。コードは下記のような感じで書いています。
 ```kotlin
 import kotlin.math.ln
 import kotlin.math.exp
@@ -169,39 +169,16 @@ fun poissonDistribution(lambda: Double, x: Int): Double {
 }
 
 // =====　計算チェック　=====
-println("factorial: ${factorial(10)}")
-println("combination: ${exp(10.logCombination(3)).roundToInt()}")
-val totalTrials = 1000
-val probability = 0.002
-val lambda = totalTrials * probability
-val tryal = 3
-println("binomial: ${binomialDistribution(totalTrials, probability, tryal)}")
-println("poisson: ${poissonDistribution(lambda, tryal)}")
-
-
-// ===== 図に描画 =====
-val tries = (0..10).toList()
-println(tries)
-val binomialDistData = tries.map { binomialDistribution(totalTrials, probability, it) }
-val poissonDistData = tries.map { poissonDistribution(lambda, it) }
-// データをLong形式に変換（凡例を表示するため）
-val triesLong = tries + tries
-val probabilities = binomialDistData + poissonDistData
-val types = List(tries.size) { "Binomial" } + List(tries.size) { "Poisson" }
-
-val data = mapOf(
-    "tries" to triesLong,
-    "probability" to probabilities,
-    "type" to types
-)
-
-// グラフを描画
-letsPlot(data) +
-        geomPoint(size = 4.0) { x = "tries"; y = "probability"; color = "type" } +
-        ggtitle("n = $totalTrials, p = $probability, and lambda = $lambda ") +
-        xlab("tries") +
-        ylab("Probability")
-
+fun main() {
+    println("factorial: ${factorial(10)}")
+    println("combination: ${exp(10.logCombination(3)).roundToInt()}")
+    val totalTrials = 1000
+    val probability = 0.002
+    val lambda = totalTrials * probability
+    val tryal = 3
+    println("binomial: ${binomialDistribution(totalTrials, probability, tryal)}")
+    println("poisson: ${poissonDistribution(lambda, tryal)}")
+}
 ```
 
 実際のプロットとして、4パターンで見ています。
@@ -217,6 +194,30 @@ letsPlot(data) +
 4. $n = 1000,\, p = 0.002,\, \lambda = 2$ （右下）
 
 確かに$n$が大きくなるほど、$p$が大きくなるほど、2つの分布を示す赤と青の点は互いに近づいていくことが見てとれます。
+プロット用のコードは
+```kotlin
+val tries = (0..10).toList()
+val binomialDistData = tries.map { binomialDistribution(totalTrials, probability, it) }
+val poissonDistData = tries.map { poissonDistribution(lambda, it) }
+
+// データをLong形式に変換（凡例を表示するため）
+val triesLong = tries + tries
+val probabilities = binomialDistData + poissonDistData
+val types = List(tries.size) { "Binomial" } + List(tries.size) { "Poisson" }
+
+val data = mapOf(
+    "tries" to triesLong,
+    "probability" to probabilities,
+    "type" to types
+)
+// グラフを描画
+letsPlot(data) +
+        geomPoint(size = 4.0) { x = "tries"; y = "probability"; color = "type" } +
+        ggtitle("n = $totalTrials, p = $probability, and lambda = $lambda ") +
+        xlab("tries") +
+        ylab("Probability")
+```
+です（実行できません）。
 
 
 [^1]: [統計学入門　東京大学教養学部統計学教室編 東京大学出版会](https://www.utp.or.jp/book/b300857.html)

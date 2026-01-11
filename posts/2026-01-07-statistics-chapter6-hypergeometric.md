@@ -124,20 +124,23 @@ fun hypergeometricProbability(
     return exp(logProb)
 }
 
-// 超幾何分布
-// 母集団1000, 当たり200, 5回引いて, 1回当たる確率
-val prob1 = hypergeometricProbability(1000, 200, 5, 1)
-println("P(X=1) = $prob1")
 
-val prob0 = hypergeometricProbability(1000, 200, 5, 0)
-println("P(X=0) = $prob0")
+fun main() {
+    // 超幾何分布
+    // 母集団1000, 当たり200, 5回引いて, 1回当たる確率
+    val prob1 = hypergeometricProbability(1000, 200, 5, 1)
+    println("P(X=1) = $prob1")
 
-// 全確率の和がほぼ1になる
-var sumP = 0.0
-for(i in 0..5) {
-    sumP += hypergeometricProbability(1000, 200, 5, i)
+    val prob0 = hypergeometricProbability(1000, 200, 5, 0)
+    println("P(X=0) = $prob0")
+
+    // 全確率の和がほぼ1になる
+    var sumP = 0.0
+    for(i in 0..5) {
+        sumP += hypergeometricProbability(1000, 200, 5, i)
+    }
+    println("Sum of probabilities = $sumP")
 }
-println("Sum of probabilities = $sumP")
 ```
 
 これの計算結果は

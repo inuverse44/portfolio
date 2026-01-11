@@ -78,6 +78,16 @@ fun getProbabilityAtLeastTwoPeopleShareTheSameBirthday(
     return result
 }
 
+fun main() {
+    val rValues = (0..60).toList()
+    val probabilityDistribution = rValues.map { getProbabilityAtLeastTwoPeopleShareTheSameBirthday(it) }
+    println("確率分布: $probabilityDistribution")
+}
+```
+というロジックでコードを組みました。
+そしてLets'plot for Kotlinを使用するために下記のように書いておきます（実行不可）。
+```kotlin
+
 val rValues = (0..60).toList()
 val probabilityDistribution = rValues.map { getProbabilityAtLeastTwoPeopleShareTheSameBirthday(it) }
 
@@ -93,7 +103,6 @@ letsPlot(data) +
     ggtitle("Probability of shared birthday (at least 2 people) vs Group size") +
     xlab("Number of people (r)") +
     ylab("Probability p_r")
-
 ```
 
 この結果は
