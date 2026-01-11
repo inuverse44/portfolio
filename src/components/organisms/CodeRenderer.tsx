@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './PostBody.module.css';
 
 type CodeProps = React.ComponentPropsWithoutRef<'code'> & {
@@ -7,15 +7,38 @@ type CodeProps = React.ComponentPropsWithoutRef<'code'> & {
   children?: React.ReactNode;
 };
 
+declare global {
+  interface Window {
+    KotlinPlayground: (selector: string | HTMLElement) => void;
+  }
+}
+
 const CodeRenderer = ({ inline, className, children }: CodeProps) => {
   const codeRef = useRef<HTMLElement | null>(null);
   const [copied, setCopied] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
 
   const isBlock = inline === false || (typeof className === 'string' && className.includes('language-'));
+  const isKotlin = !inline && typeof className === 'string' && className.includes('language-kotlin');
+
+  useEffect(() => {
+    if (isKotlin && codeRef.current && typeof window !== 'undefined' && window.KotlinPlayground) {
+      window.KotlinPlayground(codeRef.current);
+    }
+  }, [isKotlin, children]);
 
   if (!isBlock) {
     return <code className={className}>{children}</code>;
+  }
+
+  if (isKotlin) {
+    return (
+      <div className={styles.codeBlock} style={{ padding: 0, overflow: 'hidden' }}>
+        <code ref={codeRef as React.RefObject<HTMLElement>} className={className}>
+          {children}
+        </code>
+      </div>
+    );
   }
 
   const handleCopy = async () => {
