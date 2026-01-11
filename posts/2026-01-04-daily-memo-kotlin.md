@@ -11,7 +11,7 @@ published: true
 
 Let's plot for Kotlinでコードを眺めていると、見慣れないコードに出会いました（[Categorical Data Type](https://nbviewer.org/github/JetBrains/lets-plot-docs/blob/master/source/kotlin_examples/cookbook/factor_levels.ipynb)）。
 
-```kotlin
+```bash
 val mpg = DataFrame.readCSV("https://raw.githubusercontent.com/JetBrains/lets-plot-docs/master/data/mpg.csv")
 val mpgData = mpg.toMap()
 val brandsByCount = mpg.valueCounts { manufacturer }.manufacturer.toList()
@@ -22,17 +22,17 @@ brandsByCount.forEach(::println)
 最終的には`brandsByCount`ブランドのリストが入ります。
 
 問題は
-```kotlin
+```bash
 brandsByCount.forEach(::println)
 ```
 の部分です。
 
 通常はラムダ式で
-```kotlin
+```bash
 brandsByCount.forEach { it -> println(it) }
 ```
 もしくは、`it`は暗黙な引数なので
-```kotlin
+```bash
 brandsByCount.forEach { println(it) }
 ```
 とも書くことが多いと思います。
