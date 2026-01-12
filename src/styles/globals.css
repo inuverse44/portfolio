@@ -10,8 +10,8 @@
   --link-color: #0070f3;
   --section-color: #111827;/* #72D4DA; */
   --text-color-secondary: #4b5563;
-  --code-block-bg: #fafafa;
-  --inline-code-bg: #fbfbfb;
+  --code-block-bg: #282c34;
+  --inline-code-bg: #edf2f7;
   --dot-color: #e5e7eb;
 
   /* shadows */
