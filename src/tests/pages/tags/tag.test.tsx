@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import TagPage from './[tag]';
+import TagPage from '@/pages/tags/[tag]';
 import { getAllPosts, getAllTagsCount } from '@/lib/posts/api';
-import { getStaticProps, getStaticPaths } from './[tag]';
+import { getStaticProps, getStaticPaths } from '@/pages/tags/[tag]';
 
 // Mock the API
 vi.mock('@/lib/posts/api', () => ({
