@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import PostList from '@/components/organisms/PostList';
 import { SITE_TITLE } from '@/constants/site';
+import { getAllPosts, getAllTagsCount } from '@/lib/posts/api';
 
 interface Post {
   slug: string;
@@ -9,6 +10,7 @@ interface Post {
     title: string;
     date: string;
     tags: string[];
+    cover?: string | null;
   };
 }
 
@@ -34,26 +36,8 @@ export default function TagPage({ posts, tag }: TagPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const fs = await import('fs');
-  const path = await import('path');
-  const matter = (await import('gray-matter')).default;
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const allTags = new Set<string>();
-
-  filenames.forEach((filename) => {
-    if (filename.endsWith('.md')) {
-      const filePath = path.join(postsDirectory, filename);
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContents);
-      if (data.tags && Array.isArray(data.tags)) {
-        data.tags.forEach((tag: string) => allTags.add(tag));
-      }
-    }
-  });
-
-  const paths = Array.from(allTags).map((tag) => ({
+  const tagCounts = getAllTagsCount();
+  const paths = Object.keys(tagCounts).map((tag) => ({
     params: { tag },
   }));
 
@@ -64,32 +48,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const fs = await import('fs');
-  const path = await import('path');
-  const matter = (await import('gray-matter')).default;
   const { tag } = context.params as { tag: string };
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const posts = filenames
-    .filter((filename) => filename.endsWith('.md'))
-    .map((filename) => {
-      const filePath = path.join(postsDirectory, filename);
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContents);
-      return {
-        slug: filename.replace(/\.md$/, ''),
-        frontmatter: {
-          title: data.title || 'No Title',
-          date: data.date || 'No Date',
-          tags: data.tags || [],
-        },
-      };
-    })
-    .filter((post) => {
-      return post.frontmatter.tags && post.frontmatter.tags.includes(tag);
-    })
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+  const allPosts = getAllPosts();
+  
+  const posts = allPosts.filter((post) => 
+    post.frontmatter.tags && post.frontmatter.tags.includes(tag)
+  );
 
   return {
     props: {

@@ -8,9 +8,11 @@
   white-space: pre-wrap;
   word-break: break-word;
   background: var(--inline-code-bg);
-  border: none;
+  color: var(--section-color);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  padding: 0.05em 0.25em;
+  padding: 0.1em 0.3em;
+  font-size: 0.9em;
   display: inline;
 }
 
@@ -18,8 +20,10 @@
   white-space: pre;
   word-break: normal;
   background: transparent;
+  color: inherit;
   border: none;
   padding: 0;
+  font-size: 1em;
 }
 
 .tableWrap {
@@ -35,11 +39,27 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   background: var(--code-block-bg);
-  background: color-mix(in oklab, var(--section-color) 8%, var(--background));
-  border: 1px solid color-mix(in oklab, var(--section-color) 25%, var(--background));
+  color: #abb2bf; /* Atom One Dark foreground */
   border-radius: var(--radius-lg);
   padding: var(--space-4);
+  padding-top: 40px; /* Space for Mac dots */
   margin: var(--space-4) 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* MacOS Window Dots */
+.codeBlock::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56; /* Red */
+  box-shadow: 
+    20px 0 0 #ffbd2e, /* Yellow */
+    40px 0 0 #27c93f; /* Green */
 }
 
 .postContent pre.codeBlock code {
@@ -49,24 +69,26 @@
 
 .copyButton {
   position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
+  top: 8px;
+  right: 8px;
   transform: none;
   font-size: 12px;
+  font-weight: 500;
   line-height: 1;
-  padding: var(--space-1) 6px;
-  color: var(--foreground);
-  background: var(--inline-code-bg);
-  border: 1px solid var(--border-color);
+  padding: 6px 10px;
+  color: #abb2bf;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
   cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 0.15s ease, transform 0.05s ease;
+  opacity: 0.8;
+  transition: all 0.2s ease;
   z-index: 1;
 }
 
 .copyButton:hover {
   opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .copyButton:active {
