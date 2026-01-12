@@ -32,6 +32,11 @@ export const CATEGORIES: CategoryDefinition[] = [
       '2026-01-10-statistics-chapter6-binomial', 
       '2026-01-11-statistics-chapter6-prob6of1', 
       '2026-01-12-statistics-chapter6-prob6of2', 
+      '2026-01-12-statistics-chapter6-geometric-vs-negative-binomial',
+      '2026-01-12-statistics-chapter6-prob6of3',
+      '2026-01-12-statistics-chapter6-prob6of4',
+      '2026-01-12-statistics-chapter6-prob6of5',
+      '2026-01-12-statistics-chapter6-prob6of6',
     ],
   }
 ];

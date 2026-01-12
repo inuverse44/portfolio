@@ -60,9 +60,9 @@ fun negativeBinomialDistribution(k: Int, p: Double, x: Int): Double {
 }
 
 fun main() {
-    val k = 2
-    val p = 0.5
-    val n = 10
+    val k = 2 // 成功回数
+    val p = 0.5 // 成功確率
+    val n = 10 // 試行回数
 
     val geometricMean = (1.0 - p) / p
     val geometricStd = kotlin.math.sqrt((1.0 - p) / (p * p))

@@ -71,6 +71,9 @@ fun main() {
 }
 ```
 
+## 参考文献
+[リポジトリ](https://github.com/inuverse44/introduction-to-statistics)
+
 
 
 [^1]: [統計学入門　東京大学教養学部統計学教室編 東京大学出版会](https://www.utp.or.jp/book/b300857.html)
