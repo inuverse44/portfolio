@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第6章 超幾何分布 1
 date: '2026-01-07'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

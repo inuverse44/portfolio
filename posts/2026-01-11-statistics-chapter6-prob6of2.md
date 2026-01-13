@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第6章の問題 6.2 急患用ベッド数
 date: '2026-01-11'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第5章の問題 5.7 正規分布の平方変換
 date: '2026-01-07'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

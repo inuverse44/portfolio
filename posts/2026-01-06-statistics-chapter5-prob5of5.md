@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第5章の問題 5.5 正n面体の出目
 date: '2026-01-06'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

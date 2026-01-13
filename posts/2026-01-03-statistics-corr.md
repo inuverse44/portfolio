@@ -1,6 +1,7 @@
 ---
 title: ピアソン積率相関係数について
 date: '2026-01-03'
+category: statistics-intro
 tags:
   - 統計学
   - ピアソン積率相関係数

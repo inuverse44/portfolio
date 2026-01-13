@@ -1,6 +1,7 @@
 ---
 title: 確率の定義たち
 date: '2026-01-04'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

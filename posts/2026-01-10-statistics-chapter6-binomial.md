@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第6章 二項分布
 date: '2026-01-10'
+category: statistics-intro
 tags:
   - 統計
   - 確率
