@@ -38,7 +38,7 @@ $$
 \begin{align*}
     F(x)
     &= \int_{-\infty}^{x} {\rm d}t\, f(t) \\[8pt]
-    &= \int_{-\infty}^{x} {\rm d}t\,b \frac{
+    &= \int_{0}^{x} {\rm d}t\,b \frac{
         t^{b - 1}
     }{
         a^b
