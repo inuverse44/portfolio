@@ -1,5 +1,5 @@
 ---
-title: 統計学入門 第6章の問題 6.8 ワイブル分布
+title: 統計学入門 第6章の問題 6.8 ワイブル分布の累積分布関数
 date: '2026-01-13'
 category: statistics-intro
 tags:
@@ -16,7 +16,7 @@ published: true
 ## 問題
 ワイブル分布の累積分布関数を求めよ。
 
-##　解答
+## 解答
 ワイブル分布自体は$x \geq 0$の範囲で
 $$
     f(x)
@@ -37,7 +37,7 @@ $$
 $$
 \begin{align*}
     F(x)
-    &= \int_{-\infty}^{x} {\rm d}t\, f(t) \\
+    &= \int_{-\infty}^{x} {\rm d}t\, f(t) \\[8pt]
     &= \int_{-\infty}^{x} {\rm d}t\,b \frac{
         t^{b - 1}
     }{
@@ -47,25 +47,25 @@ $$
         -\left(
             \frac{t}{a}
         \right)^b
-    \right] \\
+    \right] \\[8pt]
     &= \frac{
         b
     }{
         a^b
     }
     \int_0^x {\rm d}t\, 
-    t^{b - 1} e^{- (t/a)^b} \\
+    t^{b - 1} \exp\left[- \left(\frac{t}{a}\right)^b\right] \\[8pt]
     &= \frac{
         b
     }{
         a^b
     }
     \int^{x/a}_0 {
-        {\rm d}y \,a\cdot (ay)^{b - 1} e^{- y^b}
-    } \\
-    &= b \int^{x/a}_0 {\rm d}y\, y^{b - 1} e^{- y^b} \\
-    &= \int_0^{(x/a)^b} {\rm d}z\, e^{-z} \\
-    &= 1 - e^{-(x/a)^b}
+        {\rm d}y \,a\cdot y^{b - 1} \exp\left[- y^b\right]
+    } \\[8pt]
+    &= b \int^{x/a}_0 {\rm d}y\, y^{b - 1} \exp\left[- y^b\right] \\[8pt]
+    &= \int_0^{(x/a)^b} {\rm d}z\, \exp\left[- z\right] \\[8pt]
+    &= 1 - \exp\left[- \left(\frac{x}{a}\right)^b\right]
 \end{align*}
 $$
 です。途中で適当に変数変換を施しています。
@@ -74,11 +74,96 @@ $$
 $$
     F(x)
     = \begin{cases}
-        0 & (x < 0) \\
-        1 - e^{-(x/a)^b} & (x \geq 0)
+        0 & (x < 0) \\[8pt]
+        1 - \exp\left[- \left(\frac{x}{a}\right)^b\right] & (x \geq 0)
     \end{cases}
 $$
 となります。
+
+
+## おまけ
+
+ワイブル分布を可視化しました。$a$と$b$を変えてみると以下のように、$a$は波の高さの位置に対応し、$b$は分布の形状に依存します。$b$が大きくなると尖度が大きくなることが感覚的に見て取れるので、実際に計算して、正規分布と比較してみるのも面白いかもしれませんね。
+
+| | |
+| :---: | :---: |
+| ![1](/images/posts/2026-01-13-statistics-chapter6-prob6of8/plot-1.svg#width=300) | ![2](/images/posts/2026-01-13-statistics-chapter6-prob6of8/plot-2.svg#width=300) |
+| ![3](/images/posts/2026-01-13-statistics-chapter6-prob6of8/plot-3.svg#width=300) | ![4](/images/posts/2026-01-13-statistics-chapter6-prob6of8/plot-4.svg#width=300) |
+
+
+※実行不可
+```kotlin
+import kotlin.math.exp
+import kotlin.math.pow
+import kotlin.math.sqrt
+import kotlin.math.PI
+
+data class WeibullParam(val a: Double, val b: Double)
+
+fun weibullDistribution(x: Double, a: Double, b: Double): Double {
+    return if (x < 0.0) 0.0
+    else b / a * (x / a).pow(b - 1.0) * exp(-(x / a).pow(b))
+}
+
+val xList = (0..400).map { it.toDouble() / 100.0 }
+
+val a = 4.0
+val bLower = 1
+val bUpper = 10
+val params = (bLower..bUpper).map { i ->
+    WeibullParam(
+        a = a,
+        b = i.toDouble()
+    )
+}
+
+println(params)
+
+val xCol       = mutableListOf<Double>()
+val densityCol = mutableListOf<Double>()
+val bCol       = mutableListOf<Double>()
+
+for (p in params) {
+    for (x in xList) {
+        xCol.add(x)
+        densityCol.add(weibullDistribution(x, p.a, p.b))
+        bCol.add(p.b)
+    }
+}
+
+val data = mapOf(
+    "x" to xCol,
+    "density" to densityCol,
+    "b" to bCol
+)
+
+letsPlot(data) +
+        geomLine {
+            x = "x"
+            y = "density"
+            color = "b"
+            group = "b"
+        } +
+        scaleColorGradient(
+            low = "#2c7bb6",
+            high = "#d7191c",
+            name = "shape parameter b"
+        ) +
+        ggtitle("Weibull distributions (a = $a, b = $bLower〜$bUpper)") +
+        xlab("x") +
+        ylab("density") +
+        theme(
+            panelBackground = elementRect(fill = "white"),
+            plotBackground  = elementRect(fill = "white"),
+            panelGridMajor  = elementLine(color = "#e0e0e0"),
+            panelGridMinor  = elementBlank(),
+            legendBackground = elementRect(fill = "white"),
+            legendKey = elementRect(fill = "white"),
+            text = elementText(color = "black")
+        )
+```
+
+
 
 ## 参考文献
 [リポジトリ](https://github.com/inuverse44/introduction-to-statistics)
