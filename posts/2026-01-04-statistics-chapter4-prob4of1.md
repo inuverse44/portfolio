@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第4章の問題 4.1  de Méréの問題
 date: '2026-01-04'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

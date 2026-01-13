@@ -40,10 +40,11 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { CATEGORIES } = await import('@/constants/categories');
   const def = (CATEGORIES as CategoryDefinition[]).find((c) => c.slug === params.slug);
   if (!def) return { notFound: true } as const;
+  
   const all = getAllPosts();
-  const posts = def.posts
-    .map((slug) => all.find((p) => p.slug === slug))
-    .filter(Boolean) as Post[];
+  // Filter posts that match the category slug
+  const posts = all.filter((p) => p.frontmatter.category === params.slug);
+
   return {
     props: {
       title: def.title,

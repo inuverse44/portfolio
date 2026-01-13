@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第2章の問題について
 date: '2026-01-03'
+category: statistics-intro
 tags:
   - 統計学
   - Kotlin

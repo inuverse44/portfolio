@@ -1,6 +1,7 @@
 ---
 title: 統計学入門 第6章の問題 6.5 密度関数の規格化
 date: '2026-01-12'
+category: statistics-intro
 tags:
   - 統計学
   - 確率

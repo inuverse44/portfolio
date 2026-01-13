@@ -48,14 +48,17 @@ export default function Category({ categories }: { categories: CategorySummary[]
 export async function getStaticProps() {
   const { CATEGORIES } = await import('@/constants/categories');
   const all = getAllPosts();
-  const categories: CategorySummary[] = (CATEGORIES as CategoryDefinition[]).map((c) => ({
-    slug: c.slug,
-    title: c.title,
-    description: c.description,
-    posts: c.posts
-      .map((slug) => all.find((p) => p.slug === slug))
-      .filter(Boolean) as Post[],
-  }));
+  const categories: CategorySummary[] = (CATEGORIES as CategoryDefinition[]).map((c) => {
+    // Dynamically filter posts that belong to this category
+    const categoryPosts = all.filter((p) => p.frontmatter.category === c.slug);
+    
+    return {
+      slug: c.slug,
+      title: c.title,
+      description: c.description,
+      posts: categoryPosts,
+    };
+  });
 
   return { props: { categories } };
 }
