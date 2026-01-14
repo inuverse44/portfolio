@@ -3,271 +3,289 @@
   
   <url>
     <loc>https://www.inuverse.dev</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/blog</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/category</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/about</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/external</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/blog/page/2</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/blog/page/3</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/blog/page/4</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2025-11-04-neville</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2025-11-14-rust</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2025-11-16-kotlin</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2025-12-02-kotlin</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-03-statistics-chapter2-prob</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-03-statistics-corr</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-04-daily-memo-kotlin</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-04-statistics-chapter4-prob4of1</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-04-statistics-chapter4-prob4of4</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-04-statistics-probability-definitions</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-05-canonical-transformation</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-05-error-investigation</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-05-moment-generator</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-05-statistics-chapter5-prob5of1</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-05-statistics-chapter5-prob5of2</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-06-back-propagation</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-06-statistics-chapter5-prob5of3</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-06-statistics-chapter5-prob5of4</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-06-statistics-chapter5-prob5of5</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-07-statistics-chapter5-prob5of6</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-07-statistics-chapter5-prob5of7</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-07-statistics-chapter6-hypergeometric</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-08-promql</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-08-statistics-chapter6-hypergeometric</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-09-kotlin-in-action-chap2</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-09-statistics-chapter6-poisson</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-10-statistics-chapter6-binomial</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-11-load-test</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-11-statistics-chapter6-prob6of2</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-12-statistics-chapter6-geometric-vs-negative-binomial</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-12-statistics-chapter6-prob6of3</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-12-statistics-chapter6-prob6of4</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-12-statistics-chapter6-prob6of5</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-12-statistics-chapter6-prob6of6</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.inuverse.dev/posts/2026-01-13-statistics-chapter6-prob6of7</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.inuverse.dev/posts/2026-01-13-statistics-chapter6-prob6of8</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-13</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.inuverse.dev/posts/2026-01-14-paper</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-16-canonical-transformation</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.inuverse.dev/posts/2026-01-18-basketball</loc>
-    <lastmod>2026-01-13</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
