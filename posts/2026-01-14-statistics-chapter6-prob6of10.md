@@ -1,6 +1,6 @@
 ---
 title: 統計学入門 第6章の問題 6.10 正規分布・指数分布の尖度
-date: '2026-01-13'
+date: '2026-01-14'
 category: statistics-intro
 tags:
   - 統計学
