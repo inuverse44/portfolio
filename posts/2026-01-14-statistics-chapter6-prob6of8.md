@@ -1,6 +1,6 @@
 ---
 title: 統計学入門 第6章の問題 6.8 ベータ分布
-date: '2026-01-13'
+date: '2026-01-14'
 category: statistics-intro
 tags:
   - 統計学
