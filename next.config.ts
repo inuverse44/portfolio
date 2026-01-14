@@ -7,7 +7,7 @@ const basePathFromEnv = isDev ? '' : (process.env.NEXT_BASE_PATH || '');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  output: 'standalone',
   basePath: basePathFromEnv,
   images: {
     unoptimized: true,
