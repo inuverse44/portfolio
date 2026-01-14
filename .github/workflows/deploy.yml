@@ -44,6 +44,8 @@ jobs:
           fi
 
       - name: Build
+        env:
+          NEXT_OUTPUT_MODE: 'export'
         run: npm run build
 
       - name: Upload artifact

@@ -5,9 +5,12 @@ const isDev = process.env.NODE_ENV !== 'production';
 // Default to empty for production (GCP), use env for GitHub Pages
 const basePathFromEnv = isDev ? '' : (process.env.NEXT_BASE_PATH || '');
 
+// Determine output mode (default to 'standalone' for Cloud Run/Docker, 'export' for GitHub Pages)
+const outputMode = process.env.NEXT_OUTPUT_MODE === 'export' ? 'export' : 'standalone';
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
+  output: outputMode,
   basePath: basePathFromEnv,
   images: {
     unoptimized: true,
