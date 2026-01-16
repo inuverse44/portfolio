@@ -1,19 +1,12 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "out",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "serviceId": "portfolio",
-          "region": "asia-northeast1"
-        }
-      }
-    ]
+    "cleanUrls": true,
+    "trailingSlash": true
   }
 }

@@ -48,3 +48,6 @@ infra/terraform/apex-redirect/.terraform.lock.hcl
 infra/terraform/apex-redirect/terraform.tfstate
 infra/terraform/apex-redirect/terraform.tfstate.*
 infra/terraform/apex-redirect/terraform.tfvars
+
+# firebase
+.firebase/
