@@ -123,7 +123,7 @@ class CoinDisplayModel {
 
 ### なぜ`companion object`で書く必要があるのか？
 
-companion object[^2]は静的(static)なメソッドを表すために用います。ここで、動的と静的について述べておきます。動的とは、ここでは$`ownedCoins`のようにインスタンスごとに変わりうる量です。静的であるというのは、インスタンスごとに変わらないという意味で、例えば`ownedCoinText`のように`ownedCoins`を受け取って`"\${this.ownedCoins} coins"`のように表すメソッドであるとすると、このメソッドはインスタンスの違いに依存しません。
+companion object[^2]は静的(static)なメソッドを表すために用います。ここで、動的と静的について述べておきます。動的とは、ここでは$`ownedCoins`のようにインスタンスごとに変わりうる量です。静的であるというのは、インスタンスごとに変わらないという意味で、例えば`ownedCoinText`のように`ownedCoins`を受け取って`"${this.ownedCoins} coins"`のように表すメソッドであるとすると、このメソッドはインスタンスの違いに依存しません。
 
 また、companion objectで書くことで、companion objectのメソッド自体が外側のスコープの変数を更新することがないことが保証されます。またprivate装飾子をつけることで、外部からも遮断された独立性の高いメソッドになります。
 
