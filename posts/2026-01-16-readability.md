@@ -40,7 +40,7 @@ class OwnedCoinScreen {
 
 このコードには2つのプロパティが宣言されていて、それぞれ変数です。`ownedCoins`は所有するコインを表し、`isTransactionHistoryShown`はUI上で履歴を表示するかどうかを表します。なんのコインがいくらあろうが、UIの履歴を開閉することが可能なはずです。逆にあるAに対するコインが100の時に、UIが開閉できなかったら明確なバグです。よって、これら2つの変数は独立であり、直交する関係にあると言えます。
 
-`ownedCoins`は`Int`であり、その範囲は$\mathtt{ownedCoins} \in \mathbb{N}_{\geq 0}$である。`isTransactionHistoryShown`は`Boolean`であり、その範囲は$\mathtt{isTransactionHistoryShown} \in \{\mathtt{true}, \mathtt{false}\}$です。よって、このクラスの空間は
+`ownedCoins`は`Int`であり、その範囲は$\mathtt{ownedCoins} \in \mathbb{N}$です（現実のお金であればここは非負が期待されるでしょうが、コード上はそこまで制限していないです）。`isTransactionHistoryShown`は`Boolean`であり、その範囲は$\mathtt{isTransactionHistoryShown} \in \{\mathtt{true}, \mathtt{false}\}$です。よって、このクラスの空間は
 $$ 
     \mathtt{OwnedCoinScreen} \cong \mathbb{N}_{\geq 0} \times \{\mathtt{true}, \mathtt{false}\}
 $$
