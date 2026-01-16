@@ -40,7 +40,7 @@ class OwnedCoinScreen {
 
 このコードには2つのプロパティが宣言されていて、それぞれ変数です。`ownedCoins`は所有するコインを表し、`isTransactionHistoryShown`はUI上で履歴を表示するかどうかを表します。なんのコインがいくらあろうが、UIの履歴を開閉することが可能なはずです。逆にあるAに対するコインが100の時に、UIが開閉できなかったら明確なバグです。よって、これら2つの変数は独立であり、直交する関係にあると言えます。
 
-`ownedCoins`は`Int`であり、その範囲は$\mathtt{ownedCoins} \in \mathbb{N}_{\geq 0}$である。`isTransactionHistoryShown`は`Boolean`であり、その範囲は$\mathtt{isTransactionHistoryShown} \in \{\mathtt{true}, \mathtt{false}\}$です。よって、このクラスの空間は
+`ownedCoins`は`Int`であり、その範囲は$\mathtt{ownedCoins} \in \mathbb{N}$です（現実のお金であればここは非負が期待されるでしょうが、コード上はそこまで制限していないです）。`isTransactionHistoryShown`は`Boolean`であり、その範囲は$\mathtt{isTransactionHistoryShown} \in \{\mathtt{true}, \mathtt{false}\}$です。よって、このクラスの空間は
 $$ 
     \mathtt{OwnedCoinScreen} \cong \mathbb{N}_{\geq 0} \times \{\mathtt{true}, \mathtt{false}\}
 $$
@@ -98,22 +98,50 @@ data CoinDisplayModel(val ownedCoins: Int) {
 もし、`ownendCoinText`の計算コストが高いとき、毎回計算するのではなく、計算結果を保持しておきたいときがあります。その場合、
 
 ```kotlin
-class CoinDisplayModel private constructor (
-    val ownedCoins: Int, 
-    val ownedCoinText: String
-) {
+class CoinDisplayModel {
+    var ownedCoins: Int
+        private set
+    var ownedCoinText: String
+        private set
+
+    fun updateOwnedCoins(newCoinCount: Int) {
+        ownedCoins = newCoinCount
+        ownedCoinText = createOwnedCoinText(ownedCoins)
+    }
+
     companion object {
-        fun create(ownedCoins: Int): CoinDisplayModel {
-            val ownedCoinText ... // `ownedCoins`に依存する計算
-            return CoinDisplayModel(ownedCoins, ownedCoinText)
+        fun createOwnedCoinText(ownedCoins: Int): String {
+            // this.ownedCoinsは参照できないので、間違って更新しようとしてもコンパイルエラーしてくれる
+            val ownedCoinText = ... // `ownedCoins`に依存する計算
+            return ownedCoinText
         }
     }
 }
 ```
 
+と書かれます。
+
+### なぜ`companion object`で書く必要があるのか？
+
+companion object[^2]は静的(static)なメソッドを表すために用います。ここで、動的と静的について述べておきます。動的とは、ここでは$`ownedCoins`のようにインスタンスごとに変わりうる量です。静的であるというのは、インスタンスごとに変わらないという意味で、例えば`ownedCoinText`のように`ownedCoins`を受け取って`"\${this.ownedCoins} coins"`のように表すメソッドであるとすると、このメソッドはインスタンスの違いに依存しません。
+
+また、companion objectで書くことで、companion objectのメソッド自体が外側のスコープの変数を更新することがないことが保証されます。またprivate装飾子をつけることで、外部からも遮断された独立性の高いメソッドになります。
+
+
+
+## ひとこと
+直交性という名前は誤解を生みそうです。直積のほうが近い概念だと思いました。まる。
 
 
 [^1]: https://gihyo.jp/book/2022/978-4-297-13036-7
+
+[^2]: https://kotlinlang.org/docs/object-declarations.html#companion-objects
+
+
+
+
+
+
 
 
 
