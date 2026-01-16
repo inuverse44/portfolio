@@ -28,7 +28,7 @@ This file provides critical context, architectural decisions, and operational gu
 
 -   **Type**: Personal Portfolio & Blog
 -   **Stack**: Next.js 15+ (Pages Router), React 19, TypeScript.
--   **Deployment**: Dockerized on Google Cloud Run.
+-   **Deployment**: Firebase Hosting (SSG).
 -   **Content**: Markdown (`posts/`) with `gray-matter`.
 
 ## 🛠 Operational Workflow

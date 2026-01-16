@@ -8,7 +8,7 @@ This document provides a high-level overview of the repository's structure, feat
 - **Blog Engine**: Markdown-based file system routing.
   - Features: Tags with counts, Sidebar layout (desktop), Responsive design.
 - **SEO & Social**: Enhanced OGP tags, automated sitemap generation, and `robots.txt`.
-- **Deployment**: containerized via Docker and deployed to Google Cloud Run.
+- **Deployment**: Deployed to Firebase Hosting (SSG).
 
 ## 📂 Directory Structure
 ```text
@@ -65,8 +65,8 @@ This document provides a high-level overview of the repository's structure, feat
 - **Build Process**:
   - `npm run build` performs `next build` followed by `node scripts/generate-sitemap.mjs`.
 - **Deployment**:
-  - Automated via GitHub Actions (`deploy-gcp.yml`) to Google Cloud Run.
-  - Dockerized build for consistent environments.
+  - Automated via GitHub Actions (`deploy-firebase.yml`) to Firebase Hosting.
+  - Uses `next build` (static export).
 
 ## 📝 Best Practices (Current)
 - **Asset Management**: Place blog images in `public/images/posts/[post-slug]/` and use absolute paths in Markdown (e.g., `/images/posts/[slug]/image.png`).
