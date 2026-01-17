@@ -13,8 +13,8 @@ published: true
 この記事では、初めてやる競技プログラミングの中で詰まったところをまとめていくシリーズです。
 私が認知しているのは
 
-- AtCoder[^1]
-- LeetCode[^2]
+- AtCoder [^1]
+- LeetCode [^2]
 
 ですが、ここ記事ではAtCoderを軸にします。
 
@@ -61,13 +61,8 @@ fun main() {
 ```
 です。
 
-## 解法
 
 
 
-
-
-
-
-[1]: https://info.atcoder.jp
-[2]: https://leetcode.com/
+[^1]: https://info.atcoder.jp
+[^2]: https://leetcode.com/
