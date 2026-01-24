@@ -134,6 +134,7 @@ $$
 $$
     V[R_p]
     =
+    (\sigma_1^2 + \sigma_2^2 - 2\rho \sigma_1 \sigma_2)
     \left\{
         x - \frac{
             \sigma_2 ( \sigma_2 - \rho \sigma_1)
