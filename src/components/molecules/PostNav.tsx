@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import styles from './PostNav.module.css';
 
 export type SimplePost = {
@@ -18,7 +17,7 @@ const PostNav = ({ prev, next }: PostNavProps) => {
   return (
     <nav className={styles.container} aria-label="記事ナビゲーション">
       {prev ? (
-        <Link href={`/posts/${prev.slug}`} className={`${styles.card} ${styles.prev}`}>
+        <a href={`/posts/${prev.slug}`} className={`${styles.card} ${styles.prev}`}>
           <span className={styles.arrow} aria-hidden>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -28,11 +27,11 @@ const PostNav = ({ prev, next }: PostNavProps) => {
             <span className={styles.kicker}>前の記事</span>
             <span className={styles.title}>{prev.title}</span>
           </div>
-        </Link>
+        </a>
       ) : <span />}
 
       {next ? (
-        <Link href={`/posts/${next.slug}`} className={`${styles.card} ${styles.next}`}>
+        <a href={`/posts/${next.slug}`} className={`${styles.card} ${styles.next}`}>
           <div className={styles.texts}>
             <span className={styles.kicker}>次の記事</span>
             <span className={styles.title}>{next.title}</span>
@@ -42,11 +41,10 @@ const PostNav = ({ prev, next }: PostNavProps) => {
               <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </span>
-        </Link>
+        </a>
       ) : <span />}
     </nav>
   );
 };
 
 export default PostNav;
-

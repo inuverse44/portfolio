@@ -11,6 +11,7 @@ const Header = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navItems = NAV_ITEMS;
 
+  // Body scroll lock while sidebar is open (mobile)
   useScrollLock(open);
 
   return (

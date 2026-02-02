@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import React from 'react';
 
 interface PaginationProps {
   currentPage: number;
@@ -18,7 +18,7 @@ const Pagination = ({ currentPage, totalPages, basePath = '/blog/page', indexPat
   return (
     <nav aria-label="Pagination" style={{ display: 'flex', gap: 8, alignItems: 'center', margin: '16px 0' }}>
       {prevPage ? (
-        <Link href={hrefFor(prevPage)}>← Prev</Link>
+        <a href={hrefFor(prevPage)}>← Prev</a>
       ) : (
         <span style={{ opacity: 0.4 }}>← Prev</span>
       )}
@@ -28,7 +28,7 @@ const Pagination = ({ currentPage, totalPages, basePath = '/blog/page', indexPat
       </span>
 
       {nextPage ? (
-        <Link href={hrefFor(nextPage)}>Next →</Link>
+        <a href={hrefFor(nextPage)}>Next →</a>
       ) : (
         <span style={{ opacity: 0.4 }}>Next →</span>
       )}

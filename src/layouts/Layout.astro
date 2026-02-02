@@ -8,14 +8,18 @@ import '@fontsource/noto-sans-jp';
 
 import Header from '../components/organisms/Header';
 import Footer from '../components/organisms/Footer';
+import Meta from '../components/atoms/Meta.astro';
+import styles from '../styles/Layout.module.css';
 
 interface Props {
 	title?: string;
     description?: string;
+    image?: string;
+    type?: 'website' | 'article';
     wide?: boolean;
 }
 
-const { title = "Portfolio", description, wide = false } = Astro.props;
+const { title, description, image, type, wide = false } = Astro.props;
 const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 
 ---
@@ -24,11 +28,8 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description || "Astro description"} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <Meta title={title} description={description} image={image} type={type} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
 
         <!-- AdSense -->
         {adsClient && (
@@ -41,20 +42,81 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 
         <!-- Kotlin Playground -->
         <script src="https://unpkg.com/kotlin-playground@1" defer></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Kotlin Playground loaded hook if needed
-                window.dispatchEvent(new Event('kotlin-playground-loaded'));
-            });
-        </script>
 	</head>
 	<body>
-        <div class="layout-wrapper">
+        <div class={styles.wrapper}>
             <Header client:load />
-            <main class={wide ? "container wide" : "container"}>
+            <main class={wide ? `${styles.container} ${styles.wideContainer}` : styles.container}>
                 <slot />
             </main>
             <Footer />
         </div>
+
+        <script>
+            // Kotlin Playground initialization
+            function initKotlinPlayground() {
+                // @ts-ignore
+                if (window.KotlinPlayground) {
+                    // @ts-ignore
+                    window.KotlinPlayground('.language-kotlin');
+                }
+            }
+
+            // Copy button logic
+            function initCopyButtons() {
+                const codeBlocks = document.querySelectorAll('pre');
+                
+                codeBlocks.forEach((codeBlock) => {
+                    if (codeBlock.querySelector('.copy-button')) return;
+
+                    const button = document.createElement('button');
+                    button.className = 'copy-button';
+                    button.type = 'button';
+                    button.innerText = 'Copy';
+                    button.style.position = 'absolute';
+                    button.style.top = '0.5rem';
+                    button.style.right = '0.5rem';
+                    button.style.padding = '0.25rem 0.5rem';
+                    button.style.fontSize = '0.75rem';
+                    button.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    button.style.color = '#fff';
+                    button.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                    button.style.borderRadius = '4px';
+                    button.style.cursor = 'pointer';
+                    button.style.zIndex = '10';
+
+                    codeBlock.style.position = 'relative';
+                    codeBlock.appendChild(button);
+
+                    button.addEventListener('click', async () => {
+                        const code = codeBlock.querySelector('code');
+                        if (!code) return;
+
+                        try {
+                            await navigator.clipboard.writeText(code.innerText);
+                            button.innerText = 'Copied';
+                            setTimeout(() => {
+                                button.innerText = 'Copy';
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Failed to copy: ', err);
+                        }
+                    });
+                });
+            }
+
+            // Run on initial load
+            initKotlinPlayground();
+            initCopyButtons();
+
+            // Run on view transitions if enabled
+            document.addEventListener('astro:after-navigation', () => {
+                initKotlinPlayground();
+                initCopyButtons();
+            });
+            
+            // Support for window event from script
+            window.addEventListener('kotlin-playground-loaded', initKotlinPlayground);
+        </script>
 	</body>
 </html>

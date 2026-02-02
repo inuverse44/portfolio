@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '@/components/atoms/Tag';
+import Tag from '../atoms/Tag';
 import styles from './PostHeader.module.css';
 
 interface PostHeaderProps {
