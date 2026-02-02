@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image'; // Import Image
-import { useRouter } from 'next/router';
+import React, { useState, useRef } from 'react';
 import DesktopNav from '@/components/organisms/DesktopNav';
 import MobileSidebar from '@/components/organisms/MobileSidebar';
 import MenuButton from '@/components/molecules/MenuButton';
@@ -11,34 +8,25 @@ import { useScrollLock } from '@/hooks/useScrollLock';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navItems = NAV_ITEMS;
 
-  // Close menu on route change
-  useEffect(() => {
-    const handleRoute = () => setOpen(false);
-    router.events?.on('routeChangeComplete', handleRoute);
-    return () => router.events?.off('routeChangeComplete', handleRoute);
-  }, [router.events]);
-
-  // Body scroll lock while sidebar is open (mobile)
   useScrollLock(open);
 
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
         <h1 className={styles.title}>
-          <Link href="/">
-            <Image
-              src={`${router.basePath}/images/logo.png`}
+          <a href="/">
+            <img
+              src="/images/logo.png"
               alt="Site Logo"
-              width={100} // Adjust width as needed
-              height={100} // Adjust height as needed
+              width={100}
+              height={100}
               style={{ marginRight: '10px' }}
             />
             {SITE_TITLE}
-          </Link>
+          </a>
         </h1>
         <DesktopNav items={navItems} className={styles.desktopNav} />
         <MenuButton

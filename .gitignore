@@ -51,3 +51,13 @@ infra/terraform/apex-redirect/terraform.tfvars
 
 # firebase
 .firebase/
+
+# astro
+.astro/
+dist/
+
+# legacy backup
+_legacy_nextjs/node_modules/
+_legacy_nextjs/.next/
+_legacy_nextjs/out/
+_legacy_nextjs/coverage/

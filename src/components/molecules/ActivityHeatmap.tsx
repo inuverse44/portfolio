@@ -1,14 +1,18 @@
-import React, { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { Post } from '@/lib/posts/api';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './ActivityHeatmap.module.css';
+
+interface Post {
+  slug: string;
+  data: {
+    title: string;
+    date: Date;
+  };
+}
 
 interface ActivityHeatmapProps {
   activities: Record<string, Post[]>;
   today: string;
 }
-
-
 
 const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) => {
   const today = new Date(todayStr);
@@ -18,10 +22,9 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
   const [hoveredData, setHoveredData] = useState<{ date: string; posts: Post[]; x: number; y: number; isFlip: boolean } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const gridWrapperRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   // Close picker when clicking outside
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const container = containerRef.current;
       if (isYearPickerOpen && container && !container.contains(e.target as Node)) {
@@ -33,21 +36,19 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
   }, [isYearPickerOpen]);
 
   // Scroll to the end (latest activity) when year changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (gridWrapperRef.current) {
       gridWrapperRef.current.scrollLeft = gridWrapperRef.current.scrollWidth;
     }
   }, [selectedYear]);
 
   const getStartDate = () => {
-    // Start from Jan 1st of the selected year, but aligned to the previous Sunday
     const start = new Date(selectedYear, 0, 1);
     start.setDate(start.getDate() - start.getDay());
     return start;
   };
 
   const getEndDate = () => {
-    // End at Dec 31st of the selected year, but if it's the current year, end at today
     if (selectedYear === currentYear) {
       return today;
     }
@@ -78,9 +79,11 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
 
   const handleCellClick = (posts: Post[]) => {
     if (posts.length === 1) {
-      router.push(`/posts/${posts[0].slug}`);
+      window.location.href = `/posts/${posts[0].slug}`;
     } else if (posts.length > 1) {
-      router.push(`/blog?date=${posts[0].frontmatter.date}`);
+       const d = posts[0].data.date;
+       const dateStr = d instanceof Date ? d.toISOString().split('T')[0] : d;
+       window.location.href = `/blog?date=${dateStr}`;
     }
   };
 
@@ -100,7 +103,6 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
     }
   };
 
-  // Get available years from activities
   const availableYears = Array.from(new Set([
     currentYear,
     ...Object.keys(activities).map(d => new Date(d).getFullYear())
@@ -199,9 +201,9 @@ const ActivityHeatmap = ({ activities, today: todayStr }: ActivityHeatmapProps) 
                     <div 
                       key={post.slug} 
                       className={styles.detailsPost}
-                      onClick={() => router.push(`/posts/${post.slug}`)}
+                      onClick={() => window.location.href = `/posts/${post.slug}`}
                     >
-                      • {post.frontmatter.title}
+                      • {post.data.title}
                     </div>
                   ))}
                 </div>

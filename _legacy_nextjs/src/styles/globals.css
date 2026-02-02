@@ -1,0 +1,134 @@
+:root {
+  --background: #f9fafb;
+  --surface-color: #ffffff;
+  --foreground: #111827;
+  --border-color: #eaeaea;
+  --header-title-color: #111827;
+  --tag-background-color: #eee;
+  --nav-link-color: #374151;
+  --card-border-color: #eaeaea;
+  --link-color: #0070f3;
+  --section-color: #111827;/* #72D4DA; */
+  --text-color-secondary: #4b5563;
+  --code-block-bg: #282c34;
+  --inline-code-bg: #edf2f7;
+  --dot-color: #e5e7eb;
+
+  /* shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  /* radius scale */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: var(--font-roboto-mono), monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--section-color);
+  font-family: var(--font-noto-sans-jp), sans-serif;
+}
+
+code {
+  font-family: var(--font-roboto-mono), monospace;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Global KaTeX overflow handling: allow long display equations to scroll horizontally */
+/* KaTeX: responsive layout
+   - Small screens: scrollable inline layout, number next to formula
+   - Large screens: centered formula, number at right edge
+*/
+@media (max-width: 700px) {
+  .katex-display {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    white-space: nowrap;
+    text-align: left !important;
+    padding-right: 8px;
+  }
+  .katex-display > .katex {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    min-width: max-content;
+    padding-inline: 8px;
+  }
+  .katex-display > .katex > .katex-html {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .katex-display .tag {
+    position: static !important;
+    right: auto !important;
+    float: none !important;
+    display: inline-block;
+    margin-left: 4px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 701px) {
+  .katex-display {
+    display: block;
+    text-align: center !important;
+    overflow: visible;
+    white-space: normal;
+  }
+  .katex-display > .katex {
+    display: inline-block;
+  }
+  .katex-display .tag {
+    position: absolute !important;
+    right: 0 !important;
+    float: none !important;
+    display: inline-block;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+}
