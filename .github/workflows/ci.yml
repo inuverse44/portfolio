@@ -25,5 +25,14 @@ jobs:
       - name: Type check
         run: npx astro check
 
-      - name: Build check
+      - name: Build
         run: npm run build
+
+      - name: Unit Test
+        run: npx vitest run
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: E2E Test
+        run: npx playwright test
