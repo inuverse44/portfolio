@@ -55,9 +55,9 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
         <script>
             // Kotlin Playground initialization
             function initKotlinPlayground() {
-                // @ts-ignore
+                // @ts-expect-error KotlinPlayground is loaded globally
                 if (window.KotlinPlayground) {
-                    // @ts-ignore
+                    // @ts-expect-error KotlinPlayground is loaded globally
                     window.KotlinPlayground('.language-kotlin');
                 }
             }
