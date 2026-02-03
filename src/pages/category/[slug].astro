@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/organisms/PostList';
+import { CATEGORIES } from '../../constants/categories';
+import styles from '../../styles/Blog.module.css';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((c) => ({ params: { slug: c.slug }, props: { category: c } }));
+}
+
+const { slug } = Astro.params;
+const { category } = Astro.props;
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter((p) => p.data.category === slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title={category.title} description={category.description} wide={true}>
+  <div class={styles.blogLayout}>
+    <div class={styles.mainContent}>
+      <h1>{category.title}</h1>
+      {category.description ? <p style={{ opacity: 0.8 }}>{category.description}</p> : null}
+      <PostList posts={posts} />
+    </div>
+  </div>
+</Layout>

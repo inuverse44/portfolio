@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostHeader from '../../components/organisms/PostHeader';
+import styles from '../../styles/PostDetail.module.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const dateStr = post.data.date.toISOString().split('T')[0];
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <div class={styles.container}>
+      <PostHeader title={post.data.title} date={dateStr} tags={post.data.tags || []} />
+    
+    <div class="markdown-body">
+      <Content />
+    </div>
+  </div>
+</Layout>

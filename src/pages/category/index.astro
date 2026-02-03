@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { CATEGORIES } from '../../constants/categories';
+import styles from '../../styles/Blog.module.css';
+
+const allPosts = await getCollection('posts');
+
+const categories = CATEGORIES.map((c) => {
+    const categoryPosts = allPosts.filter((p) => p.data.category === c.slug);
+    return {
+        ...c,
+        posts: categoryPosts,
+    };
+});
+---
+
+<Layout title="Categories" description="Curated article groups" wide={true}>
+  <div class={styles.blogLayout}>
+    <div class={styles.mainContent}>
+      <h1>Categories</h1>
+      <ul>
+        {categories.map((c) => (
+          <li key={c.slug} style={{ marginBottom: "32px", listStyle: "none" }}>
+            <h2 style={{ margin: '4px 0' }}>
+              <a href={`/category/${c.slug}`}>{c.title}</a>
+            </h2>
+            {c.description ? <p style={{ margin: '4px 0', opacity: 0.8 }}>{c.description}</p> : null}
+            <p style={{ margin: '4px 0' }}>{c.posts.length} posts</p>
+            <ul style={{ paddingLeft: "16px" }}>
+                {c.posts.slice(0, 3).map((p) => (
+                <li key={p.slug}>
+                    <a href={`/posts/${p.slug}`}>{p.data.title}</a>
+                </li>
+                ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Layout>

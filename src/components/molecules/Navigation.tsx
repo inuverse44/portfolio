@@ -1,6 +1,4 @@
-
 import React from 'react';
-import Link from 'next/link';
 import styles from './Navigation.module.css';
 
 interface NavItem {
@@ -20,7 +18,7 @@ const Navigation = ({ items, orientation = 'horizontal', onNavigate }: Navigatio
     <nav className={navClass}>
       {items.map((item) => (
         <div key={item.href} className={styles.navItem}>
-          <Link href={item.href} onClick={onNavigate}>{item.label}</Link>
+          <a href={item.href} onClick={onNavigate}>{item.label}</a>
         </div>
       ))}
     </nav>

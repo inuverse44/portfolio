@@ -3,10 +3,11 @@ import PostCard from '@/components/molecules/PostCard';
 
 interface Post {
   slug: string;
-  frontmatter: {
+  data: {
     title: string;
-    date: string;
-    tags: string[];
+    date: Date | string;
+    tags?: string[];
+    cover?: string | null;
   };
 }
 

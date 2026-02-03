@@ -1,16 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
 import Tag from '@/components/atoms/Tag';
-import Image from 'next/image';
 import styles from './PostCard.module.css';
 
 interface PostCardProps {
   post: {
     slug: string;
-    frontmatter: {
+    data: {
       title: string;
-      date: string;
-      tags: string[];
+      date: Date | string;
+      tags?: string[];
       cover?: string | null;
     };
   };
@@ -18,32 +16,33 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
   const DEFAULT_COVER = '/images/placeholder-card.svg';
-  const coverSrc = post.frontmatter.cover || DEFAULT_COVER;
+  const { title, date, tags = [], cover } = post.data;
+  const coverSrc = cover || DEFAULT_COVER;
+  
+  const dateStr = date instanceof Date ? date.toISOString().split('T')[0] : date;
 
   return (
     <article className={styles.card}>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <Link href={`/posts/${post.slug}`}>{post.frontmatter.title}</Link>
+          <a href={`/posts/${post.slug}`}>{title}</a>
         </h2>
         <div className={styles.metaRow}>
-          <time className={styles.meta} dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+          <time className={styles.meta} dateTime={dateStr as string}>{dateStr}</time>
           <div className={styles.tags}>
-            {post.frontmatter.tags.map((tag) => (
+            {tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
         </div>
       </div>
       <div className={styles.thumb}>
-        <Image
+        <img
           src={coverSrc}
           alt=""
           width={160}
           height={100}
-          sizes="160px"
           style={{ width: 160, height: 100, objectFit: 'contain', background: '#f3f4f6', borderRadius: 4 }}
-          unoptimized
         />
       </div>
     </article>

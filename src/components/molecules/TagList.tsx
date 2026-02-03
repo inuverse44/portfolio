@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import Link from 'next/link';
 import styles from './TagList.module.css';
 
 interface TagListProps {
@@ -20,10 +19,10 @@ const TagList = ({ tagCounts }: TagListProps) => {
       <ul className={styles.tagList}>
         {sortedTags.map(([tag, count]) => (
           <li key={tag} className={styles.tagItem}>
-            <Link href={`/tags/${encodeURIComponent(tag)}`} className={styles.tagLink}>
+            <a href={`/tags/${encodeURIComponent(tag)}`} className={styles.tagLink}>
               {tag}
               <span className={styles.tagCount}>({count})</span>
-            </Link>
+            </a>
           </li>
         ))}
       </ul>

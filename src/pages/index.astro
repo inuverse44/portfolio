@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../constants/site';
+import ActivityHeatmap from '../components/molecules/ActivityHeatmap';
+import PostCard from '../components/molecules/PostCard';
+import styles from '../styles/Home.module.css';
+
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latestPosts = sortedPosts.slice(0, 3);
+
+const now = new Date();
+const today = now.toISOString().split('T')[0];
+
+const activityData: Record<string, any[]> = {};
+allPosts.forEach((post) => {
+    const d = post.data.date;
+    const dateStr = d.toISOString().split('T')[0];
+    if (!activityData[dateStr]) {
+        activityData[dateStr] = [];
+    }
+    activityData[dateStr].push(post);
+});
+---
+
+<Layout>
+  <div class={styles.homeContainer}>
+        <div class={styles.heroSection}>
+          <img
+            src="/images/profile.jpg"
+            alt="Profile Picture"
+            width={150}
+            height={150}
+            class={styles.profileImage} 
+          />
+          
+          <h2 class={styles.heroTitle}>Hello, I'm {SITE_TITLE}!</h2>
+          <p class={styles.homeDescription}>
+            Inuverseのポートフォリオへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアします。
+          </p>
+          <p class={styles.homeQuote}>ーーアイディアのタイムカプセル⏳💊</p>
+          <p class={styles.homeDescription}>
+            <a href="/blog">blog</a>や<a href="/about">about</a>でポストや私、このブログについて深く知ることができます。
+          </p>
+        </div>
+
+        <section class={styles.activitySection}>
+          <h3 class={styles.sectionTitle}>Activity</h3>
+          <ActivityHeatmap activities={activityData} today={today} client:load />
+        </section>
+
+        <section class={styles.section}>
+          <div class={styles.sectionHeader}>
+            <h3 class={styles.sectionTitle}>Recent Posts</h3>
+            <a href="/blog" class={styles.viewAll}>View all →</a>
+          </div>
+          <div class={styles.recentPostsGrid}>
+            {latestPosts.map((post) => (
+               <PostCard post={post} /> 
+            ))}
+          </div>
+        </section>
+      </div>
+</Layout>

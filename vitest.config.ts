@@ -1,17 +1,11 @@
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+/// <reference types="vitest" />
+import { getViteConfig } from 'astro/config';
 
-export default defineConfig({
-  plugins: [react()],
+export default getViteConfig({
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./vitest.setup.tsx'],
     globals: true,
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+    environment: 'jsdom',
+    setupFiles: './vitest.setup.ts',
+    include: ['src/**/*.test.{ts,tsx}'],
   },
 });
