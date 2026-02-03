@@ -1,0 +1,48 @@
+---
+title: 統計学入門 第5章の問題 5.3 聖ペテルスブルグの逆説
+date: '2026-01-06'
+category: statistics-intro
+tags:
+  - 統計学
+  - 確率
+cover: https://hondana-image.s3.amazonaws.com/book/image/300857/035bc460-8c27-41ce-a4d2-c0e4e5c0f9da.jpg
+published: true
+---
+
+
+## 聖ペテルスブルグの逆説
+
+### 問題
+コインを繰り返し投げ、はじめて表が出たときに止める。それが$n$回目であるとき、$2^n$円を得るものとする。  
+(i) 得られる額$X$の確率分布を求めよ。  
+(ii) $E(X)$は存在しない（$\infty$である）ことを示せ。
+
+※(ii)の結果が直感に反するので「逆説」(paradox)といわれる。この逆説は、ダニエル・ベルヌーイによって、貨幣額に対数変換を考えることにより解決された。
+
+
+### 解答
+(i)  
+コインの表も裏も、一回投げるごとに$1/2$の確率であるので、$n-1$回目まで連続で裏が出るときの確率は$(1/2)^{n-1}$である。
+その次の$n$回目に表が出る確率は$1/2$であるので、得られる額$X$の確率分布は
+$$
+\begin{align}
+P(X=2^n) &= \frac{1}{2} \cdot \left(\frac{1}{2}\right)^{n-1} = \left(\frac{1}{2}\right)^n \\
+\end{align}
+$$
+
+(ii)
+$$
+\begin{align*}
+  E(X)
+  &= \sum_{n=1}^\infty 2^n P(X=2^n) \\
+  &= \sum_{n=1}^\infty 2^n \cdot \left(\frac{1}{2}\right)^n \\
+  &= \sum_{n=1}^\infty 1 \\
+  &= \infty
+\end{align*}
+$$
+
+したがって期待値は存在しません。
+
+## 参考資料
+
+- [統計学入門　東京大学教養学部統計学教室編 東京大学出版会](https://www.utp.or.jp/book/b300857.html)

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 type AdSenseProps = {
   slot?: string;
@@ -17,8 +17,8 @@ const AdSense = ({ slot, className, style }: AdSenseProps) => {
     }
   }, []);
 
-  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
-  const isDev = process.env.NODE_ENV !== 'production';
+  const client = import.meta.env.PUBLIC_ADSENSE_CLIENT;
+  const isDev = import.meta.env.DEV;
 
   // If no slot provided, render nothing (component is for manual units)
   if (!slot || !client) return null;

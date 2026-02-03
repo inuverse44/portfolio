@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PostList from '../../../components/organisms/PostList';
+import TagList from '../../../components/molecules/TagList';
+import Pagination from '../../../components/molecules/Pagination';
+import styles from '../../../styles/Blog.module.css';
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection('posts');
+  const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return paginate(sortedPosts, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+const allPosts = await getCollection('posts');
+const tagCounts: Record<string, number> = {};
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  });
+});
+---
+
+<Layout title={`Blog - Page ${page.currentPage}`} wide={true}>
+  <div class={styles.blogLayout}>
+    <div class={styles.mainContent}>
+      <h1>All Posts</h1>
+      <PostList posts={page.data} />
+      <Pagination 
+        currentPage={page.currentPage} 
+        totalPages={page.lastPage} 
+        indexPath="/blog" 
+        basePath="/blog/page" 
+      />
+    </div>
+    <aside class={styles.sidebar}>
+      <TagList tagCounts={tagCounts} client:idle />
+    </aside>
+  </div>
+</Layout>

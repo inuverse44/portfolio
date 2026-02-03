@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/organisms/PostList';
+import { SITE_TITLE } from '../../constants/site';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const tags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+  
+  return tags.map(tag => ({
+    params: { tag },
+  }));
+}
+
+const { tag } = Astro.params;
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter(post => post.data.tags?.includes(tag))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title={`Posts tagged "${tag}" | ${SITE_TITLE}`}>
+  <div>
+    <h1>
+      Posts tagged: <em>{tag}</em>
+    </h1>
+    <PostList posts={posts} />
+  </div>
+</Layout>

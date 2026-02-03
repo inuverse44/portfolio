@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/organisms/PostList';
+import TagList from '../../components/molecules/TagList';
+import Pagination from '../../components/molecules/Pagination';
+import styles from '../../styles/Blog.module.css';
+
+const POSTS_PER_PAGE = 10;
+
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const tagCounts: Record<string, number> = {};
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  });
+});
+
+const totalPages = Math.max(1, Math.ceil(sortedPosts.length / POSTS_PER_PAGE));
+const posts = sortedPosts.slice(0, POSTS_PER_PAGE);
+---
+
+<Layout title="Blog" wide={true}>
+  <div class={styles.blogLayout}>
+    <div class={styles.mainContent}>
+      <h1>All Posts</h1>
+      <PostList posts={posts} />
+      <Pagination currentPage={1} totalPages={totalPages} indexPath="/blog" basePath="/blog/page" />
+    </div>
+    <aside class={styles.sidebar}>
+      <TagList tagCounts={tagCounts} client:idle />
+    </aside>
+  </div>
+</Layout>

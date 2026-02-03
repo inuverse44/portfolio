@@ -1,0 +1,16 @@
+.footer {
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-secondary);
+  font-size: 14px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  margin-top: var(--space-3);
+}

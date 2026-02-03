@@ -1,0 +1,77 @@
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+.markdown p {
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.markdown li {
+  margin-bottom: var(--space-2);
+}
+
+.markdown blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-2) var(--space-4);
+  border-left: 4px solid var(--section-color);
+  background: transparent;
+  color: var(--foreground);
+  font-style: italic;
+}
+
+.markdown blockquote > :first-child {
+  margin-top: 0;
+}
+
+.markdown blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown blockquote blockquote {
+  margin-left: var(--space-2);
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: var(--space-3) auto;
+}
+
+.markdown a {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown th,
+.markdown td {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.markdown th {
+  background: var(--inline-code-bg);
+  font-weight: 600;
+}
+

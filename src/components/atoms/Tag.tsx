@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import styles from './Tag.module.css';
 
 interface TagProps {
@@ -8,9 +7,9 @@ interface TagProps {
 
 const Tag = ({ children }: TagProps) => {
   return (
-    <Link href={`/tags/${children}`} className={styles.tag}>
+    <a href={`/tags/${children}`} className={styles.tag}>
       {children}
-    </Link>
+    </a>
   );
 };
 
