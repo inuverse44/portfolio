@@ -1,6 +1,6 @@
 ---
 title: 統計学入門 第13章　最小二乗法について
-date: '2026-01-24'
+date: '2026-03-01'
 category: statistics-intro
 tags:
   - 統計学
