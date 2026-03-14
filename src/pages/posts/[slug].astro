@@ -2,28 +2,45 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostHeader from '../../components/organisms/PostHeader';
+import PostNav from '../../components/molecules/PostNav';
+import BackButton from '../../components/molecules/BackButton';
 import styles from '../../styles/PostDetail.module.css';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const posts = await getCollection('posts', ({ data }) => {
+    return data.published !== false;
+  });
+  
+  // Sort posts by date descending (newest first)
+  const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+  return sortedPosts.map((post, index) => {
+    // Newer post is at index - 1, Older post is at index + 1
+    const nextPost = index > 0 ? { slug: sortedPosts[index - 1].slug, title: sortedPosts[index - 1].data.title } : null;
+    const prevPost = index < sortedPosts.length - 1 ? { slug: sortedPosts[index + 1].slug, title: sortedPosts[index + 1].data.title } : null;
+
+    return {
+      params: { slug: post.slug },
+      props: { post, prevPost, nextPost },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await post.render();
 
 const dateStr = post.data.date.toISOString().split('T')[0];
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <div class={styles.container}>
+  <BackButton />
+  <article class={styles.article}>
       <PostHeader title={post.data.title} date={dateStr} tags={post.data.tags || []} />
     
-    <div class="markdown-body">
+    <div class="markdown">
       <Content />
     </div>
-  </div>
+  </article>
+  <PostNav prev={prevPost} next={nextPost} />
+  <BackButton />
 </Layout>
