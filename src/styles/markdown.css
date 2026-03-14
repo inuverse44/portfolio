@@ -76,3 +76,24 @@
   font-weight: 600;
 }
 
+/* Math equations overflow handling */
+.markdown .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-4) 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown .katex-display::-webkit-scrollbar {
+  height: 6px;
+}
+
+.markdown .katex-display::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.markdown .katex-display::-webkit-scrollbar-track {
+  background: transparent;
+}
+

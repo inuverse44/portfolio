@@ -92,52 +92,29 @@ $$
     } \notag \\
     &= 
     \bigg\langle
-        \underbrace{
-        \zeta_{g}(\mathbf{x}_1)
-        \zeta_{g}(\mathbf{x}_2)
-        \zeta_{g}(\mathbf{x}_3)}_{\text{奇数次}} \notag \\
+        \zeta_{g}(\mathbf{x}_1) \zeta_{g}(\mathbf{x}_2) \zeta_{g}(\mathbf{x}_3) \notag \\
         &\qquad
         + \frac{3}{5} f_{\rm NL}^{\rm (local)}
         \left(
-            \zeta_{g}(\mathbf{x}_1)^2
-            \zeta_{g}(\mathbf{x}_2)
-            \zeta_{g}(\mathbf{x}_3)
-            + \zeta_{g}(\mathbf{x}_1)
-            \zeta_{g}(\mathbf{x}_2)^2
-            \zeta_{g}(\mathbf{x}_3)
-            + \zeta_{g}(\mathbf{x}_1)
-            \zeta_{g}(\mathbf{x}_2)
-            \zeta_{g}(\mathbf{x}_3)^2
-        \right)
-        \notag \\
+            \zeta_{g}(\mathbf{x}_1)^2 \zeta_{g}(\mathbf{x}_2) \zeta_{g}(\mathbf{x}_3)
+            + \zeta_{g}(\mathbf{x}_1) \zeta_{g}(\mathbf{x}_2)^2 \zeta_{g}(\mathbf{x}_3)
+            + \zeta_{g}(\mathbf{x}_1) \zeta_{g}(\mathbf{x}_2) \zeta_{g}(\mathbf{x}_3)^2
+        \right) \notag \\
         &\qquad + 
-        \underbrace{
         \frac{9}{25} \left( f_{\rm NL}^{\rm (local)} \right)^2 
         \left(
-            \zeta_{g}(\mathbf{x}_1)
-            \zeta_{g}(\mathbf{x}_2)^2
-            \zeta_{g}(\mathbf{x}_3)^2
-            + \zeta_{g}(\mathbf{x}_1)^2
-            \zeta_{g}(\mathbf{x}_2)
-            \zeta_{g}(\mathbf{x}_3)^2
-            + \zeta_{g}(\mathbf{x}_1)^2
-            \zeta_{g}(\mathbf{x}_2)^2
-            \zeta_{g}(\mathbf{x}_3)
-        \right) 
-        }_{\text{奇数次}} \notag \\
+            \zeta_{g}(\mathbf{x}_1) \zeta_{g}(\mathbf{x}_2)^2 \zeta_{g}(\mathbf{x}_3)^2
+            + \text{perms.}
+        \right) \notag \\
         &\qquad + 
-        \underbrace{
         \frac{27}{125}\left(f_{\rm NL}^{\rm (local)} \right)^3 
         \left(
-            \zeta_{g}(\mathbf{x}_1)^2
-            \zeta_{g}(\mathbf{x}_2)^2
-            \zeta_{g}(\mathbf{x}_3)^2
+            \zeta_{g}(\mathbf{x}_1)^2 \zeta_{g}(\mathbf{x}_2)^2 \zeta_{g}(\mathbf{x}_3)^2
         \right)
-        }_{\propto \braket{\zeta\zeta}_c^3}
     \bigg\rangle
 \end{align}
 $$
-となります。ガウス分布の奇数次のモーメントは0なので、以降は取り除いておきましょう。また、最後の項はガウス分布のキュムラント展開を考えると$\braket{\zeta \zeta}_c\braket{\zeta \zeta}_c\braket{\zeta \zeta}_c$という形式で現れます。これは$P_\zeta(k)$の3乗に比例する項なので、いま考える領域では無視できます。よって、
+となります。ここで、1行目の項は奇数次なので0となり、3行目の項も同様に0となります。また、最後の項はガウス分布のキュムラント展開を考えると$\braket{\zeta \zeta}_c\braket{\zeta \zeta}_c\braket{\zeta \zeta}_c$という形式で現れます。これは$P_\zeta(k)$の3乗に比例する項なので、いま考える領域では無視できます。よって、
 $$
 \begin{align}
     \braket{\zeta(\mathbf{x}_1)\zeta(\mathbf{x}_2)\zeta(\mathbf{x}_3)}
