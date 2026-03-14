@@ -15,6 +15,14 @@
 
 ### Added
 - **依存関係の追加**: `src/lib/posts/api.ts` で必要な `gray-matter` および Node.js 開発用型定義 (`@types/node`) を `package.json` に追加。
+- **変更履歴の作成**: `docs/HISTORY.md` を作成し、対応内容の記録を開始。
+
+### Changed
+- **数式のレスポンシブ対応 (`src/styles/globals.css`, `src/styles/markdown.css`)**:
+    - 長い数式がコンテナをはみ出さないよう、`.katex-display` に横スクロール (`overflow-x: auto`) を許可。
+    - 数式番号 (`.tag`) が数式本体と重ならないよう、絶対配置から静的配置に変更し、数式の右隣に並んで一緒にスクロールされるよう改善。
+- **記事の可読性向上 (`src/content/posts/2026-03-14-nongaussianity.md`)**:
+    - `aligned` 環境を活用して、非常に長い展開式に手動改行を加え、モバイル端末等での見やすさを向上。
 
 ### Removed
 - **不要なNext.jsファイルの削除**: 移行時の残骸と思われる `src/lib/posts/getStaticPaths.ts` および `src/lib/posts/getStaticProps.ts` を削除。
