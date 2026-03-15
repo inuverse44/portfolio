@@ -23,6 +23,10 @@
     - 数式番号 (`.tag`) が数式本体と重ならないよう、絶対配置から静的配置に変更し、数式の右隣に並んで一緒にスクロールされるよう改善。
 - **記事の可読性向上 (`src/content/posts/2026-03-14-nongaussianity.md`)**:
     - `aligned` 環境を活用して、非常に長い展開式に手動改行を加え、モバイル端末等での見やすさを向上。
+- **見出しのデザイン改善 (`src/styles/markdown.css`)**:
+    - `h2` および `h3` 見出しの左側にテーマカラーの縦棒（ボーダー）を追加し、記事のセクション構造を視覚的に分かりやすく改善。
+- **テーマカラーの変更 (`src/styles/globals.css`)**:
+    - `--section-color` を黒系 (`#111827`) からシアン系 (`#72D4DA`) に変更し、サイト全体のアクセントカラーを統一。
 
 ### Removed
 - **不要なNext.jsファイルの削除**: 移行時の残骸と思われる `src/lib/posts/getStaticPaths.ts` および `src/lib/posts/getStaticProps.ts` を削除。
