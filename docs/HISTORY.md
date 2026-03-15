@@ -26,7 +26,7 @@
 - **見出しのデザイン改善 (`src/styles/markdown.css`)**:
     - `h2` および `h3` 見出しの左側にテーマカラーの縦棒（ボーダー）を追加し、記事のセクション構造を視覚的に分かりやすく改善。
 - **テーマカラーの変更 (`src/styles/globals.css`)**:
-    - `--section-color` を黒系 (`#111827`) からブルー系 (`#0070f3`) に変更し、サイト全体のアクセントカラーを統一。
+    - `--section-color` を黒系 (`#111827`) からシアン系 (`#72D4DA`) に変更し、サイト全体のアクセントカラーを統一。
 
 ### Removed
 - **不要なNext.jsファイルの削除**: 移行時の残骸と思われる `src/lib/posts/getStaticPaths.ts` および `src/lib/posts/getStaticProps.ts` を削除。
