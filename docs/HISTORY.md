@@ -2,6 +2,42 @@
 
 すべての注目すべき変更はこのファイルに記録されます。
 
+## [2026-04-12]
+
+### Added
+- **Obsidian 風 `[[...]]` wiki-link プラグイン (`src/plugins/remarkWikiLinks.ts`)**:
+  - `[[slug]]` → `/posts/slug` へのリンクに変換する独自 remark プラグインを実装。
+  - `[[slug|表示テキスト]]` で任意のリンクテキストを指定可能。
+  - 外部リンク `[text](url)` は通常の Markdown のまま。
+  - 依存ライブラリなし・純粋な AST ウォークで実装（`unist-util-visit` 不使用）。
+- **記事の年別ディレクトリ整理 (`scripts/migrate-posts-to-year-dirs.mjs`)**:
+  - フラットだった `src/content/posts/*.md` を `src/content/posts/YYYY/` へ移行する Node.js スクリプトを作成・実行。
+  - 各ファイルの frontmatter に `slug: <元のファイル名>` を自動挿入し、既存 URL を完全に維持。
+  - Astro の legacy content collections では frontmatter の `slug` フィールドが自動生成 slug より優先される仕様を利用。
+- **About ページにプロフィール写真を追加**: `public/images/profile.jpg` を円形表示。
+
+### Changed
+- **サイト全体の Obsidian 風ミニマルデザインへの刷新**:
+  - CSS Module ファイル（15ファイル）を全削除。`src/styles/globals.css` 1ファイルに集約。
+  - リンク色 `#7c3aed`（Obsidian パープル）、フォント Roboto Mono、`body` に `max-width: 740px` を直接適用。
+  - `markdown.css` は空化（グローバルスタイルがすべてカバー）。
+- **コンポーネントの大幅簡素化**:
+  - Header: モバイルサイドバー・ハンバーガーメニューを廃止し、サイト名＋ナビのみのシンプルな構成に。
+  - PostCard: カバー画像を廃止し、タイトル・日付・タグのみ表示。
+  - Footer: テキストリンクのみ。
+- **削除したコンポーネント**: `ActivityHeatmap`, `MobileSidebar`, `DesktopNav`, `Navigation`, `MenuButton` および関連 CSS Module・テストファイル。
+- **ページ簡素化**: トップページの ActivityHeatmap を削除し最新5件リストに。ブログ一覧のタグサイドバーを廃止。
+
+### Fixed
+- **CI ワークフロー (`ci.yml`)**: E2E テスト削除に伴い Playwright のインストール・実行ステップを削除。
+- **`tsconfig.json`**: 非推奨の `baseUrl` を削除し、`paths` を `"./src/*"` 形式に変更（TypeScript 5.0+ 推奨形式）。`vitest.config.ts` を `exclude` に追加し `astro check` の誤検知を解消。
+- **`vitest.config.ts`**: `/// <reference types="vitest" />` による型解決に戻し、不要な `as any` を除去。
+- **`Layout.astro`**: 外部スクリプトタグに `is:inline` を明示し、`astro check` のヒントを解消。
+- **未使用 `import React` の削除**: `Pagination.tsx`, `PostList.tsx`。
+
+### Removed
+- **E2E テスト一式**: `tests/e2e/smoke.spec.ts` および `tests/` ディレクトリを削除（個人ブログのため単体テストで十分と判断）。
+
 ## [2026-03-14]
 
 ### Fixed
