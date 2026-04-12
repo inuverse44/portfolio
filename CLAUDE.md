@@ -2,90 +2,55 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Overview
+## What（何を作っているか）
 
-This is a personal portfolio and blog site for "Inuverse" built with Astro 5 and React. Blog posts are written in Markdown and stored in `src/content/posts/YYYY/`.
+Inuverse の個人ポートフォリオ兼技術ブログ。Astro 5 + React で構成された静的サイト。Markdown で記事を書き、Firebase Hosting へ自動デプロイする。
 
-## Commands
+## How（コマンド）
 
 ```bash
-npm run dev          # Start dev server at http://localhost:4321
-npm run build        # Production build
-npm run preview      # Preview production build
-npm run check        # Astro type checking (npx astro check)
-npm run lint         # ESLint
-
-npm run test         # Run unit tests (Vitest, single run)
-npm run test:watch   # Run unit tests in watch mode
+npm run dev       # 開発サーバー起動 (http://localhost:4321)
+npm run build     # 本番ビルド
+npm run check     # Astro 型チェック (npx astro check)
+npm run lint      # ESLint
+npm run test      # 単体テスト (Vitest)
 ```
 
-Unit tests live in `src/**/*.test.{ts,tsx}`. E2E tests have been removed — unit tests are sufficient for this personal blog.
+変更後は必ず `npm run build && npm run test && npm run lint && npx astro check` を実行してから push する。
 
-To run a single unit test file: `npx vitest run src/path/to/file.test.tsx`
+単一テストファイルの実行: `npx vitest run src/path/to/file.test.tsx`
 
-After non-trivial changes, run `npm run build && npm run test && npm run lint && npx astro check` to verify correctness. CI runs these same checks.
+## Why（重要な制約）
+
+- **CSS Modules・Tailwind は使用しない** — `src/styles/globals.css` 1ファイルのみ。コンポーネント固有スタイルはインライン `style={{}}` で対応。
+- **`client:*` ディレクティブは最小限に** — インタラクティブな操作が不要なコンポーネントはサーバーレンダリングのまま。
+- **記事は年別ディレクトリに配置** — `src/content/posts/YYYY/YYYY-MM-DD-topic.md`。frontmatter に `slug: YYYY-MM-DD-topic` を明示してURLを維持する。
 
 ## Harness Engineering
 
-This project follows a harness engineering approach: **automate recurring behaviors via hooks and tooling rather than relying on manual steps each time.**
+自動化できる反復作業はフックやスクリプトに落とし込む。
 
-- Use the `update-config` skill to configure automated hooks in Claude Code's `settings.json` (e.g., run lint before commit, run tests after file save).
-- Prefer scripted migrations over manual file edits (see `scripts/migrate-posts-to-year-dirs.mjs` as an example).
-- Encode decisions that must be repeated into scripts or config rather than documenting them as instructions to follow manually.
+- 繰り返す判断はスクリプト化する（例: `scripts/migrate-posts-to-year-dirs.mjs`）
+- 自動化すべき振る舞いは `update-config` スキルでフックとして設定する
+- 同じミスが2回起きたら、チャットで説明するのではなくハーネスを更新する
 
-## Git Workflow
+## Git ワークフロー
 
-- Feature work goes on `develop`, merges to `main` via PR.
-- Deploy triggers on push to `main` (Firebase Hosting via GitHub Actions).
-- After a remote merge to `main`, bring local up to date with:
-  ```bash
-  git checkout main && git pull && git checkout develop && git merge main
-  ```
+`develop` で作業 → `main` へ PR マージ → Firebase へ自動デプロイ。
 
-## Architecture
+```bash
+# main マージ後のローカル反映
+git checkout main && git pull && git checkout develop && git merge main
+```
 
-### Content System
+## ドキュメントインデックス
 
-Posts are managed by Astro Content Collections (`src/content/posts/YYYY/`). The schema is defined in `src/content/config.ts` — frontmatter fields: `title`, `date`, `category`, `tags`, `cover`, `published`, `description`.
+詳細は各設計書を参照。
 
-Posts are organized by year (`2025/`, `2026/`, …). When adding a new post to a year subdirectory, include `slug: YYYY-MM-DD-topic` in frontmatter to preserve URL compatibility (Astro uses this to override the auto-generated slug).
-
-There is also a legacy `src/lib/posts/api.ts` that reads from a top-level `posts/` directory via `gray-matter`. It is unused by the current Astro pages — do not use it.
-
-### Routing
-
-File-system routing via `src/pages/`:
-- `/` → `src/pages/index.astro`
-- `/blog` → `src/pages/blog/index.astro` with pagination under `src/pages/blog/page/`
-- `/posts/[slug]` → `src/pages/posts/[slug].astro` (static paths from content collection)
-- `/category`, `/tags` → aggregated from post frontmatter
-
-Categories are defined in `src/constants/categories.ts` (`CATEGORIES` array). Posts are associated via the `category` frontmatter field.
-
-### Component Structure (Atomic Design)
-
-- `src/components/atoms/` — smallest units (Meta, Tag)
-- `src/components/molecules/` — composed components (PostCard, Pagination, PostNav, BackButton, TagList)
-- `src/components/organisms/` — page-level sections (Header, Footer, PostHeader, PostList)
-- `src/layouts/Layout.astro` — root page layout
-
-React components (`.tsx`) are used throughout. Components without a `client:*` directive render server-side only (no JS shipped). Only add `client:load` / `client:idle` when client-side interactivity is genuinely required.
-
-### Markdown Rendering
-
-Plugins configured in `astro.config.mjs`:
-- `remark-gfm` — GFM syntax (tables, strikethrough, etc.)
-- `remark-math` + `rehype-katex` — LaTeX math
-- `remarkWikiLinks` (`src/plugins/remarkWikiLinks.ts`) — Obsidian-style `[[slug]]` internal links → `/posts/slug`. Supports display text: `[[slug|表示テキスト]]`.
-- Shiki code highlighting with `one-dark-pro` theme
-
-### Styling
-
-Single CSS file `src/styles/globals.css` (Obsidian-like minimal). **No CSS Modules, no Tailwind.** Use inline `style={{}}` or `style=""` for any per-element overrides.
-
-Link color: `#7c3aed` (Obsidian purple). Font: Roboto Mono throughout. Max-width 740px centered on `body`.
-
-### Constants
-
-- `src/constants/site.ts` — site metadata (`SITE_TITLE`, `SITE_URL`, `NAV_ITEMS`, etc.)
-- `src/constants/categories.ts` — category definitions
+| ドキュメント | 内容 |
+|------------|------|
+| @docs/design/01_overview.md | システム構成図・CI/CD パイプライン |
+| @docs/design/02_architecture.md | コンポーネント構成・ルーティング・モジュール依存 |
+| @docs/design/03_data.md | DFD・データモデル・スラッグ仕様 |
+| @docs/design/04_features.md | ページ一覧・Markdown 機能・スタイリング仕様 |
+| @docs/HISTORY.md | 変更履歴 |
