@@ -4,18 +4,12 @@ import Layout from '../../layouts/Layout.astro';
 import PostHeader from '../../components/organisms/PostHeader';
 import PostNav from '../../components/molecules/PostNav';
 import BackButton from '../../components/molecules/BackButton';
-import styles from '../../styles/PostDetail.module.css';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', ({ data }) => {
-    return data.published !== false;
-  });
-  
-  // Sort posts by date descending (newest first)
+  const posts = await getCollection('posts', ({ data }) => data.published !== false);
   const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return sortedPosts.map((post, index) => {
-    // Newer post is at index - 1, Older post is at index + 1
     const nextPost = index > 0 ? { slug: sortedPosts[index - 1].slug, title: sortedPosts[index - 1].data.title } : null;
     const prevPost = index < sortedPosts.length - 1 ? { slug: sortedPosts[index + 1].slug, title: sortedPosts[index + 1].data.title } : null;
 
@@ -32,15 +26,15 @@ const { Content } = await post.render();
 const dateStr = post.data.date.toISOString().split('T')[0];
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description} type="article">
   <BackButton />
-  <article class={styles.article}>
-      <PostHeader title={post.data.title} date={dateStr} tags={post.data.tags || []} />
-    
+  <article>
+    <PostHeader title={post.data.title} date={dateStr} tags={post.data.tags || []} />
     <div class="markdown">
       <Content />
     </div>
   </article>
+  <hr />
   <PostNav prev={prevPost} next={nextPost} />
   <BackButton />
 </Layout>

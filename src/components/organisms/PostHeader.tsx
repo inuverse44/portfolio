@@ -1,6 +1,4 @@
-import React from 'react';
 import Tag from '../atoms/Tag';
-import styles from './PostHeader.module.css';
 
 interface PostHeaderProps {
   title: string;
@@ -10,16 +8,18 @@ interface PostHeaderProps {
 
 const PostHeader = ({ title, date, tags }: PostHeaderProps) => {
   return (
-    <header className={styles.header}>
-      <h1>{title}</h1>
-      <div className={styles.meta}>
+    <header style={{ marginBottom: '2rem' }}>
+      <h1 style={{ marginTop: 0 }}>{title}</h1>
+      <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#888' }}>
         <time dateTime={date}>{date}</time>
       </div>
-      <div className={styles.tags}>
-        {tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </div>
+      {tags.length > 0 && (
+        <div style={{ marginTop: '0.5rem' }}>
+          {tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </div>
+      )}
     </header>
   );
 };

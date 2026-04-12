@@ -2,64 +2,29 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE } from '../constants/site';
-import ActivityHeatmap from '../components/molecules/ActivityHeatmap';
-import PostCard from '../components/molecules/PostCard';
-import styles from '../styles/Home.module.css';
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latestPosts = sortedPosts.slice(0, 3);
-
-const now = new Date();
-const today = now.toISOString().split('T')[0];
-
-const activityData: Record<string, any[]> = {};
-allPosts.forEach((post) => {
-    const d = post.data.date;
-    const dateStr = d.toISOString().split('T')[0];
-    if (!activityData[dateStr]) {
-        activityData[dateStr] = [];
-    }
-    activityData[dateStr].push(post);
-});
+const latestPosts = sortedPosts.slice(0, 5);
 ---
 
 <Layout>
-  <div class={styles.homeContainer}>
-        <div class={styles.heroSection}>
-          <img
-            src="/images/profile.jpg"
-            alt="Profile Picture"
-            width={150}
-            height={150}
-            class={styles.profileImage} 
-          />
-          
-          <h2 class={styles.heroTitle}>Hello, I'm {SITE_TITLE}!</h2>
-          <p class={styles.homeDescription}>
-            Inuverseのポートフォリオへようこそ！ここでは技術や開発、ソフトウェア、科学、宇宙論、そして生活についてシェアします。
-          </p>
-          <p class={styles.homeQuote}>ーーアイディアのタイムカプセル⏳💊</p>
-          <p class={styles.homeDescription}>
-            <a href="/blog">blog</a>や<a href="/about">about</a>でポストや私、このブログについて深く知ることができます。
-          </p>
-        </div>
+  <h1>{SITE_TITLE}</h1>
+  <p>技術、科学、宇宙論、生活についてシェアします。</p>
 
-        <section class={styles.activitySection}>
-          <h3 class={styles.sectionTitle}>Activity</h3>
-          <ActivityHeatmap activities={activityData} today={today} client:load />
-        </section>
+  <hr />
 
-        <section class={styles.section}>
-          <div class={styles.sectionHeader}>
-            <h3 class={styles.sectionTitle}>Recent Posts</h3>
-            <a href="/blog" class={styles.viewAll}>View all →</a>
-          </div>
-          <div class={styles.recentPostsGrid}>
-            {latestPosts.map((post) => (
-               <PostCard post={post} /> 
-            ))}
-          </div>
-        </section>
-      </div>
+  <h2>Recent Posts</h2>
+  <ul style="list-style: none; padding: 0;">
+    {latestPosts.map((post) => {
+      const dateStr = post.data.date.toISOString().split('T')[0];
+      return (
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e5e5e5;">
+          <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+          <small style="color: #888; margin-left: 0.75rem;">{dateStr}</small>
+        </li>
+      );
+    })}
+  </ul>
+  <p style="margin-top: 1rem;"><a href="/blog">すべての記事 →</a></p>
 </Layout>
