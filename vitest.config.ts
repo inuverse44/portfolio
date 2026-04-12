@@ -8,4 +8,4 @@ export default getViteConfig({
     setupFiles: './vitest.setup.ts',
     include: ['src/**/*.test.{ts,tsx}'],
   },
-} as any);
+});
