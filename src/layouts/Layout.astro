@@ -28,13 +28,14 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 
 		{adsClient && (
 			<script
+				is:inline
 				async
 				src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClient}`}
 				crossorigin="anonymous"
 			></script>
 		)}
 
-		<script src="https://unpkg.com/kotlin-playground@1" defer></script>
+		<script is:inline src="https://unpkg.com/kotlin-playground@1" defer></script>
 	</head>
 	<body>
 		<Header />
