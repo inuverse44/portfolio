@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import PostHeader from '../../components/organisms/PostHeader';
 import PostNav from '../../components/molecules/PostNav';
 import BackButton from '../../components/molecules/BackButton';
+import TableOfContents from '../../components/molecules/TableOfContents';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => data.published !== false);
@@ -21,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 
 const dateStr = post.data.date.toISOString().split('T')[0];
 ---
@@ -30,6 +31,7 @@ const dateStr = post.data.date.toISOString().split('T')[0];
   <BackButton />
   <article>
     <PostHeader title={post.data.title} date={dateStr} tags={post.data.tags || []} />
+    <TableOfContents headings={headings} />
     <div class="markdown">
       <Content />
     </div>
