@@ -5,7 +5,7 @@ date: '2026-02-07'
 category: 
 tags:
   - Kotlin
-cover: 
+cover: https://m.media-amazon.com/images/I/71gWfGC2pGL._SL1500_.jpg
 published: true
 ---
 
