@@ -42,7 +42,7 @@ $$
   S[x^\mu]
   = -m \int {\rm d} \lambda  
   \sqrt{
-    - g_{\mu\nu} 
+    - g_{\mu\nu}
     \frac{{\rm d} x^\mu}{{\rm d}\lambda}
     \frac{{\rm d} x^\nu}{{\rm d}\lambda}
   }
@@ -51,7 +51,7 @@ $$
 
 固有時 $\tau$ は線素 ${\rm d}s$ を用いて
 $$
-  {\rm d}\tau^2 
+  {\rm d}\tau^2
   = - {\rm d}s^2
   = - g_{\mu\nu} {\rm d}x^\mu {\rm d}x^\nu
 $$
