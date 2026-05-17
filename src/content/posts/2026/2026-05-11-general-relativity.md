@@ -61,7 +61,7 @@ $$
 $$
 \begin{align}
     A^\mu(Q)
-    - A^\mu(Q \to P)
+    - A_\parallel^\mu(Q \to P)
     &= (A^\mu(P) + \partial_\nu A^\mu \cdot \Delta x^\nu)
     - (
         A^\mu(P) - \Gamma^\mu_{\alpha\beta}(P) A^\alpha(P)
