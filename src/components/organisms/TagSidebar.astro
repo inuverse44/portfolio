@@ -1,0 +1,43 @@
+---
+interface Props {
+  tags: { name: string; count: number }[];
+  currentTag?: string;
+}
+
+const { tags, currentTag } = Astro.props;
+const sorted = [...tags].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+---
+
+<aside style="width: 160px; flex-shrink: 0; font-size: 0.8rem;">
+  <p style="color: #888; font-weight: 600; margin: 0 0 0.5rem; letter-spacing: 0.05em;">TAGS</p>
+  <input
+    id="tag-search"
+    type="text"
+    placeholder="search..."
+    style="width: 100%; box-sizing: border-box; padding: 0.25rem 0.4rem; font-size: 0.75rem; font-family: inherit; border: 1px solid #e5e5e5; border-radius: 3px; margin-bottom: 0.6rem; outline: none;"
+  />
+  <ul id="tag-list" style="list-style: none; padding: 0; margin: 0;">
+    {sorted.map(({ name, count }) => (
+      <li data-tag={name.toLowerCase()} style="margin-bottom: 0.2rem;">
+        <a
+          href={`/tags/${name}`}
+          style={`color: ${currentTag === name ? '#7c3aed' : '#555'}; font-weight: ${currentTag === name ? '600' : 'normal'};`}
+        >
+          {name}
+        </a>
+        <span style="color: #bbb; margin-left: 0.2rem;">({count})</span>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<script>
+  const input = document.getElementById('tag-search') as HTMLInputElement | null;
+  const items = document.querySelectorAll<HTMLLIElement>('#tag-list li[data-tag]');
+  input?.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    items.forEach(li => {
+      li.style.display = (li.dataset.tag ?? '').includes(q) ? '' : 'none';
+    });
+  });
+</script>

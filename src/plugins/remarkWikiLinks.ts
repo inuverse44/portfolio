@@ -3,13 +3,17 @@ type Parent = Node & { children: Node[] };
 type TextNode = Node & { value: string };
 type LinkNode = Node & { url: string; title: null; children: TextNode[] };
 
+export interface WikiLinksOptions {
+  slugTitleMap?: Map<string, string>;
+}
+
 const WIKILINK_RE = /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
 
 function isParent(node: Node): node is Parent {
   return Array.isArray((node as Parent).children);
 }
 
-function processTextNode(node: TextNode): (TextNode | LinkNode)[] {
+function processTextNode(node: TextNode, slugTitleMap: Map<string, string>): (TextNode | LinkNode)[] {
   const { value } = node;
   if (!value.includes('[[')) return [node];
 
@@ -24,7 +28,8 @@ function processTextNode(node: TextNode): (TextNode | LinkNode)[] {
     }
 
     const slug = match[1].trim();
-    const displayText = match[2]?.trim() ?? slug;
+    const explicitText = match[2]?.trim();
+    const displayText = explicitText ?? slugTitleMap.get(slug) ?? slug;
 
     parts.push({
       type: 'link',
@@ -43,24 +48,25 @@ function processTextNode(node: TextNode): (TextNode | LinkNode)[] {
   return parts.length > 0 ? parts : [node];
 }
 
-function walk(node: Node): void {
+function walk(node: Node, slugTitleMap: Map<string, string>): void {
   if (!isParent(node)) return;
 
   const newChildren: Node[] = [];
   for (const child of node.children) {
     if (child.type === 'text') {
-      const replaced = processTextNode(child as TextNode);
+      const replaced = processTextNode(child as TextNode, slugTitleMap);
       newChildren.push(...replaced);
     } else {
-      walk(child);
+      walk(child, slugTitleMap);
       newChildren.push(child);
     }
   }
   node.children = newChildren;
 }
 
-export function remarkWikiLinks() {
+export function remarkWikiLinks(options: WikiLinksOptions = {}) {
+  const slugTitleMap = options.slugTitleMap ?? new Map<string, string>();
   return (tree: Node) => {
-    walk(tree);
+    walk(tree, slugTitleMap);
   };
 }
