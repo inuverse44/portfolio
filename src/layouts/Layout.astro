@@ -36,6 +36,10 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 		)}
 
 		<script is:inline src="https://unpkg.com/kotlin-playground@1" defer></script>
+		<script type="module" is:inline>
+			import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+			mermaid.initialize({ startOnLoad: true });
+		</script>
 	</head>
 	<body>
 		<Header />
@@ -57,6 +61,7 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 				const codeBlocks = document.querySelectorAll('pre');
 				codeBlocks.forEach((codeBlock) => {
 					if (codeBlock.querySelector('.copy-button')) return;
+					if (codeBlock.querySelector('code.language-kotlin')) return;
 
 					const button = document.createElement('button');
 					button.className = 'copy-button';
@@ -91,12 +96,22 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 				});
 			}
 
+			function initCoverImages() {
+				document.querySelectorAll('img.cover-img').forEach(img => {
+					img.addEventListener('error', () => {
+						img.parentElement?.remove();
+					});
+				});
+			}
+
 			initKotlinPlayground();
 			initCopyButtons();
+			initCoverImages();
 
 			document.addEventListener('astro:after-navigation', () => {
 				initKotlinPlayground();
 				initCopyButtons();
+				initCoverImages();
 			});
 
 			window.addEventListener('kotlin-playground-loaded', initKotlinPlayground);

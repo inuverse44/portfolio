@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import PostList from '../../../components/organisms/PostList';
 import Pagination from '../../../components/molecules/Pagination';
+import TagSidebar from '../../../components/organisms/TagSidebar.astro';
 
 import type { GetStaticPaths } from 'astro';
 
@@ -20,15 +21,29 @@ interface Props {
 }
 
 const { page } = Astro.props;
+
+const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const tagCounts = new Map<string, number>();
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  });
+});
+const tags = [...tagCounts.entries()].map(([name, count]) => ({ name, count }));
 ---
 
 <Layout title={`Blog — Page ${page.currentPage}`}>
   <h1>Blog <span style="font-weight: normal; color: #888;">— p.{page.currentPage}</span></h1>
-  <PostList posts={page.data} />
-  <Pagination
-    currentPage={page.currentPage}
-    totalPages={page.lastPage}
-    indexPath="/blog"
-    basePath="/blog/page"
-  />
+  <div class="blog-layout">
+    <div style="flex: 1; min-width: 0;">
+      <PostList posts={page.data} />
+      <Pagination
+        currentPage={page.currentPage}
+        totalPages={page.lastPage}
+        indexPath="/blog"
+        basePath="/blog/page"
+      />
+    </div>
+    <TagSidebar tags={tags} />
+  </div>
 </Layout>

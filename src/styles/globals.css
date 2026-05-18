@@ -217,6 +217,23 @@ footer .social-links {
   vertical-align: middle;
 }
 
+/* ---- Blog layout ---- */
+
+.blog-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 560px) {
+  .blog-layout {
+    flex-direction: column;
+  }
+  .blog-layout aside {
+    width: 100% !important;
+  }
+}
+
 /* ---- Copy button (code blocks) ---- */
 
 .copy-button {
