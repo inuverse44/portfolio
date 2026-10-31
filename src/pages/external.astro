@@ -68,6 +68,44 @@ import Layout from '../layouts/Layout.astro';
         <p>MnistをKotlinで学習して、数字の認識を行うアプリです。行列計算から学習まで外部ライブラリを経由せずロジックを構築しています。</p>
         <p>Repository: <a href='https://github.com/inuverse44/MNIST-Kotlin'>MNIST-Kotlin</a></p>
       </li>
+      <li>
+        <a href='https://inuverse44.github.io/three-body/'>三体問題シミュレーター</a>
+        <p>3 つの天体が重力で引き合う動きを Rust で数値計算し、WebAssembly でブラウザに描きます。積分法による精度の違いも比べられます。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/three-body'>three-body</a></p>
+      </li>
+      <li>
+        <a href='https://inuverse44.github.io/ascii-galaxy/'>ascii galaxy（文字で描く渦巻き銀河）</a>
+        <p>白い紙の上で、文字で描いた渦巻き銀河がゆっくり回ります。星は呼吸の速さで瞬き、ときどき 1 つの星が明るくなって消えていきます。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/ascii-galaxy'>ascii-galaxy</a></p>
+      </li>
+      <li>
+        <a href='https://inuverse44.github.io/cafe-sample/'>架空のカフェ「星と過ごす珈琲夜」</a>
+        <p>森のそばにある、本と珈琲の夜カフェという設定の見本のホームページです。メニューとお知らせはファイルを書き換えるだけで更新できます。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/cafe-sample'>cafe-sample</a></p>
+      </li>
+    </ul>
+
+    <h2>ライブラリ・解析</h2>
+    <ul>
+      <li>
+        <a href='https://github.com/inuverse44/tensorcheck'>tensorcheck</a>
+        <p>物理量の次元・添字の上下・座標系・対称性の誤りを、Rust のコンパイル時に止めるライブラリです。計量テンソルから曲率を自動微分で求め、微分方程式・積分も次元を保ったまま解けます。</p>
+      </li>
+      <li>
+        <a href='/posts/2026-10-29-goose-vs-rust'>出たばかりの言語 Goose を、Rust と 3 つの計算で比べてみた</a>
+        <p>ヒープのない新しい言語 Goose を、注文データの集計と preheating の格子シミュレーションで Rust と比べ、差の原因を機械語まで調べました。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/goose-lab'>goose-lab</a></p>
+      </li>
+      <li>
+        <a href='/posts/2026-10-11-cpi-analysis'>消費者物価指数で見る、この数年の物価とお米</a>
+        <p>総務省統計局の公開データを Python で集計・可視化しました。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/cpi-analysis'>cpi-analysis</a></p>
+      </li>
+      <li>
+        <a href='/posts/2026-10-11-space-analysis'>地球の電波は、どの星まで届いたか</a>
+        <p>恒星カタログと NASA の系外惑星データを Python で集計し、100 年前のラジオの電波が届いた範囲にある星を数えました。</p>
+        <p>Repository: <a href='https://github.com/inuverse44/space-analysis'>space-analysis</a></p>
+      </li>
     </ul>
   </div>
 </Layout>
