@@ -15,7 +15,9 @@
   - `src/content/config.ts` を `src/content.config.ts` に移し、`glob` ローダーで定義。`post.slug` を `post.id` に、`post.render()` を `render(post)` に置き換えた。URL は変わらない。
   - Markdown の既定の処理系が Sätteri になったため、`@astrojs/markdown-remark` を追加し、`markdown.processor: unified({...})` に remark/rehype プラグインを渡す形にした。
   - Astro 7 が Node 22.23.4 以上を要するため、CI とデプロイの Node を 22 に上げた。
-- 更新の前後でビルド結果を比べ、114 ページの URL と、全 63 記事の本文の HTML が同じであることを確かめた。違いは空白、インライン script の圧縮、React の画像 preload ヒント、同じ日付の記事の並び順だけ。
+  - KaTeX 0.19 で数式番号の class が `.tag` から `.katex-tag` に変わったため、`globals.css` の指定を合わせた。
+  - CI の `npm ci`（npm 10）がロックファイルの不整合で失敗したため、`package-lock.json` を作り直した。
+- 更新の前後でビルド結果を比べ、114 ページの URL と、記事本文の HTML を比べた。数式以外の本文は同じ。KaTeX 0.19 で数式の HTML の class 名が変わったが、数式番号のある記事を画面で比べて表示が同じことを確かめた。そのほかの違いは空白、インライン script の圧縮、React の画像 preload ヒント、同じ日付の記事の並び順だけ。
 
 ## [2026-04-12]
 
