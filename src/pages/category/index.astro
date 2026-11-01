@@ -24,7 +24,7 @@ const categories = CATEGORIES.map((c) => {
         <p style="color: #888; font-size: 0.85rem; margin: 0.25rem 0;">{c.posts.length} posts</p>
         <ul style="padding-left: 1rem; margin-top: 0.5rem;">
           {c.posts.slice(0, 3).map((p) => (
-            <li><a href={`/posts/${p.slug}`}>{p.data.title}</a></li>
+            <li><a href={`/posts/${p.id}`}>{p.data.title}</a></li>
           ))}
         </ul>
       </li>

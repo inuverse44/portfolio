@@ -7,7 +7,7 @@ Inuverse の個人ポートフォリオ兼技術ブログ。Markdown で記事�
 | 項目 | 内容 |
 |------|------|
 | URL | https://www.inuverse.dev |
-| フレームワーク | Astro 5（静的サイト生成） |
+| フレームワーク | Astro 7（静的サイト生成） |
 | レンダリング | SSG（ビルド時に全ページを HTML 生成） |
 | ホスティング | Firebase Hosting |
 | CI/CD | GitHub Actions |

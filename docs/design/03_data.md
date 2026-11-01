@@ -139,7 +139,7 @@ description: 統計学入門の第2章を読んだメモです
 | `posts/2025/2025-11-14-rust.md` | `2025-11-14-rust`（frontmatter） | `/posts/2025-11-14-rust` |
 | `posts/2026/2026-01-03-statistics-chapter2-prob.md` | `2026-01-03-statistics-chapter2-prob` | `/posts/2026-01-03-statistics-chapter2-prob` |
 
-> Astro Content Collections はサブディレクトリを含めてスラッグを生成するが、frontmatter に `slug` フィールドを明示することで URL を上書きできる。年別移行スクリプト（`scripts/migrate-posts-to-year-dirs.mjs`）がこの挿入を自動処理する。
+> `src/content.config.ts` の `glob` ローダーは、frontmatter に `slug` があればそれを `entry.id` に使う（なければファイルパスから生成し、サブディレクトリを含む）。ページは `entry.id` から URL を作るので、`slug` を明示すれば年別ディレクトリに置いても URL は変わらない。年別移行スクリプト（`scripts/migrate-posts-to-year-dirs.mjs`）がこの挿入を自動処理する。
 
 ---
 

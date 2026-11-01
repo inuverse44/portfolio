@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import { unified } from '@astrojs/markdown-remark';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -45,14 +46,17 @@ const slugTitleMap = buildSlugTitleMap();
 export default defineConfig({
   integrations: [react()],
   markdown: {
-    remarkPlugins: [
-      remarkGfm,
-      remarkMath,
-      [remarkWikiLinks, { slugTitleMap }],
-      remarkMermaid,
-      remarkKotlin,
-    ],
-    rehypePlugins: [rehypeKatex],
+    // Astro 7 の既定は Sätteri。remark/rehype のプラグインを使い続けるため unified() を指定する。
+    processor: unified({
+      remarkPlugins: [
+        remarkGfm,
+        remarkMath,
+        [remarkWikiLinks, { slugTitleMap }],
+        remarkMermaid,
+        remarkKotlin,
+      ],
+      rehypePlugins: [rehypeKatex],
+    }),
     shikiConfig: {
       theme: 'one-dark-pro',
     }

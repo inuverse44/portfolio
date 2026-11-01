@@ -210,7 +210,8 @@ footer .social-links {
   text-align: initial;
 }
 
-.katex-display .tag {
+/* KaTeX 0.19 で数式番号の class が .tag から .katex-tag に変わった */
+.katex-display .katex-tag {
   position: static !important;
   display: inline-block;
   margin-left: 2em;
