@@ -2,6 +2,7 @@
 slug: 2026-01-04-daily-memo-kotlin
 title: Kotlinの関数参照に出会ってしまった
 date: '2026-01-04'
+category: programming
 tags:
   - Kotlin
   - 日常

@@ -2,6 +2,7 @@
 slug: 2026-01-16-readability
 title: 【読みやすいコードのガイドライン】変数の直交性
 date: '2026-01-16'
+category: programming
 tags:
   - Kotlin
 cover: https://gihyo.jp/assets/images/cover/2022/thumb/TH800_9784297130367.jpg

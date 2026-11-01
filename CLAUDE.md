@@ -25,6 +25,7 @@ npm run test      # 単体テスト (Vitest)
 - **CSS Modules・Tailwind は使用しない** — `src/styles/globals.css` 1ファイルのみ。コンポーネント固有スタイルはインライン `style={{}}` で対応。
 - **`client:*` ディレクティブは最小限に** — インタラクティブな操作が不要なコンポーネントはサーバーレンダリングのまま。
 - **記事は年別ディレクトリに配置** — `src/content/posts/YYYY/YYYY-MM-DD-topic.md`。frontmatter に `slug: YYYY-MM-DD-topic` を明示してURLを維持する。
+- **記事には `category` を必ず付ける** — `src/constants/categories.ts` の slug から 1 つ選ぶ。合うものがなければ、一覧にカテゴリを足してから使う。記事を追加・編集するときは、本文を読んで Claude がカテゴリを選ぶ（人に選ばせない）。
 
 ## Harness Engineering
 

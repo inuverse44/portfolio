@@ -2,6 +2,7 @@
 slug: 2026-01-05-moment-generator
 title: Gauss分布のモーメント生成母関数
 date: '2026-01-05'
+category: math
 tags:
   - 統計学
   - 数学

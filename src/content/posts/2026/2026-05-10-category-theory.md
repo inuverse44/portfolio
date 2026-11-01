@@ -2,7 +2,7 @@
 slug: 2026-05-10-category-theory
 title: 関手は同型を保つ 
 date: '2026-05-10'
-category: category-theory
+category: math
 tags:
   - category-theory
   - mathematics

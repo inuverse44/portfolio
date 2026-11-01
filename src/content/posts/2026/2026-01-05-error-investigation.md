@@ -2,6 +2,7 @@
 slug: 2026-01-05-error-investigation
 title: GKE上にデプロイしているRabbitMQでエラーを調査する
 date: '2026-01-05'
+category: infra
 tags:
   - GCP
   - GKE

@@ -2,7 +2,7 @@
 slug: 2026-05-12-general-relativity
 title: リーマンテンソル・リッチテンソル・リーマン曲率
 date: '2026-05-12'
-category: general-relativity
+category: physics
 tags:
   - general-relativity
 cover: https://www.saiensu.co.jp/bookImages/2025-978-4-7819-1645-3.jpg

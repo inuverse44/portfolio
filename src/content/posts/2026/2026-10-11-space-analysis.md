@@ -2,7 +2,7 @@
 slug: 2026-10-11-space-analysis
 title: 地球の電波は、どの星まで届いたか ―『三体』になぞらえて
 date: '2026-10-11'
-category: 
+category: data-analysis
 tags:
   - データ解析
   - Python

@@ -2,7 +2,7 @@
 slug: 2026-05-17-kihon-joho
 title: 2の補数
 date: '2026-05-17'
-category: 基本情報
+category: programming
 tags:
   - 基本情報
 cover: 
