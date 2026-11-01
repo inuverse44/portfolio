@@ -2,6 +2,7 @@
 slug: 2026-01-16-canonical-transformation
 title: シュレディンガー方程式のユニタリ変換
 date: '2026-01-18'
+category: physics
 tags:
   - 量子力学
 published: false

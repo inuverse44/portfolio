@@ -2,6 +2,7 @@
 slug: 2026-01-19-kotlin-terminal-ascii-renderer
 title: 【翻訳】KotlinのASCIIアートロゴをターミナルで回転させる
 date: '2026-01-19'
+category: programming
 tags:
   - Kotlin
 cover: https://logos-world.net/wp-content/uploads/2023/07/Medium-Logo.jpg

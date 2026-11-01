@@ -2,7 +2,7 @@
 slug: 2026-02-07-kotlin-in-action-ch5
 title: Kotlin in Action 5章 `fun interface`
 date: '2026-02-07'
-category: 
+category: programming
 tags:
   - Kotlin
 cover: https://m.media-amazon.com/images/I/71gWfGC2pGL._SL1500_.jpg

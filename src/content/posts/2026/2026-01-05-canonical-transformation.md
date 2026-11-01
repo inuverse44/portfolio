@@ -2,6 +2,7 @@
 slug: 2026-01-05-canonical-transformation
 title: 正準変換のメモ
 date: '2026-01-05'
+category: physics
 tags:
   - 解析力学
   - 正準変換

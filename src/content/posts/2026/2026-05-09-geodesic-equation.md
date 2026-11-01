@@ -2,7 +2,7 @@
 slug: 2026-05-09-gr
 title: 測地線方程式の導出 
 date: '2026-05-09'
-category: general-relativity
+category: physics
 tags:
   - general-relativity
 cover: https://www.saiensu.co.jp/bookImages/2025-978-4-7819-1645-3.jpg

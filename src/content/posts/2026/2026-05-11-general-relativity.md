@@ -2,7 +2,7 @@
 slug: 2026-05-11-general-relativity
 title: 並行移動 
 date: '2026-05-11'
-category: general-relativity
+category: physics
 tags:
   - general-relativity
 cover: https://www.saiensu.co.jp/bookImages/2025-978-4-7819-1645-3.jpg

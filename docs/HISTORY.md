@@ -4,6 +4,11 @@
 
 ## [2026-11-01]
 
+### Added
+- **ブログのカテゴリを整理**: 表示されるカテゴリが `statistics-intro` だけだったので、物理・宇宙論、数学・機械学習、プログラミング、クラウド・インフラ、データ解析、雑記を追加し、全 65 記事にカテゴリを付けた。frontmatter にあった未登録のカテゴリ（`cosmology`、`general-relativity`、`category-theory`、`memo`、`基本情報`）は、新しいカテゴリへ移した。
+- **カテゴリの書き忘れをビルドで止める**: `src/content.config.ts` で `category` を一覧の slug の enum にし、必須にした。
+- **About**: 資格に基本情報技術者を追加し、今年の目標にチェックを付けた。言語に中国語（勉強中）を追加。
+
 ### Security
 - **依存パッケージの脆弱性を解消（#132）**: `npm audit --omit=dev` の 38 件（critical 2・high 22）を 0 件にした。
   - `npm audit fix` でメジャー更新を伴わない分を更新。
