@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What（何を作っているか）
 
-Inuverse の個人ポートフォリオ兼技術ブログ。Astro 5 + React で構成された静的サイト。Markdown で記事を書き、Firebase Hosting へ自動デプロイする。
+Inuverse の個人ポートフォリオ兼技術ブログ。Astro 7 + React で構成された静的サイト。Markdown で記事を書き、Firebase Hosting へ自動デプロイする。
 
 ## How（コマンド）
 
