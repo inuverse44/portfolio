@@ -2,7 +2,7 @@
 slug: 2026-03-14-nongaussianity
 title: バイスペクトル（Bispectrum）の計算
 date: '2026-03-14'
-category: cosmology
+category: physics
 tags:
   - 宇宙論
 cover: /images/thumbnail/Planck_s_view_of_the_cosmic_microwave_background.jpg

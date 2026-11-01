@@ -2,6 +2,7 @@
 slug: 2026-01-09-kotlin-in-action-chap2
 title: Kotlin in Action Second Edition 第２章
 date: '2026-01-09'
+category: programming
 tags:
   - Kotlin
 cover: https://m.media-amazon.com/images/I/71gWfGC2pGL._SL1500_.jpg

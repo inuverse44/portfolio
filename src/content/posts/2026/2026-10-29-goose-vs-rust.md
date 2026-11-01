@@ -2,7 +2,7 @@
 slug: 2026-10-29-goose-vs-rust
 title: 出たばかりの言語 Goose を、Rust と 3 つの計算で比べてみた
 date: '2026-10-29'
-category: 
+category: programming
 tags:
   - Goose
   - Rust

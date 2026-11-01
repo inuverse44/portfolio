@@ -2,7 +2,7 @@
 slug: 2026-10-11-cpi-analysis
 title: 消費者物価指数で見る、この数年の物価とお米
 date: '2026-10-11'
-category: 
+category: data-analysis
 tags:
   - データ解析
   - Python

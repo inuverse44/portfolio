@@ -91,7 +91,7 @@ erDiagram
         string slug PK "ファイル名ベース（frontmatter で上書き可）"
         string title "記事タイトル（必須）"
         date   date  "公開日（必須）"
-        string category FK "カテゴリ slug（任意）"
+        string category FK "カテゴリ slug（必須）"
         array  tags  "タグ一覧（任意）"
         string cover "カバー画像 URL（任意）"
         bool   published "false で下書き（省略時 true）"
@@ -145,8 +145,14 @@ description: 統計学入門の第2章を読んだメモです
 
 ## 4. カテゴリ定義
 
-カテゴリは `src/constants/categories.ts` に静的定義する。記事との紐付けは frontmatter の `category` フィールドで行う。
+カテゴリは `src/constants/categories.ts` に静的定義する。記事は frontmatter の `category` に、ここの slug を必ず 1 つ書く。`src/content.config.ts` のスキーマが一覧にない slug や書き忘れを弾き、ビルドが止まる（エラーに使える slug が出る）。細かい分類はタグで行う。
 
-| slug | タイトル | 説明 |
+| slug | タイトル | 入る記事 |
 |------|---------|------|
-| `statistics-intro` | 統計学入門を読んでみた | 「統計学入門 東京大学出版会」の読書メモ |
+| `statistics-intro` | 統計学入門を読んでみた | 「統計学入門 東京大学出版会」の読書メモと演習 |
+| `physics` | 物理・宇宙論 | 一般相対論、宇宙論、解析力学、量子力学 |
+| `math` | 数学・機械学習 | 確率・統計の計算、圏論、数値計算、機械学習 |
+| `programming` | プログラミング | Kotlin、Rust などの言語、読みやすいコード、競技プログラミング、計算機の基礎 |
+| `infra` | クラウド・インフラ | GKE、RabbitMQ、Prometheus、Docker、負荷検証 |
+| `data-analysis` | データ解析 | 公開データを Python で調べた記事 |
+| `misc` | 雑記 | 日記、論文メモ |

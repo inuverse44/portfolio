@@ -2,6 +2,7 @@
 slug: 2026-01-17-competitive-programming
 title: 【競技プログラミング初心者の学び】入力をパースする、数える
 date: '2026-01-17'
+category: programming
 tags:
   - 競技プログラミング
   - Kotlin
