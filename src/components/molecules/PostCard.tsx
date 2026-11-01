@@ -2,7 +2,7 @@ import Tag from '@/components/atoms/Tag';
 
 interface PostCardProps {
   post: {
-    slug: string;
+    id: string;
     data: {
       title: string;
       date: Date | string;
@@ -14,7 +14,7 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
   const { title, date, tags = [], cover } = post.data;
-  const coverSrc = cover || `https://picsum.photos/seed/${post.slug}/80/56`;
+  const coverSrc = cover || `https://picsum.photos/seed/${post.id}/80/56`;
   const dateStr = date instanceof Date ? date.toISOString().split('T')[0] : date;
 
   return (
@@ -28,7 +28,7 @@ const PostCard = ({ post }: PostCardProps) => {
         />
       </div>
       <div style={{ flex: 1 }}>
-        <a href={`/posts/${post.slug}`} style={{ fontWeight: '600', fontSize: '1rem', color: '#1a1a1a' }}>
+        <a href={`/posts/${post.id}`} style={{ fontWeight: '600', fontSize: '1rem', color: '#1a1a1a' }}>
           {title}
         </a>
         <div style={{ marginTop: '0.25rem', fontSize: '0.85rem', color: '#888' }}>

@@ -20,7 +20,7 @@ const latestPosts = sortedPosts.slice(0, 5);
       const dateStr = post.data.date.toISOString().split('T')[0];
       return (
         <li style="padding: 0.4rem 0; border-bottom: 1px solid #e5e5e5;">
-          <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+          <a href={`/posts/${post.id}`}>{post.data.title}</a>
           <small style="color: #888; margin-left: 0.75rem;">{dateStr}</small>
         </li>
       );

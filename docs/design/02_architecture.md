@@ -5,8 +5,8 @@
 ```
 portfolio/
 ├── src/
+│   ├── content.config.ts          # コレクションスキーマ（glob ローダー）
 │   ├── content/
-│   │   ├── config.ts              # コレクションスキーマ
 │   │   └── posts/
 │   │       ├── 2025/              # 年別ディレクトリ
 │   │       └── 2026/
@@ -115,7 +115,7 @@ graph LR
 graph TD
     AC["astro.config.mjs"]
     WL["plugins/remarkWikiLinks.ts"]
-    CC["content/config.ts"]
+    CC["content.config.ts"]
     SC["constants/site.ts"]
     CAT["constants/categories.ts"]
 

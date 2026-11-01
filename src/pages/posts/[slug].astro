@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostHeader from '../../components/organisms/PostHeader';
 import PostNav from '../../components/molecules/PostNav';
@@ -11,18 +11,18 @@ export async function getStaticPaths() {
   const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return sortedPosts.map((post, index) => {
-    const nextPost = index > 0 ? { slug: sortedPosts[index - 1].slug, title: sortedPosts[index - 1].data.title } : null;
-    const prevPost = index < sortedPosts.length - 1 ? { slug: sortedPosts[index + 1].slug, title: sortedPosts[index + 1].data.title } : null;
+    const nextPost = index > 0 ? { slug: sortedPosts[index - 1].id, title: sortedPosts[index - 1].data.title } : null;
+    const prevPost = index < sortedPosts.length - 1 ? { slug: sortedPosts[index + 1].id, title: sortedPosts[index + 1].data.title } : null;
 
     return {
-      params: { slug: post.slug },
+      params: { slug: post.id },
       props: { post, prevPost, nextPost },
     };
   });
 }
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 
 const dateStr = post.data.date.toISOString().split('T')[0];
 ---
