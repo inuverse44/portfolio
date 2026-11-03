@@ -11,12 +11,16 @@ Inuverse の個人ポートフォリオ兼技術ブログ。Astro 7 + React で�
 ```bash
 npm run dev       # 開発サーバー起動 (http://localhost:4321)
 npm run build     # 本番ビルド
+npm run build:clean  # キャッシュ（.astro、node_modules/.astro）を消してからビルド
 npm run check     # Astro 型チェック (npx astro check)
 npm run lint      # ESLint
 npm run test      # 単体テスト (Vitest)
 ```
 
 変更後は必ず `npm run build && npm run test && npm run lint && npx astro check` を実行してから push する。
+
+- **Node の版は `.nvmrc` で決める**。CI とデプロイも `node-version-file: .nvmrc` で同じ版を使う。手元の npm と CI の npm はメジャー版をそろえる（npm 10 と 11 ではロックファイルの検査の厳しさが違い、手元で通っても CI の `npm ci` で落ちたことがある）。
+- **依存や Markdown のプラグインを変えたあと、更新前と出力を比べるときは `npm run build:clean` を使う**。Astro は変換済みの記事をキャッシュするので、ふつうの `build` では古い出力のまま比べてしまう。数式やコードの見た目は画面でも確かめる。
 
 単一テストファイルの実行: `npx vitest run src/path/to/file.test.tsx`
 
@@ -41,7 +45,13 @@ npm run test      # 単体テスト (Vitest)
 
 ```bash
 # main マージ後のローカル反映
-git checkout main && git pull && git checkout develop && git merge main
+git checkout main && git pull && git checkout develop && git merge main && git push
+```
+
+main へマージしたら、デプロイだけでなく、そのコミットで動いたすべてのワークフロー（CI を含む）の結果を確かめる。
+
+```bash
+gh run list --branch main --commit <マージコミット>
 ```
 
 ## ドキュメントインデックス

@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build:clean": "rm -rf .astro node_modules/.astro && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",
@@ -66,5 +67,8 @@
   },
   "overrides": {
     "katex": "$katex"
+  },
+  "engines": {
+    "node": ">=22.23.4"
   }
 }
