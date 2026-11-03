@@ -69,5 +69,5 @@
 | T-04 | main へマージしたら、そのコミットのすべてのワークフローを確かめる（P-03） | CLAUDE.md、Claude のメモリー | 済み（この PR） |
 | T-05 | main の取り込み手順の最後に `git push` を足す（P-05） | CLAUDE.md | 済み（この PR） |
 | T-06 | `package.json` の `engines` に Node の下限を書く（P-03） | package.json | 済み（この PR） |
-| T-07 | この PR を main に出したら、main の CI とデプロイが Node 24 で通ることを確かめる | — | 予定（Claude、この PR のマージ時） |
+| T-07 | この PR を main に出したら、main の CI とデプロイが Node 24 で通ることを確かめる | — | 済み（#146、CI run 41559867254・デプロイ run 41559867137、どちらも Node 24.22.1 で成功） |
 | T-08 | `Closes` と `Refs` の書き分け（P-04） | — | 見送り（1 回だけで、マージ前に直せたため） |
