@@ -2,6 +2,16 @@
 
 すべての注目すべき変更はこのファイルに記録されます。
 
+## [2026-11-03]
+
+### Fixed
+- **main の CI が Node 22.23.3 で失敗していた**: `node-version: 22` が実行するマシンのキャッシュ（22.23.3 または 22.23.4）に左右され、Astro 7 の要件（22.23.4 以上）を満たさないことがあった。`.nvmrc` で Node 24 を指定し、CI とデプロイは `node-version-file: .nvmrc` で読むようにした。Node 24 に付属する npm は 11 系なので、手元と CI で npm のメジャー版もそろう。
+
+### Added
+- `npm run build:clean`：キャッシュ（`.astro`、`node_modules/.astro`）を消してからビルドする。依存を変えたあとの出力の比較に使う。
+- `package.json` の `engines` に Node の下限を書いた。
+- 振り返りの記録 `docs/retrospectives/2026-11-03-deps-and-categories.md`。
+
 ## [2026-11-01]
 
 ### Added
