@@ -64,4 +64,5 @@ gh run list --branch main --commit <マージコミット>
 | @docs/design/02_architecture.md | コンポーネント構成・ルーティング・モジュール依存 |
 | @docs/design/03_data.md | DFD・データモデル・スラッグ仕様 |
 | @docs/design/04_features.md | ページ一覧・Markdown 機能・スタイリング仕様 |
+| docs/brand/README.md | ロゴの仕様（作図・色・書体）。ロゴは `scripts/brand/generate-logo.mjs` で生成し、SVG を手で直さない |
 | @docs/HISTORY.md | 変更履歴 |
