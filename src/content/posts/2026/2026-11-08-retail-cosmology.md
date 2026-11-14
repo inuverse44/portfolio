@@ -24,6 +24,8 @@ description: 宇宙論で銀河の集まり方を測る二点相関関数を、�
 
 [ノートの PDF：スーパーの店舗分布の二点相関関数](/papers/retail-cosmology.pdf)
 
+計算（Rust）、図（Python）、ノート（TeX）、式の検証（Lean）は GitHub で公開しています：[inuverse44/retail-cosmology](https://github.com/inuverse44/retail-cosmology)
+
 この記事はその概要です。
 
 ## 二点相関関数とは
