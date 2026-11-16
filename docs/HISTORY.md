@@ -2,6 +2,15 @@
 
 すべての注目すべき変更はこのファイルに記録されます。
 
+## [2026-11-12]
+
+### Added
+- **ロゴを作り直した**: 柴犬の顔の形を「INUVERSE」の文字で作り、銀河の写った円い窓（ハッブル・ウルトラ・ディープ・フィールドが元）に置いた。書体は Outfit。
+  - `scripts/brand/generate-logo.mjs`：作図の定義からロゴを生成する。文字は opentype.js でパスに変換する（`opentype.js` と `@fontsource/outfit` を devDependencies に追加）。
+  - `public/brand/`：記号、単色版、favicon、横組み・縦組み、ロゴタイプの SVG と PNG、`favicon.ico`。
+  - `docs/brand/README.md`：作図の定義、色、書体、余白と最小サイズ、してはいけないこと。
+  - サイトのヘッダーや favicon はまだ差し替えていない。
+
 ## [2026-11-03]
 
 ### Fixed
